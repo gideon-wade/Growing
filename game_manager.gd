@@ -14,10 +14,10 @@ enum Faction {
 
 const UNIT = {
 	Faction.PLAYER: {
-		UnitType.BASIC: preload("res://Mobs/Player/basic_player.tscn")
+		UnitType.BASIC: preload("res://mobs/player/basic_player.tscn")
 	},
 	Faction.ENEMY: {
-		UnitType.BASIC: preload("res://Mobs/Enemy/basic_enemy.tscn")
+		UnitType.BASIC: preload("res://mobs/enemy/basic_enemy.tscn")
 	}
 }
 

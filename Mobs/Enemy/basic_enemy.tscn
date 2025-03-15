@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh37h4k6rbpli"]
 
 [ext_resource type="Texture2D" uid="uid://betig64heferu" path="res://icon.svg" id="1_ifa86"]
-[ext_resource type="Script" uid="uid://b63cupsjvyoh7" path="res://Mobs/Enemy/basic_enemy.gd" id="1_kmm33"]
+[ext_resource type="Script" uid="uid://b63cupsjvyoh7" path="res://mobs/enemy/basic_enemy.gd" id="1_kmm33"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmm33"]
 radius = 62.566

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mi0aj24fl5it"
-path="res://.godot/imported/hexatiles_growing.png-0fa99e191be41bc18723a95267bf8749.ctex"
+path="res://.godot/imported/hexatiles_growing.png-b827c4db3adbf968acc3e52c880a8331.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hexatiles_growing.png"
-dest_files=["res://.godot/imported/hexatiles_growing.png-0fa99e191be41bc18723a95267bf8749.ctex"]
+source_file="res://textures/hexatiles_growing.png"
+dest_files=["res://.godot/imported/hexatiles_growing.png-b827c4db3adbf968acc3e52c880a8331.ctex"]
 
 [params]
 
