@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 	if held and get_parent().state == 0:
 		print("??? ", global_position)
 		var pos = get_global_mouse_position()
-		pos.x = clamp(pos.x, 0 + sprite.texture.get_width()/2, get_viewport_rect().size[0] * 0.4 - sprite.texture.get_width()/2)
-		pos.y = clamp(pos.y, 0 + sprite.texture.get_height()/2, get_viewport_rect().size[1] - sprite.texture.get_height()/2)
+		var width = sprite.texture.get_width()/2 * sprite.scale.x
+		var height = sprite.texture.get_height()/2 * sprite.scale.y
+		
+		pos.x = clamp(pos.x, width, get_viewport_rect().size[0] * 0.4 - width)
+		pos.y = clamp(pos.y, height, get_viewport_rect().size[1] - height)
 		global_position = pos
