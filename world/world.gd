@@ -69,16 +69,20 @@ func place_mobs() -> void:
 	for tile in tiles:
 		var valid = true
 		if tiles[tile].get_custom_data("Can Spawn"):
-			print("can spawn ", tile)
-			for i in range(3):
-				for j in range(3):
+			for i in range(5):
+				for j in range(5):
 					if i == 0 and j == 0:
 						continue
 					if tiles.get(tile + Vector2i(i,j), null) and mobs_on_tiles.get(tile + Vector2i(i,j), false):
 						valid = false
 					if tiles.get(tile - Vector2i(i,j), null) and mobs_on_tiles.get(tile - Vector2i(i,j), false):
 						valid = false
+					if tiles.get(tile + Vector2i(-i,j), null) and mobs_on_tiles.get(tile + Vector2i(-i,j), false):
+						valid = false
+					if tiles.get(tile + Vector2i(i,-j), null) and mobs_on_tiles.get(tile + Vector2i(i,-j), false):
+						valid = false
 			if valid:
+				print(mobs_on_tiles)
 				spawn_mob(tile)
 
 func spawn_mob(tile) -> void:
@@ -88,7 +92,7 @@ func spawn_mob(tile) -> void:
 	sprite.texture = PEASANT
 	sprite.scale = Vector2(0.2, 0.2)
 	self.add_child(sprite)
-	sprite.position = tile * Vector2i(tile_size, 90) + Vector2i(tile_size, tile_size) / 2 + Vector2i(64 if (tile.y%2==1) else 0, 0)
+	sprite.position = tile * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + Vector2i(64 if (tile.y%2==1) else 0, 0)
 	print("sprite.position ", sprite.position)
 	
 	
