@@ -31,9 +31,9 @@ func place_tiles() -> void:
 		for y in range(noise_texture.height):
 			noises.append(noise.get_noise_2d(x,y))
 			var noise_val = float(noise.get_noise_2d(x,y))
-			if noise_val < -0.48:
+			if noise_val < -0.43:
 				tile_map.set_cell(Vector2(x,y), source_id, water_dark_atlas)
-			elif noise_val < -0.38:
+			elif noise_val < -0.34:
 				tile_map.set_cell(Vector2(x,y), source_id, water_semi_dark_atlas)
 			elif noise_val < -0.28:
 				tile_map.set_cell(Vector2(x,y), source_id, water_semibright_atlas)
