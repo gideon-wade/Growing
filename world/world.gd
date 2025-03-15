@@ -4,7 +4,7 @@ var noise : Noise
 var noises = []
 var source_id = 0
 @onready var tile_map: TileMapLayer = $TileMap
-
+var tile_size = 128
 #Water
 var water_dark_atlas = Vector2i(3,2)
 var water_semi_dark_atlas = Vector2i(2,2)
@@ -20,11 +20,17 @@ var grass_dark_atlas = Vector2i(2,0)
 var grass_semibright_atlas = Vector2i(1,0)
 var grass_bright_atlas = Vector2i(0,0)
 
+var first_tile 
+var tiles = {}
+var mobs_on_tiles = {}
+const PEASANT = preload("res://art/units/peasant.png")
+
 func _ready() -> void:
 	noise = noise_texture.noise
 	var rng = RandomNumberGenerator.new()
 	noise.seed = rng.randi()
 	place_tiles()
+	place_mobs()
 
 func place_tiles() -> void:
 	for x in range(noise_texture.width):
@@ -53,5 +59,36 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_semibright_atlas)
 			else:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_dark_atlas)
-	print("min value in noise ", noises.min())
-	print("max value in noise ", noises.max())
+			var clicked_cell = Vector2i(x,y)
+			var tile = tile_map.get_cell_tile_data(clicked_cell)
+			if tile:
+				tiles[clicked_cell] = tile
+		GameManager.tiles = tiles
+				
+func place_mobs() -> void:
+	for tile in tiles:
+		var valid = true
+		if tiles[tile].get_custom_data("Can Spawn"):
+			print("can spawn ", tile)
+			for i in range(3):
+				for j in range(3):
+					if i == 0 and j == 0:
+						continue
+					if tiles.get(tile + Vector2i(i,j), null) and mobs_on_tiles.get(tile + Vector2i(i,j), false):
+						valid = false
+					if tiles.get(tile - Vector2i(i,j), null) and mobs_on_tiles.get(tile - Vector2i(i,j), false):
+						valid = false
+			if valid:
+				spawn_mob(tile)
+
+func spawn_mob(tile) -> void:
+	print("spawning mob here ", tile)
+	mobs_on_tiles[tile] = "Peasant"
+	var sprite = Sprite2D.new()
+	sprite.texture = PEASANT
+	sprite.scale = Vector2(0.2, 0.2)
+	self.add_child(sprite)
+	sprite.position = tile * Vector2i(tile_size, 90) + Vector2i(tile_size, tile_size) / 2 + Vector2i(64 if (tile.y%2==1) else 0, 0)
+	print("sprite.position ", sprite.position)
+	
+	
