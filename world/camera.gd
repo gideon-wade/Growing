@@ -2,10 +2,10 @@ extends Camera2D
 
 @onready var camera_area_shape: CollisionShape2D = $CameraArea/CameraAreaShape
 
-var speed = 50
-var zoom_speed = 0.01
-var min_zoom = Vector2(0.005, 0.005)
-var max_zoom = Vector2(0.5, 0.5)
+var speed = 5000
+var zoom_speed = 0.03
+var min_zoom = Vector2(0.02, 0.02)
+var max_zoom = Vector2(0.7, 0.7)
 var edge_threshold = 10
 var current_zoom = Vector2(0.01, 0.01)
 
@@ -40,10 +40,8 @@ func _process(delta):
 	elif mouse_pos.y > camera_view_half_height - scaled_edge_threshold:
 		movement.y += 1
 		
-
 	movement = movement.normalized() * speed
 	position += movement * delta * (1 / (current_zoom.x))
-	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
 		# This happens once 'move_map' is pressed
 		if( !currently_moving_map ):
@@ -67,6 +65,5 @@ func _input(event):
 		
 func move_map_around():
 	var ref = get_viewport().get_mouse_position()
-	self.global_position.x -= (ref.x - fixed_toggle_point.x)
-	self.global_position.y -= (ref.y - fixed_toggle_point.y)
+	self.global_position -= (ref - fixed_toggle_point) / current_zoom.x
 	fixed_toggle_point = ref

@@ -22,3 +22,4 @@ tile_set = ExtResource("2_fj7yv")
 
 [node name="Camera" parent="." instance=ExtResource("3_4717r")]
 position = Vector2(576, 324)
+zoom = Vector2(0.7, 0.7)

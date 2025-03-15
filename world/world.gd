@@ -53,5 +53,5 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_semibright_atlas)
 			else:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_dark_atlas)
-	print(noises.min())
-	print(noises.max())
+	print("min value in noise ", noises.min())
+	print("max value in noise ", noises.max())
