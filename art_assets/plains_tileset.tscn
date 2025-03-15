@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://dehl2r26aays6"]
+[gd_scene load_steps=2 format=4 uid="uid://dehl2r26aays6"]
+
+[ext_resource type="TileSet" uid="uid://hd4663rxnmcx" path="res://art_assets/tile_set.tres" id="1_pwo04"]
 
 [node name="PlainsTileset" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAEAAAABAAAAAAACAAEAAAACAAAAAAACAAEAAAADAAAAAAACAAEAAAAEAAAAAAACAAEAAAAEAAEAAAACAAEAAAAEAAIAAAACAAEAAAADAAIAAAACAAEAAAACAAIAAAACAAEAAAABAAIAAAACAAEAAAAAAAIAAAACAAEAAAAAAAEAAAACAAEAAAABAAEAAAACAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAA=")
+tile_set = ExtResource("1_pwo04")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b17ri1yeqsfux" path="res://world/world.gd" id="1_fj7yv"]
 [ext_resource type="TileSet" uid="uid://bqyqa33500h12" path="res://textures/tilemap.tres" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://drksjlt18i3ar" path="res://world/camera.tscn" id="3_4717r"]
+[ext_resource type="PackedScene" path="res://world/camera.tscn" id="3_4717r"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fj7yv"]
 noise_type = 3
