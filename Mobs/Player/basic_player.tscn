@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3ww8xmwh8juw"]
 
 [ext_resource type="Texture2D" uid="uid://betig64heferu" path="res://icon.svg" id="1_1tx7t"]
-[ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://mobs/player/basic_player.gd" id="1_rys3d"]
+[ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://Mobs/Player/basic_player.gd" id="1_rys3d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rys3d"]
 radius = 59.4348
 
 [node name="BasicPlayer" type="RigidBody2D"]
+input_pickable = true
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 10
@@ -18,5 +19,12 @@ texture = ExtResource("1_1tx7t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("CircleShape2D_rys3d")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -91.0
+offset_right = 24.0
+offset_bottom = -68.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
