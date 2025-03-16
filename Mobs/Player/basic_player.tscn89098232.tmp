@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://Mobs/Player/basic_player.gd" id="1_rys3d"]
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_rys3d"]
-[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://Mobs/Enemy/audio_controller.gd" id="3_0nyjy"]
-[ext_resource type="Script" path="res://Mobs/Enemy/tween_controller.gd" id="3_a2d2d"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="3_0nyjy"]
+[ext_resource type="Script" path="res://mobs/enemy/tween_controller.gd" id="3_rvaop"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rys3d"]
-radius = 29.0689
+radius = 28.1603
 
 [node name="BasicPlayer" type="RigidBody2D"]
 input_pickable = true
@@ -20,7 +20,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_rys3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, 11)
+position = Vector2(-12, 43)
 shape = SubResource("CircleShape2D_rys3d")
 
 [node name="Label" type="Label" parent="."]
@@ -31,7 +31,7 @@ offset_right = 24.0
 offset_bottom = -68.0
 
 [node name="TweenController" type="Node" parent="."]
-script = ExtResource("3_a2d2d")
+script = ExtResource("3_rvaop")
 
 [node name="AudioController" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource("3_0nyjy")

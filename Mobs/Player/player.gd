@@ -30,6 +30,6 @@ func _process(delta: float) -> void:
 		var width = sprite.texture.get_width()/2 * sprite.scale.x
 		var height = sprite.texture.get_height()/2 * sprite.scale.y
 		
-		pos.x = clamp(pos.x, width, get_viewport_rect().size[0] * 0.4 - width)
+		pos.x = clamp(pos.x, width, get_viewport_rect().size[0]  - width)
 		pos.y = clamp(pos.y, height, get_viewport_rect().size[1] - height)
 		global_position = pos
