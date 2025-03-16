@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://drksjlt18i3ar"]
+[gd_scene load_steps=2 format=3 uid="uid://drksjlt18i3ar"]
 
 [ext_resource type="Script" uid="uid://dkbpop8gqynha" path="res://world/camera.gd" id="1_qkir2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkir2"]
-size = Vector2(61406, 53212)
 
 [node name="Camera" type="Camera2D"]
 limit_left = 0
@@ -12,9 +9,3 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("1_qkir2")
-
-[node name="CameraArea" type="Area2D" parent="."]
-
-[node name="CameraAreaShape" type="CollisionShape2D" parent="CameraArea"]
-position = Vector2(30703, 26606)
-shape = SubResource("RectangleShape2D_qkir2")

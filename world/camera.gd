@@ -1,27 +1,24 @@
 extends Camera2D
 
-@onready var camera_area_shape: CollisionShape2D = $CameraArea/CameraAreaShape
-
 var speed = 50
 var zoom_speed = 0.03
 var min_zoom = Vector2(0.15, 0.15)
 var max_zoom = Vector2(0.85, 0.85)
 var edge_threshold = 25
-var current_zoom = Vector2(0.01, 0.01)
+var current_zoom = Vector2(1, 1)
 
 var fixed_toggle_point = Vector2(0,0)
 var currently_moving_map = false
 
 var rect : Rect2 
 
-func _process(delta):
-	rect = camera_area_shape.shape.get_rect()
-	
-	limit_left = rect.position[0] / 1.5
-	limit_top = rect.position[1] / 1.5
-	limit_right = rect.end[0]* 2.66
-	limit_bottom = rect.end[1] * 3
+func _ready() -> void:
+	limit_left = -50
+	limit_top = -50
+	limit_right = 4210
+	limit_bottom = 3155
 
+func _process(delta):
 	var viewport_size = get_viewport_rect().size
 	var mouse_pos = get_global_mouse_position() - global_position
 	var scaled_edge_threshold = edge_threshold / zoom.x
@@ -65,5 +62,11 @@ func _input(event):
 		
 func move_map_around():
 	var ref = get_viewport().get_mouse_position()
+	
 	self.global_position -= (ref - fixed_toggle_point) / current_zoom.x
+	var clamp_x = (get_viewport().get_visible_rect().size[0] / 2) * (1 / current_zoom.x)
+	var clamp_y = (get_viewport().get_visible_rect().size[1] / 2) * (1 / current_zoom.y)
+	self.global_position.x = clamp(global_position.x, limit_left + clamp_x, limit_right - clamp_x)
+	self.global_position.y = clamp(global_position.y, limit_top + clamp_y, limit_bottom - clamp_y)
+	
 	fixed_toggle_point = ref

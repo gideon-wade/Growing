@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://Mobs/Player/basic_player.gd" id="1_rys3d"]
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_rys3d"]
 [ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://Mobs/Enemy/audio_controller.gd" id="3_0nyjy"]
-[ext_resource type="Script" path="res://Mobs/Enemy/tween_controller.gd" id="3_a2d2d"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://Mobs/Enemy/tween_controller.gd" id="3_a2d2d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rys3d"]
 radius = 29.0689
