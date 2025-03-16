@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=4 uid="uid://bx4as3s4peet1"]
+
+[ext_resource type="TileSet" uid="uid://hd4663rxnmcx" path="res://art_assets/tile_set.tres" id="1_01vmj"]
+[ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_n7clt"]
+[ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/impt.png" id="3_31rel"]
+[ext_resource type="Texture2D" uid="uid://ck88kks3no0a6" path="res://art/units/knight.png" id="4_0t8dc"]
+[ext_resource type="Texture2D" uid="uid://cev7snb1s0noa" path="res://art/units/peasant.png" id="5_7y5n6"]
+[ext_resource type="Texture2D" uid="uid://bwg1lvkvy78p7" path="res://art/units/ghost.png" id="6_bfvhb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("1_01vmj")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAACAAEAAAACAAIAAAABAAEAAAABAAIAAAADAAEAAAADAAIAAAABAAAAAAABAAEAAAAAAAAAAAAAAAEAAAADAAAAAAADAAEAAAAEAAAAAAAEAAEAAAADAAMAAAABAAIAAAADAAIAAAABAAEAAAAEAAMAAAADAAIAAAAEAAIAAAADAAEAAAAFAAIAAAADAAIAAAAAAAIAAAAAAAMAAAAAAAEAAAAAAAIAAAA=")
+tile_set = ExtResource("1_01vmj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(464, 501)
+scale = Vector2(0.464844, 0.464844)
+texture = ExtResource("2_n7clt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(683, 501)
+scale = Vector2(0.464844, 0.464844)
+texture = ExtResource("3_31rel")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(942, 515)
+scale = Vector2(0.464844, 0.464844)
+texture = ExtResource("4_0t8dc")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(1172, 492)
+scale = Vector2(0.464844, 0.464844)
+texture = ExtResource("5_7y5n6")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(236, 509)
+scale = Vector2(0.464844, 0.464844)
+texture = ExtResource("6_bfvhb")

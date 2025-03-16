@@ -1781,5 +1781,5 @@ texture_region_size = Vector2i(256, 256)
 49:45/0 = 0
 
 [resource]
-tile_size = Vector2i(256, 256)
+tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_oglgv")
