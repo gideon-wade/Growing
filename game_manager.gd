@@ -26,8 +26,9 @@ const MobProbability = {
 	"Knight": 10
 }
 const MobToSprite = {
+	"Player" : preload("res://art/units/darklord.png"),
 	"Peasant" : preload("res://art/units/peasant.png"),
-	"Knight" : preload("res://art/units/knight.png")
+	"Knight" : preload("res://art/units/knight.png"),
 }
 
 
@@ -38,7 +39,6 @@ var tiles
 #tiles are 2d arrays with [0]=TileData and [1]=local_position
 
 var world
-
 
 func get_units(type):
 	if map == null:

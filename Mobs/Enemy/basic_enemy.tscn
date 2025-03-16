@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b63cupsjvyoh7" path="res://Mobs/Enemy/basic_enemy.gd" id="1_kmm33"]
 [ext_resource type="Texture2D" uid="uid://cev7snb1s0noa" path="res://art/units/peasant.png" id="2_kmm33"]
-[ext_resource type="Script" path="res://Mobs/Enemy/tween_controller.gd" id="3_1thp2"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://Mobs/Enemy/tween_controller.gd" id="3_1thp2"]
 [ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://Mobs/Enemy/audio_controller.gd" id="4_in3wq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmm33"]
