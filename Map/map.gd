@@ -20,10 +20,12 @@ func _process(delta: float) -> void:
 		elif unit is Enemy:
 			enemies += 1
 	if enemies == 0:
+		print("enemies 0")
 		$Label.text = "You win"
 		$Label.visible = true
 		state = State.POSTGAME
 	elif players == 0:
+		print("players 0")
 		$Label.text = "You lose"
 		$Label.visible = true
 		state = State.POSTGAME

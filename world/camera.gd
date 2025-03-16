@@ -4,8 +4,8 @@ extends Camera2D
 
 var speed = 50
 var zoom_speed = 0.03
-var min_zoom = Vector2(0.02, 0.02)
-var max_zoom = Vector2(0.7, 0.7)
+var min_zoom = Vector2(0.15, 0.15)
+var max_zoom = Vector2(0.85, 0.85)
 var edge_threshold = 25
 var current_zoom = Vector2(0.01, 0.01)
 

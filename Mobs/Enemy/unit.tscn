@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b43bongh7kcde"]
+
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="1_p3xro"]
+[ext_resource type="Script" uid="uid://bjis8onjajb84" path="res://mobs/enemy/unit.gd" id="1_pkfkd"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_pkfkd")
+
+[node name="TweenController" type="Node" parent="."]
+script = ExtResource("1_p3xro")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c04x18amkxulk"]
 
-[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://Map/map.gd" id="1_6yc6o"]
-[ext_resource type="PackedScene" uid="uid://c3ww8xmwh8juw" path="res://Mobs/Player/basic_player.tscn" id="1_njngi"]
-[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://Mobs/Enemy/basic_enemy.tscn" id="2_6yc6o"]
+[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://map/map.gd" id="1_6yc6o"]
+[ext_resource type="PackedScene" uid="uid://c3ww8xmwh8juw" path="res://mobs/player/basic_player.tscn" id="1_njngi"]
+[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://mobs/enemy/basic_enemy.tscn" id="2_6yc6o"]
 [ext_resource type="PackedScene" uid="uid://dehl2r26aays6" path="res://art_assets/plains_tileset.tscn" id="4_86j4t"]
 
 [node name="Map" type="Node2D"]
@@ -13,14 +13,29 @@ script = ExtResource("1_6yc6o")
 [node name="BasicEnemy2" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(956, 139)
 
+[node name="BasicEnemy3" parent="." instance=ExtResource("2_6yc6o")]
+position = Vector2(1048, 238)
+
+[node name="BasicEnemy4" parent="." instance=ExtResource("2_6yc6o")]
+position = Vector2(883, 309)
+
 [node name="BasicPlayer" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(66, 96)
+position = Vector2(140, 117)
 
 [node name="BasicPlayer2" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(66, 323)
+position = Vector2(89, 319)
+
+[node name="BasicPlayer4" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(181, 229)
+
+[node name="BasicPlayer5" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(163, 394)
+
+[node name="BasicPlayer6" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(257, 314)
 
 [node name="BasicPlayer3" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(72, 567)
+position = Vector2(99, 498)
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(961, 395)
@@ -40,6 +55,10 @@ theme_override_font_sizes/font_size = 40
 text = "You <>"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 324)
+zoom = Vector2(0.6, 0.6)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
