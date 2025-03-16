@@ -2,11 +2,11 @@ extends Camera2D
 
 @onready var camera_area_shape: CollisionShape2D = $CameraArea/CameraAreaShape
 
-var speed = 5000
+var speed = 50
 var zoom_speed = 0.03
 var min_zoom = Vector2(0.02, 0.02)
 var max_zoom = Vector2(0.7, 0.7)
-var edge_threshold = 10
+var edge_threshold = 25
 var current_zoom = Vector2(0.01, 0.01)
 
 var fixed_toggle_point = Vector2(0,0)
