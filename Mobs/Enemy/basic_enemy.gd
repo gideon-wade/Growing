@@ -7,11 +7,13 @@ var attack = 20
 @onready var map: Map = get_parent()
 var walking : bool  = false
 var celebrating : bool = false
+var can_attack : bool = true
 
 func _physics_process(delta: float) -> void:
 	if map.state == map.State.POSTGAME and !celebrating:
 		celebrating = true
 		tween_controller.celebrate()
+		
 	if map.state != map.State.BATTLE or !is_alive:
 		return
 	var players: Array = GameManager.get_units(Player)
@@ -33,7 +35,10 @@ func _physics_process(delta: float) -> void:
 		walking = true
 	if collider:
 		if collider.get_collider() is Player:
-			collider.get_collider().damage(attack)
+			if can_attack:
+				$AttackTimer.start()
+				can_attack = false
+				collider.get_collider().damage(attack)
 
 func damage(dmg):
 	life -= dmg
@@ -45,3 +50,6 @@ func damage(dmg):
 		tween_controller.die()
 		await tween_controller.unit_tween.finished
 		queue_free()
+
+func _on_attack_timer_timeout() -> void:
+	can_attack = true

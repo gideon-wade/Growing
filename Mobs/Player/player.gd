@@ -4,6 +4,9 @@ var held = false
 @onready var sprite: Sprite2D = $Sprite
 @onready var tween_controller: TweenController = $TweenController
 @onready var audio_controller: AudioController = $AudioController
+@export var unit_name : String
+var attack_speed : float = 0.15
+
 
 var is_alive : bool = true
 func _ready() -> void:
@@ -14,6 +17,7 @@ func _ready() -> void:
 		"dead" : preload("res://sounds/dead.mp3")
 	}
 	audio_controller.set_unit_sounds(unit_sounds)
+	$AttackTimer.wait_time = attack_speed
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
@@ -26,6 +30,7 @@ func _on_mouse_exited() -> void:
 func _process(delta: float) -> void:
 	if held and get_parent().state == 0:
 		print("??? ", global_position)
+		audio_controller.play_random_sound_of_type("interact", unit_name)
 		var pos = get_global_mouse_position()
 		var width = sprite.texture.get_width()/2 * sprite.scale.x
 		var height = sprite.texture.get_height()/2 * sprite.scale.y

@@ -12,6 +12,39 @@ enum Faction {
 	NEUTRAL,
 }
 
+const UnitSounds = {
+	"Imp" = {
+		"attack" : 4,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 2
+	},
+	"Impt" = {
+		"attack" : 0,
+		"celebrate" : 0,
+		"death" : 0,
+		"interact" : 0
+	},
+	"Peasent" = {
+		"attack" : 0,
+		"celebrate" : 0,
+		"death" : 0,
+		"interact" : 0
+	},
+	"Knight" = {
+		"attack" : 0,
+		"celebrate" : 0,
+		"death" : 0,
+		"interact" : 0
+	},
+	"Ghost" = {
+		"attack" : 0,
+		"celebrate" : 0,
+		"death" : 0,
+		"interact" : 0
+	}
+}
+
 const UNIT = {
 	Faction.PLAYER: {
 		UnitType.BASIC: preload("res://mobs/player/basic_player.tscn")

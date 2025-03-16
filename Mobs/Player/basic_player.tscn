@@ -34,6 +34,10 @@ offset_bottom = -68.0
 script = ExtResource("3_a2d2d")
 
 [node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.698
 script = ExtResource("3_0nyjy")
 
+[node name="AttackTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

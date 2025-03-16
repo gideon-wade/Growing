@@ -21,21 +21,55 @@ position = Vector2(883, 309)
 
 [node name="BasicPlayer" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(140, 117)
+unit_name = "Imp"
+
+[node name="BasicPlayer7" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(271, 123)
+unit_name = "Imp"
+
+[node name="BasicPlayer8" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(318, 226)
+unit_name = "Imp"
+
+[node name="BasicPlayer9" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(305, 423)
+unit_name = "Imp"
+
+[node name="BasicPlayer10" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(179, 562)
+unit_name = "Imp"
+
+[node name="BasicPlayer11" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(320, 545)
+unit_name = "Imp"
+
+[node name="BasicPlayer12" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(234, 494)
+unit_name = "Imp"
+
+[node name="BasicPlayer13" parent="." instance=ExtResource("1_njngi")]
+position = Vector2(67, 192)
+unit_name = "Imp"
 
 [node name="BasicPlayer2" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(89, 319)
+unit_name = "Imp"
 
 [node name="BasicPlayer4" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(181, 229)
+unit_name = "Imp"
 
 [node name="BasicPlayer5" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(163, 394)
+unit_name = "Imp"
 
 [node name="BasicPlayer6" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(257, 314)
+unit_name = "Imp"
 
 [node name="BasicPlayer3" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(99, 498)
+unit_name = "Imp"
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(961, 395)
@@ -57,7 +91,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(574, 324)
+position = Vector2(706, 352)
 zoom = Vector2(0.6, 0.6)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
