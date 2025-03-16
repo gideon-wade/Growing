@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3ww8xmwh8juw"]
 
-[ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://mobs/player/basic_player.gd" id="1_rys3d"]
+[ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://Mobs/Player/basic_player.gd" id="1_rys3d"]
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_rys3d"]
-[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="3_0nyjy"]
-[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_rvaop"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://Mobs/Enemy/audio_controller.gd" id="3_0nyjy"]
+[ext_resource type="Script" path="res://Mobs/Enemy/tween_controller.gd" id="3_a2d2d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rys3d"]
 radius = 28.1603
@@ -31,11 +31,9 @@ offset_right = 24.0
 offset_bottom = -68.0
 
 [node name="TweenController" type="Node" parent="."]
-script = ExtResource("3_rvaop")
-metadata/_custom_type_script = "uid://drrepm7kwhwhi"
+script = ExtResource("3_a2d2d")
 
 [node name="AudioController" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource("3_0nyjy")
-metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
