@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		walking = true
 	if collider:
 		if collider.get_collider() is Enemy:
+			#print("Atack ", can_attack)
 			if can_attack:
 				can_attack = false
 				audio_controller.play_random_sound_of_type("attack", unit_name)
