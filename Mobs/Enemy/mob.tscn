@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbmbmtxaq0nsp"]
 
-[ext_resource type="Script" uid="uid://dyttp6ej3lsu0" path="res://mobs/enemy/mob.gd" id="1_41vsg"]
+[ext_resource type="Script" path="res://Mobs/Enemy/mob.gd" id="1_jykjv"]
 [ext_resource type="Texture2D" uid="uid://cev7snb1s0noa" path="res://art/units/peasant.png" id="2_k1i8b"]
-[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_irj83"]
-[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_gg0hu"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://Mobs/Enemy/tween_controller.gd" id="3_irj83"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://Mobs/Enemy/audio_controller.gd" id="4_gg0hu"]
 
 [node name="Mob" type="Node2D"]
-script = ExtResource("1_41vsg")
+script = ExtResource("1_jykjv")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_k1i8b")
