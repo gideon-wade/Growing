@@ -3,6 +3,9 @@ class_name AudioController extends AudioStreamPlayer2D
 var _sounds : Dictionary = {}
 var rng = RandomNumberGenerator.new()
 
+func _ready() -> void:
+	_sounds["dead"] = preload("res://sounds/dead.mp3")
+
 func set_unit_sounds(sounds : Dictionary) -> void:
 	_sounds = sounds
 

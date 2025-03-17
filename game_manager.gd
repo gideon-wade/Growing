@@ -1,7 +1,10 @@
 extends Node2D
 
 enum UnitType {
-	BASIC,
+	PEASENT,
+	IMP,
+	IMPT,
+	KNIGHT,
 	RANGED,
 	TANK,
 }
@@ -20,10 +23,10 @@ const UnitSounds = {
 		"interact" : 2
 	},
 	"Impt" = {
-		"attack" : 0,
-		"celebrate" : 0,
-		"death" : 0,
-		"interact" : 0
+		"attack" : 3,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 2
 	},
 	"Peasent" = {
 		"attack" : 3,
@@ -47,10 +50,11 @@ const UnitSounds = {
 
 const UNIT = {
 	Faction.PLAYER: {
-		UnitType.BASIC: preload("res://mobs/player/basic_player.tscn")
+		UnitType.IMP: preload("res://mobs/player/imp.tscn"),
+		UnitType.IMPT: preload("res://mobs/player/impt.tscn")
 	},
 	Faction.ENEMY: {
-		UnitType.BASIC: preload("res://mobs/enemy/basic_enemy.tscn")
+		UnitType.PEASENT: preload("res://mobs/enemy/peasent.tscn")
 	}
 }
 # > 0 and <= 100

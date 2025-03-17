@@ -1,6 +1,6 @@
-class_name BasicPlayer extends Player
+class_name Imp extends Player
 
-const SPEED = 100
+const SPEED = 1.2
 
 var life = 100
 var attack = 25
@@ -8,6 +8,10 @@ var attack = 25
 var walking : bool  = false
 var celebrating : bool = false
 var can_attack : bool = true
+
+func _ready() -> void:
+	unit_name = "Imp"
+	tween_controller.original_sprite_scale = $Sprite.scale
 
 func _physics_process(delta: float) -> void:
 	if map.state == map.State.POSTGAME and !celebrating:
@@ -29,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	if closest_enemy == null:
 		return
 	var angle = position.angle_to_point(closest_enemy.position)
-	var collider: KinematicCollision2D = move_and_collide(Vector2(cos(angle), sin(angle)))
+	var collider: KinematicCollision2D = move_and_collide(Vector2(cos(angle), sin(angle)) * SPEED)
 	if !walking:
 		tween_controller.walk(true)
 		walking = true

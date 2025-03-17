@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://7w24oyjeln8j"]
+
+[ext_resource type="Script" uid="uid://eh7ayotkdycj" path="res://mobs/player/impt.gd" id="1_gkks1"]
+[ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/impt.png" id="2_gkks1"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_u8oi6"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_b6lke"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vpwl"]
+radius = 20.025
+
+[node name="Impt" type="RigidBody2D"]
+input_pickable = true
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_gkks1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_gkks1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 46)
+shape = SubResource("CircleShape2D_0vpwl")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TweenController" type="Node" parent="."]
+script = ExtResource("3_u8oi6")
+metadata/_custom_type_script = "uid://drrepm7kwhwhi"
+
+[node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.698
+script = ExtResource("4_b6lke")
+metadata/_custom_type_script = "uid://cjcslf3plpk6a"
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
