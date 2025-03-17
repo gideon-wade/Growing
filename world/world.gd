@@ -2,23 +2,26 @@ extends Node2D
 @export var noise_texture : NoiseTexture2D
 var noise : Noise
 var noises : Array[float] = []
-var source_id : int = 0
+var source_id : int = 1
 @onready var tile_map: TileMapLayer = $TileMap
+@onready var terrain: TileMapLayer = $Terrian
 var tile_size : int = 128
 #Water
-var water_dark_atlas : Vector2i= Vector2i(3,2)
-var water_semi_dark_atlas : Vector2i = Vector2i(2,2)
-var water_semibright_atlas : Vector2i = Vector2i(1,2)
-var water_bright_atlas : Vector2i = Vector2i(0,2)
+var water_dark_atlas : Vector2i= Vector2i(2,2)
+var water_semi_dark_atlas : Vector2i = Vector2i(1,2)
+var water_semibright_atlas : Vector2i = Vector2i(0,2)
+#var water_bright_atlas : Vector2i = Vector2i(0,2)
 #dirt/sand
-var dirt_dark_atlas : Vector2i = Vector2i(0,1)
+var dirt_dark_atlas : Vector2i = Vector2i(2,1)
 var dirt_semi_dark_atlas : Vector2i = Vector2i(1,1)
-var dirt_semibright_atlas : Vector2i = Vector2i(2,1)
-var dirt_bright_atlas : Vector2i = Vector2i(3,1)
+var dirt_semibright_atlas : Vector2i = Vector2i(0,1)
+#var dirt_bright_atlas : Vector2i = Vector2i(3,1)
 #grass
 var grass_dark_atlas : Vector2i = Vector2i(2,0)
 var grass_semibright_atlas : Vector2i = Vector2i(1,0)
 var grass_bright_atlas : Vector2i = Vector2i(0,0)
+const MOUNTAIN := Vector2i(0,4)
+const HELL_HILL := Vector2(2,4)
 
 var tiles = {}
 var mobs_on_tiles = {}
@@ -47,13 +50,13 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), source_id, water_dark_atlas)
 			elif noise_val < -0.34:
 				tile_map.set_cell(Vector2(x,y), source_id, water_semi_dark_atlas)
-			elif noise_val < -0.28:
+			elif noise_val < -0.1:
 				tile_map.set_cell(Vector2(x,y), source_id, water_semibright_atlas)
-			elif noise_val < -0.14:
-				tile_map.set_cell(Vector2(x,y), source_id, water_bright_atlas)
-			elif noise_val < -0.06:
-				tile_map.set_cell(Vector2(x,y), source_id, dirt_bright_atlas)
-			elif noise_val < 0.04:
+			#elif noise_val < -0.14:
+				#tile_map.set_cell(Vector2(x,y), source_id, water_bright_atlas)
+			#elif noise_val < -0.06:
+				#tile_map.set_cell(Vector2(x,y), source_id, dirt_bright_atlas)
+			elif noise_val < 0.01:
 				tile_map.set_cell(Vector2(x,y), source_id, dirt_semibright_atlas)
 			elif noise_val < 0.11:
 				tile_map.set_cell(Vector2(x,y), source_id, dirt_semi_dark_atlas)
@@ -63,8 +66,12 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_bright_atlas)
 			elif noise_val < 0.37:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_semibright_atlas)
+				if randi() % 3 == 0:
+					terrain.set_cell(Vector2(x,y), source_id, HELL_HILL)
 			else:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_dark_atlas)
+				if randi() % 2 == 0:
+					terrain.set_cell(Vector2(x,y),source_id, MOUNTAIN)
 				if player_pos == null:
 					spawn_player(Vector2i(x, y))
 			var clicked_cell = Vector2i(x,y)
