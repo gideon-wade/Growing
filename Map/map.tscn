@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c04x18amkxulk"]
 
-[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://Map/map.gd" id="1_6yc6o"]
-[ext_resource type="PackedScene" uid="uid://c3ww8xmwh8juw" path="res://Mobs/Player/basic_player.tscn" id="1_njngi"]
-[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://Mobs/Enemy/basic_enemy.tscn" id="2_6yc6o"]
+[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://map/map.gd" id="1_6yc6o"]
+[ext_resource type="PackedScene" uid="uid://c3ww8xmwh8juw" path="res://mobs/player/basic_player.tscn" id="1_njngi"]
+[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://mobs/enemy/basic_enemy.tscn" id="2_6yc6o"]
 [ext_resource type="PackedScene" uid="uid://dehl2r26aays6" path="res://art_assets/plains_tileset.tscn" id="4_86j4t"]
 
 [node name="Map" type="Node2D"]
