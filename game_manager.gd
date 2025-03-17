@@ -73,7 +73,32 @@ var map: Map
 var tiles 
 #tiles are 2d arrays with [0]=TileData and [1]=local_position
 
-var world
+var saved_world: World
+var has_generated = false
+var map_packed: PackedScene
+
+func _ready() -> void:
+	map_packed = load("res://Map/map.tscn") as PackedScene
+
+func world_rdy(world: World):
+	if not has_generated:
+		saved_world = world
+		has_generated = true
+		saved_world.generate()
+
+func start_battle(mob: Mob):
+	get_node("/root/World").process_mode = 4
+	get_node("/root/World").hide()
+	get_viewport().canvas_transform = Transform2D.IDENTITY
+	get_node("/root/").add_child(map_packed.instantiate())
+	
+
+func end_battle():
+	get_node("/root/Map").queue_free()
+	get_node("/root/World").process_mode = 0
+	get_node("/root/World").show()
+	
+	#get_node("/root/World/Camera").disabled = false
 
 func get_units(type):
 	if map == null:
