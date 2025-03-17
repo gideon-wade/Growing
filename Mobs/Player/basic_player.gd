@@ -31,13 +31,15 @@ func _physics_process(delta: float) -> void:
 	var angle = position.angle_to_point(closest_enemy.position)
 	var collider: KinematicCollision2D = move_and_collide(Vector2(cos(angle), sin(angle)))
 	if !walking:
-		tween_controller.walk()
+		tween_controller.walk(true)
 		walking = true
 	if collider:
 		if collider.get_collider() is Enemy:
 			if can_attack:
-				$AttackTimer.start()
 				can_attack = false
+				audio_controller.play_random_sound_of_type("attack", unit_name)
+				$AttackTimer.start()
+				print("attack")
 				collider.get_collider().damage(attack)
 
 func damage(dmg):

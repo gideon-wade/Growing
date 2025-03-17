@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c04x18amkxulk"]
 
-[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://Map/map.gd" id="1_6yc6o"]
-[ext_resource type="PackedScene" uid="uid://c3ww8xmwh8juw" path="res://Mobs/Player/basic_player.tscn" id="1_njngi"]
-[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://Mobs/Enemy/basic_enemy.tscn" id="2_6yc6o"]
+[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://map/map.gd" id="1_6yc6o"]
+[ext_resource type="PackedScene" uid="uid://c3ww8xmwh8juw" path="res://mobs/player/basic_player.tscn" id="1_njngi"]
+[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://mobs/enemy/basic_enemy.tscn" id="2_6yc6o"]
 [ext_resource type="PackedScene" uid="uid://dehl2r26aays6" path="res://art_assets/plains_tileset.tscn" id="4_86j4t"]
 
 [node name="Map" type="Node2D"]
@@ -14,10 +14,13 @@ script = ExtResource("1_6yc6o")
 position = Vector2(956, 139)
 
 [node name="BasicEnemy3" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(1048, 238)
+position = Vector2(884, 238)
+
+[node name="BasicEnemy5" parent="." instance=ExtResource("2_6yc6o")]
+position = Vector2(961, 357)
 
 [node name="BasicEnemy4" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(883, 309)
+position = Vector2(869, 462)
 
 [node name="BasicPlayer" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(140, 117)
@@ -28,7 +31,7 @@ position = Vector2(271, 123)
 unit_name = "Imp"
 
 [node name="BasicPlayer8" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(318, 226)
+position = Vector2(335, 203)
 unit_name = "Imp"
 
 [node name="BasicPlayer9" parent="." instance=ExtResource("1_njngi")]
@@ -72,7 +75,7 @@ position = Vector2(99, 498)
 unit_name = "Imp"
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(961, 395)
+position = Vector2(963, 579)
 
 [node name="Button" type="Button" parent="."]
 offset_left = 400.0
