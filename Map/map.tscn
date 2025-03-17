@@ -41,6 +41,21 @@ position = Vector2(212, 290)
 [node name="Impt2" parent="." instance=ExtResource("4_kffv2")]
 position = Vector2(253, 161)
 
+[node name="Impt10" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(100, 96)
+
+[node name="Impt11" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(163, 155)
+
+[node name="Impt12" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(110, 224)
+
+[node name="Impt13" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(53, 337)
+
+[node name="Impt14" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(140, 276)
+
 [node name="Impt3" parent="." instance=ExtResource("4_kffv2")]
 position = Vector2(225, 468)
 
@@ -51,16 +66,19 @@ position = Vector2(291, 350)
 position = Vector2(291, 562)
 
 [node name="Impt6" parent="." instance=ExtResource("4_kffv2")]
-position = Vector2(611, 387)
+position = Vector2(328, 217)
+
+[node name="Impt7" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(357, 120)
+
+[node name="Impt8" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(323, 441)
+
+[node name="Impt9" parent="." instance=ExtResource("4_kffv2")]
+position = Vector2(386, 532)
 
 [node name="Imp10" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(179, 562)
-
-[node name="Imp2" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(89, 319)
-
-[node name="Imp4" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(120, 168)
 
 [node name="Imp5" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(163, 394)

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_b6lke"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vpwl"]
-radius = 20.025
+radius = 24.0832
 
 [node name="Impt" type="RigidBody2D"]
 input_pickable = true
@@ -20,7 +20,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_gkks1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 46)
+position = Vector2(-6, 21)
 shape = SubResource("CircleShape2D_0vpwl")
 
 [node name="Label" type="Label" parent="."]

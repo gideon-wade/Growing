@@ -91,7 +91,6 @@ func world_rdy(world: World):
 		saved_world.generate()
 
 func start_battle(mob: Mob):
-	print(mob.mob_name)
 	if mob.mob_name != "Peasant":
 		return
 	get_node("/root/World").process_mode = 4
