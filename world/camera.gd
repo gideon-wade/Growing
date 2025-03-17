@@ -68,5 +68,5 @@ func move_map_around():
 	var clamp_y = (get_viewport().get_visible_rect().size[1] / 2) * (1 / current_zoom.y)
 	self.global_position.x = clamp(global_position.x, limit_left + clamp_x, limit_right - clamp_x)
 	self.global_position.y = clamp(global_position.y, limit_top + clamp_y, limit_bottom - clamp_y)
-	
+
 	fixed_toggle_point = ref

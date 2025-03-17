@@ -34,6 +34,7 @@ offset_bottom = -67.0
 script = ExtResource("3_1thp2")
 
 [node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.698
 script = ExtResource("4_in3wq")
 metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 

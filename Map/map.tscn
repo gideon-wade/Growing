@@ -12,62 +12,42 @@ script = ExtResource("1_6yc6o")
 
 [node name="BasicEnemy2" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(956, 139)
+unit_name = "Peasent"
 
 [node name="BasicEnemy3" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(884, 238)
+unit_name = "Peasent"
 
 [node name="BasicEnemy5" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(961, 357)
+unit_name = "Peasent"
+
+[node name="BasicEnemy8" parent="." instance=ExtResource("2_6yc6o")]
+position = Vector2(1077, 426)
+unit_name = "Peasent"
+
+[node name="BasicEnemy7" parent="." instance=ExtResource("2_6yc6o")]
+position = Vector2(1064, 202)
+unit_name = "Peasent"
 
 [node name="BasicEnemy4" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(869, 462)
+unit_name = "Peasent"
 
-[node name="BasicPlayer" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(140, 117)
-unit_name = "Imp"
-
-[node name="BasicPlayer7" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(271, 123)
-unit_name = "Imp"
-
-[node name="BasicPlayer8" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(335, 203)
-unit_name = "Imp"
-
-[node name="BasicPlayer9" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(305, 423)
-unit_name = "Imp"
+[node name="BasicEnemy6" parent="." instance=ExtResource("2_6yc6o")]
+position = Vector2(866, 576)
+unit_name = "Peasent"
 
 [node name="BasicPlayer10" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(179, 562)
-unit_name = "Imp"
-
-[node name="BasicPlayer11" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(320, 545)
-unit_name = "Imp"
-
-[node name="BasicPlayer12" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(234, 494)
-unit_name = "Imp"
-
-[node name="BasicPlayer13" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(67, 192)
 unit_name = "Imp"
 
 [node name="BasicPlayer2" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(89, 319)
 unit_name = "Imp"
 
-[node name="BasicPlayer4" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(181, 229)
-unit_name = "Imp"
-
 [node name="BasicPlayer5" parent="." instance=ExtResource("1_njngi")]
 position = Vector2(163, 394)
-unit_name = "Imp"
-
-[node name="BasicPlayer6" parent="." instance=ExtResource("1_njngi")]
-position = Vector2(257, 314)
 unit_name = "Imp"
 
 [node name="BasicPlayer3" parent="." instance=ExtResource("1_njngi")]
@@ -76,6 +56,7 @@ unit_name = "Imp"
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(963, 579)
+unit_name = "Peasent"
 
 [node name="Button" type="Button" parent="."]
 offset_left = 400.0

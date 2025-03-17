@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	if map.state == map.State.POSTGAME and !celebrating:
 		celebrating = true
 		tween_controller.celebrate()
-		
+		audio_controller.play_random_sound_of_type("celebrate", unit_name)
 	if map.state != map.State.BATTLE or !is_alive:
 		return
 	var players: Array = GameManager.get_units(Player)
@@ -36,8 +36,9 @@ func _physics_process(delta: float) -> void:
 	if collider:
 		if collider.get_collider() is Player:
 			if can_attack:
-				$AttackTimer.start()
 				can_attack = false
+				$AttackTimer.start()
+				audio_controller.play_random_sound_of_type("attack", unit_name)
 				collider.get_collider().damage(attack)
 
 func damage(dmg):
@@ -48,6 +49,7 @@ func damage(dmg):
 		$CollisionShape2D.disabled = true
 		self.z_index = -1
 		tween_controller.die()
+		audio_controller.play_random_sound_of_type("death", unit_name)
 		await tween_controller.unit_tween.finished
 		queue_free()
 

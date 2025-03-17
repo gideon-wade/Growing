@@ -23,6 +23,8 @@ func _process(delta: float) -> void:
 		$Label.text = "You win"
 		$Label.visible = true
 		state = State.POSTGAME
+		await get_tree().create_timer(1.5).timeout
+		GameManager.end_battle()
 	elif players == 0:
 		$Label.text = "You lose"
 		$Label.visible = true

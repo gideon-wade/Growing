@@ -1,4 +1,4 @@
-extends Node2D
+class_name World extends Node2D
 @export var noise_texture : NoiseTexture2D
 var noise : Noise
 var noises : Array[float] = []
@@ -33,8 +33,10 @@ var last_mouse_pos = null
 var moving = false
 
 func _ready() -> void:
-	GameManager.world = self
 	noise = noise_texture.noise
+	GameManager.world_rdy(self)
+
+func generate():
 	var rng = RandomNumberGenerator.new()
 	noise.seed = rng.randi()
 	place_tiles()
@@ -123,6 +125,7 @@ func spawn_player(tile) -> void:
 	player.tween_controller.original_sprite_scale = sprite_scale
 	player.position = tile * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
 						Vector2i(64 if (tile.y%2==1) else 0, -10)
+	$Camera.global_position = player.global_position
 
 
 func play_idle_tween_mobs() -> void:
@@ -139,7 +142,7 @@ func neighbors(cur: Vector2i) -> Array[Vector2i]:
 	for way in ways:
 		var new = cur + way
 		if 0 <= new.y and new.y < noise_texture.height and 0 <= new.x and new.x < noise_texture.width:
-			if tiles[new].get_custom_data("Walkable") and mobs_on_tiles.get(new, null) == null:
+			if tiles[new].get_custom_data("Walkable"):# and mobs_on_tiles.get(new, null) == null:
 				out.append(new)
 	return out
 	
@@ -168,6 +171,8 @@ func find_path(start: Vector2i, end: Vector2i) -> Array[Vector2i]:
 		queue.remove_at(queue.find(cur))
 		visited[cur] = true
 		for pos in neighbors(cur):
+			if mobs_on_tiles.get(pos, null) != null and pos != end:
+				continue
 			var ten_gScore = gScore[cur] + 1
 			if ten_gScore < gScore.get(pos, INF):
 				parent[pos] = cur
@@ -188,7 +193,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				var path := find_path(player_pos, clicked_cell)
 				if len(path) > 0:# and not moving:
 					var flag = mob_scene.instantiate()
-					mobs_on_tiles[clicked_cell] = flag
+					#mobs_on_tiles[clicked_cell] = flag
 					flag.mob_name = "Flag"
 					self.add_child(flag)
 					flag.sprite.texture = GameManager.MobToSprite["Flag"]
@@ -200,6 +205,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 					flag.tween_controller.idle()
 					moving = true
 					player.tween_controller.walk()
+					mobs_on_tiles[player_pos] = null
 					
 					for path_pos in path.slice(1, len(path)-1):
 						var dot = mob_scene.instantiate()
@@ -213,7 +219,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 						dot.position = path_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
 											Vector2i(64 if (path_pos.y%2==1) else 0, 20)
 					for path_pos in path:
-						mobs_on_tiles[player_pos] = null
 						player_pos = path_pos
 						var new_pos = player_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
 											Vector2i(64 if (player_pos.y%2==1) else 0, -10)
@@ -221,10 +226,14 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 						move_tween.set_trans(Tween.TRANS_QUAD)
 						move_tween.tween_property(player, "position", Vector2(new_pos), 0.5)
 						await move_tween.finished
-						if mobs_on_tiles[player_pos] != null and mobs_on_tiles[player_pos].mob_name != "player":
+						if mobs_on_tiles.get(player_pos, null) != null and mobs_on_tiles[player_pos].mob_name == "dot":
+							mobs_on_tiles[player_pos].queue_free()
+							mobs_on_tiles[player_pos] = null
+						if mobs_on_tiles.get(player_pos, null) != null:
+							GameManager.start_battle(mobs_on_tiles[player_pos])
 							mobs_on_tiles[player_pos].queue_free()
 						mobs_on_tiles[player_pos] = player
 					player.tween_controller.idle()
 					moving = false
-					#flag.queue_free()
+					flag.queue_free()
 		last_mouse_pos = pos
