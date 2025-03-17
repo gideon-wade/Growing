@@ -5,7 +5,7 @@ var held = false
 @onready var tween_controller: TweenController = $TweenController
 @onready var audio_controller: AudioController = $AudioController
 @export var unit_name : String
-var attack_speed : float = 0.55
+var attack_speed : float = 1.0
 
 
 var is_alive : bool = true
