@@ -26,9 +26,9 @@ const UnitSounds = {
 		"interact" : 0
 	},
 	"Peasent" = {
-		"attack" : 0,
-		"celebrate" : 0,
-		"death" : 0,
+		"attack" : 3,
+		"celebrate" : 3,
+		"death" : 3,
 		"interact" : 0
 	},
 	"Knight" = {
