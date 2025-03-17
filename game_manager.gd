@@ -87,6 +87,9 @@ func world_rdy(world: World):
 		saved_world.generate()
 
 func start_battle(mob: Mob):
+	print(mob.mob_name)
+	if mob.mob_name != "Peasant":
+		return
 	get_node("/root/World").process_mode = 4
 	get_node("/root/World").hide()
 	get_viewport().canvas_transform = Transform2D.IDENTITY
@@ -97,8 +100,6 @@ func end_battle():
 	get_node("/root/Map").queue_free()
 	get_node("/root/World").process_mode = 0
 	get_node("/root/World").show()
-	
-	#get_node("/root/World/Camera").disabled = false
 
 func get_units(type):
 	if map == null:
