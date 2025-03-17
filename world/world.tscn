@@ -22,6 +22,7 @@ script = ExtResource("1_fj7yv")
 noise_texture = SubResource("NoiseTexture2D_tlwt5")
 
 [node name="TileMap" type="TileMapLayer" parent="."]
+z_index = -1000
 tile_set = ExtResource("2_fj7yv")
 
 [node name="Camera" parent="." instance=ExtResource("3_4717r")]

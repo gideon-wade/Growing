@@ -59,6 +59,8 @@ const MobProbability = {
 	"Knight": 10
 }
 const MobToSprite = {
+	"Flag" : preload("res://art/assets/flags.png"),
+	"PathDot" : preload("res://art/assets/path_dot.png"),
 	"Player" : preload("res://art/units/darklord.png"),
 	"Peasant" : preload("res://art/units/peasant.png"),
 	"Knight" : preload("res://art/units/knight.png"),

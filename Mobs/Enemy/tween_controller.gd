@@ -15,9 +15,10 @@ func _ready() -> void:
 	original_sprite_state = $"../Sprite".position
 	unit_sprite = $"../Sprite"
 
-func idle() -> void:
+func idle(wait=false) -> void:
 	reset()
-	await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
+	if wait:
+		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
 	unit_tween = create_tween().set_loops() #Loops until cancelled
 	# Move in V shape (represents breathing animation)
 	var unit_scale = unit_sprite.scale
@@ -37,26 +38,23 @@ func idle() -> void:
 	unit_tween.parallel().tween_property(unit_sprite, "rotation", unit_sprite.rotation + 0.01, 0.5)
 	unit_tween.parallel().tween_property(unit_sprite, "scale", unit_scale, 0.5)
 
-func walk() -> void:
+func walk(wait=false) -> void:
 	reset()
-	await get_tree().create_timer(randf_range(0.05, 0.2)).timeout
-	while true:
-		unit_tween = create_tween()
-		unit_tween.tween_property(unit_sprite, "position", unit_sprite.position + Vector2(0.00, 5), 0.1)
-		unit_tween.parallel().tween_property(unit_sprite, "rotation", 0.05, 0.1)
-		await unit_tween.finished
-		unit_tween = create_tween()
-		unit_tween.tween_property(unit_sprite, "position", unit_sprite.position + Vector2(0.00, -5), 0.1)
-		unit_tween.parallel().tween_property(unit_sprite, "rotation", 0.10, 0.1)
-		await unit_tween.finished
-		unit_tween = create_tween()
-		unit_tween.tween_property(unit_sprite, "position", unit_sprite.position + Vector2(0.00, 5), 0.1)
-		unit_tween.parallel().tween_property(unit_sprite, "rotation", -0.05, 0.1)
-		await unit_tween.finished
-		unit_tween = create_tween()
-		unit_tween.tween_property(unit_sprite, "position", unit_sprite.position - Vector2(0.00, 5), 0.1)
-		unit_tween.parallel().tween_property(unit_sprite, "rotation", -0.10, 0.1)
-		await unit_tween.finished
+	if wait:
+		await get_tree().create_timer(randf_range(0.05, 0.2)).timeout
+		
+	unit_tween = create_tween().set_loops()
+	unit_tween.tween_property(unit_sprite, "position", unit_sprite.position + Vector2(0.00, 5), 0.1)
+	unit_tween.parallel().tween_property(unit_sprite, "rotation", 0.05, 0.1)
+	
+	unit_tween.tween_property(unit_sprite, "position", unit_sprite.position + Vector2(0.00, -5), 0.1)
+	unit_tween.parallel().tween_property(unit_sprite, "rotation", 0.10, 0.1)
+	
+	unit_tween.tween_property(unit_sprite, "position", unit_sprite.position + Vector2(0.00, 5), 0.1)
+	unit_tween.parallel().tween_property(unit_sprite, "rotation", -0.05, 0.1)
+	
+	unit_tween.tween_property(unit_sprite, "position", unit_sprite.position - Vector2(0.00, 5), 0.1)
+	unit_tween.parallel().tween_property(unit_sprite, "rotation", -0.10, 0.1)
 
 func light_melee_attack(unit_pos : Vector2i, clickedTile : Vector2i) -> void:
 	reset()
@@ -81,6 +79,7 @@ func heavy_melee_attack(unit_pos : Vector2i, clickedTile : Vector2i) -> void:
 		  20 * Vector2(clickedTile - unit_pos), 0.2). \
 		  set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	has_attacked.emit()
+
 
 func ranged_attack(unit_pos : Vector2i, clickedTile : Vector2i) -> void:
 	reset()
@@ -132,7 +131,7 @@ func hit(attackingUnit : Unit, unitHit : Unit) -> void:
 	unit_tween.tween_property(unit_sprite, "position", unit_sprite.position, 0.2)
 	unit_tween.parallel().tween_property(unit_sprite, "scale", unit_scale, 0.2)
 	await unit_tween.finished
-	walk()
+	walk(true)
 
 func die() -> void:
 	reset()

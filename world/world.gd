@@ -120,7 +120,7 @@ func spawn_player(tile) -> void:
 
 func play_idle_tween_mobs() -> void:
 	for tile in mobs_on_tiles:
-		mobs_on_tiles[tile].tween_controller.idle()
+		mobs_on_tiles[tile].tween_controller.idle(true)
 
 func neighbors(cur: Vector2i) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
@@ -175,23 +175,49 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event is InputEventMouseButton:
 		var pos = event.position
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-			if (last_mouse_pos - pos).length() < 1 and not moving:
+			if (last_mouse_pos - pos).length() < 10 and not moving:
 				var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
 				var player: Mob = mobs_on_tiles[player_pos]
 				var path := find_path(player_pos, clicked_cell)
-				if len(path) > 0:
+				if len(path) > 0:# and not moving:
+					var flag = mob_scene.instantiate()
+					mobs_on_tiles[clicked_cell] = flag
+					flag.mob_name = "Flag"
+					self.add_child(flag)
+					flag.sprite.texture = GameManager.MobToSprite["Flag"]
+					var sprite_scale = Vector2(0.2, 0.2)
+					flag.sprite.scale = sprite_scale
+					flag.tween_controller.original_sprite_scale = sprite_scale
+					flag.position = clicked_cell * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
+										Vector2i(64 if (clicked_cell.y%2==1) else 0, -10)
+					flag.tween_controller.idle()
 					moving = true
 					player.tween_controller.walk()
+					
+					for path_pos in path.slice(1, len(path)-1):
+						var dot = mob_scene.instantiate()
+						mobs_on_tiles[path_pos] = dot
+						dot.mob_name = "dot"
+						self.add_child(dot)
+						dot.sprite.texture = GameManager.MobToSprite["PathDot"]
+						dot.sprite.scale = Vector2(0.1, 0.1)
+						dot.z_index = -1
+						dot.tween_controller.original_sprite_scale = Vector2(0.1, 0.1)
+						dot.position = path_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
+											Vector2i(64 if (path_pos.y%2==1) else 0, 20)
 					for path_pos in path:
 						mobs_on_tiles[player_pos] = null
 						player_pos = path_pos
-						mobs_on_tiles[player_pos] = player
 						var new_pos = player_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
 											Vector2i(64 if (player_pos.y%2==1) else 0, -10)
 						var move_tween = create_tween()
-						move_tween.tween_property(player, "position", Vector2(new_pos), 0.5)
 						move_tween.set_trans(Tween.TRANS_QUAD)
+						move_tween.tween_property(player, "position", Vector2(new_pos), 0.5)
 						await move_tween.finished
+						if mobs_on_tiles[player_pos] != null and mobs_on_tiles[player_pos].mob_name != "player":
+							mobs_on_tiles[player_pos].queue_free()
+						mobs_on_tiles[player_pos] = player
 					player.tween_controller.idle()
 					moving = false
+					#flag.queue_free()
 		last_mouse_pos = pos
