@@ -1,5 +1,8 @@
 extends Node2D
 
+signal hide_world_ui
+signal show_world_ui
+
 enum UnitType {
 	PEASENT,
 	IMP,
@@ -93,6 +96,7 @@ func world_rdy(world: World):
 func start_battle(mob: Mob):
 	if mob.mob_name != "Peasant":
 		return
+	hide_world_ui.emit()
 	get_node("/root/World").process_mode = 4
 	get_node("/root/World").hide()
 	get_viewport().canvas_transform = Transform2D.IDENTITY
@@ -103,6 +107,7 @@ func end_battle():
 	get_node("/root/Map").queue_free()
 	get_node("/root/World").process_mode = 0
 	get_node("/root/World").show()
+	show_world_ui.emit()
 
 func get_units(type):
 	if map == null:

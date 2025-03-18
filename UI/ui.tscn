@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctr3aa26mstlh"]
+[gd_scene load_steps=10 format=3 uid="uid://ctr3aa26mstlh"]
 
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="1_2fwl4"]
 [ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://UI/theme.tres" id="1_3sbvi"]
+[ext_resource type="Script" uid="uid://dy5yhk5alcgx2" path="res://UI/ui.gd" id="1_4fiuh"]
 [ext_resource type="Script" uid="uid://qi11kix783v0" path="res://UI/sidebar.gd" id="1_dajm1"]
 [ext_resource type="Texture2D" uid="uid://cg8mpkacey75g" path="res://UI/heart.png" id="3_cbfhl"]
 [ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/impt.png" id="3_hat8c"]
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4fiuh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
