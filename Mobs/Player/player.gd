@@ -1,4 +1,4 @@
-class_name Player extends RigidBody2D
+class_name Player extends CharacterBody2D
 
 var held = false
 @onready var sprite: Sprite2D = $Sprite

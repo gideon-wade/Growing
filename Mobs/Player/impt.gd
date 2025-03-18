@@ -1,10 +1,11 @@
 class_name Impt extends Player
 
-const SPEED = 2.0
+const SPEED = 140
 
 var life = 100
 var attack = 35
 @onready var map: Map = get_parent()
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var walking : bool  = false
 var celebrating : bool = false
 var can_attack : bool = true
@@ -34,7 +35,11 @@ func _physics_process(delta: float) -> void:
 	if closest_enemy == null:
 		return
 	var angle = position.angle_to_point(closest_enemy.position)
-	var collider: KinematicCollision2D = move_and_collide(Vector2(cos(angle), sin(angle)) * SPEED)
+	navigation_agent.target_position = closest_enemy.global_position
+	var dir = to_local(navigation_agent.get_next_path_position()).normalized()
+	velocity = dir * SPEED
+	move_and_slide()
+	var collider: KinematicCollision2D = get_last_slide_collision()
 	if !walking:
 		tween_controller.walk(true)
 		walking = true
@@ -60,4 +65,5 @@ func damage(dmg):
 		queue_free()
 
 func _on_attack_timer_timeout() -> void:
-	can_attack = true 
+	can_attack = true
+	
