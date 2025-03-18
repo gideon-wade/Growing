@@ -24,6 +24,7 @@ func _on_mouse_exited() -> void:
 	held = false
 
 func _process(delta: float) -> void:
+	z_index = position.y # sets the position so units are positons infront eachother forstaar du
 	if held and get_parent().state == 0:
 		print("??? ", global_position)
 		audio_controller.play_random_sound_of_type("interact", unit_name)
