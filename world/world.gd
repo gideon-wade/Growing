@@ -52,13 +52,13 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), source_id, water_dark_atlas)
 			elif noise_val < -0.34:
 				tile_map.set_cell(Vector2(x,y), source_id, water_semi_dark_atlas)
-			elif noise_val < -0.1:
+			elif noise_val < -0.21:
 				tile_map.set_cell(Vector2(x,y), source_id, water_semibright_atlas)
 			#elif noise_val < -0.14:
 				#tile_map.set_cell(Vector2(x,y), source_id, water_bright_atlas)
 			#elif noise_val < -0.06:
 				#tile_map.set_cell(Vector2(x,y), source_id, dirt_bright_atlas)
-			elif noise_val < 0.01:
+			elif noise_val < 0.02:
 				tile_map.set_cell(Vector2(x,y), source_id, dirt_semibright_atlas)
 			elif noise_val < 0.11:
 				tile_map.set_cell(Vector2(x,y), source_id, dirt_semi_dark_atlas)
