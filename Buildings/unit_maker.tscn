@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ngfed0gskal5"]
 
-[ext_resource type="Script" uid="uid://duwxb15qkc7da" path="res://Buildings/unit_maker.gd" id="1_u47qa"]
+[ext_resource type="Script" uid="uid://duwxb15qkc7da" path="res://buildings/unit_maker.gd" id="1_u47qa"]
 [ext_resource type="Texture2D" uid="uid://betig64heferu" path="res://icon.svg" id="2_3g73g"]
 
 [node name="UnitMaker" type="Node2D"]

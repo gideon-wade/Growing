@@ -138,8 +138,6 @@ func die() -> void:
 	unit_tween = create_tween()
 	unit_tween.tween_property(unit_sprite, "rotation", PI/2, 0.5).set_trans(Tween.TRANS_EXPO).\
  		set_ease(Tween.EASE_OUT)
-	print(audio_controller._sounds)
-	audio_controller.play_unit_sound("dead")
 	unit_tween.tween_property(unit_sprite, "modulate", \
  		Color(unit_sprite.modulate.r, unit_sprite.modulate.g, \
  		unit_sprite.modulate.b, 0.0), \

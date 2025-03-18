@@ -4,20 +4,16 @@ var held = false
 @onready var sprite: Sprite2D = $Sprite
 @onready var tween_controller: TweenController = $TweenController
 @onready var audio_controller: AudioController = $AudioController
-@export var unit_name : String
-var attack_speed : float = 1.0
-
+var unit_name : String
+var attack_speed : float = 0.55
 
 var is_alive : bool = true
 func _ready() -> void:
 	self.input_event.connect(_on_input_event)
 	self.mouse_exited.connect(_on_mouse_exited)
 	tween_controller.original_sprite_scale = Vector2(0.25, 0.25)
-	var unit_sounds = {
-		"dead" : preload("res://sounds/dead.mp3")
-	}
-	audio_controller.set_unit_sounds(unit_sounds)
 	$AttackTimer.wait_time = attack_speed
+	
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:

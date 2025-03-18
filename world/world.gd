@@ -205,7 +205,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 					flag.tween_controller.idle()
 					moving = true
 					player.tween_controller.walk()
-					mobs_on_tiles[player_pos] = null
 					
 					for path_pos in path.slice(1, len(path)-1):
 						var dot = mob_scene.instantiate()
@@ -219,6 +218,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 						dot.position = path_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
 											Vector2i(64 if (path_pos.y%2==1) else 0, 20)
 					for path_pos in path:
+						mobs_on_tiles[player_pos] = null
 						player_pos = path_pos
 						var new_pos = player_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
 											Vector2i(64 if (player_pos.y%2==1) else 0, -10)
@@ -228,8 +228,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 						await move_tween.finished
 						if mobs_on_tiles.get(player_pos, null) != null and mobs_on_tiles[player_pos].mob_name == "dot":
 							mobs_on_tiles[player_pos].queue_free()
-							mobs_on_tiles[player_pos] = null
-						if mobs_on_tiles.get(player_pos, null) != null:
+						elif mobs_on_tiles.get(player_pos, null) != null:
 							GameManager.start_battle(mobs_on_tiles[player_pos])
 							mobs_on_tiles[player_pos].queue_free()
 						mobs_on_tiles[player_pos] = player
