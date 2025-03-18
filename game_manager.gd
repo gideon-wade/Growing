@@ -11,6 +11,12 @@ enum UnitType {
 	RANGED,
 	TANK,
 }
+enum RarityType {
+	COMMON,
+	RARE,
+	EPIC,
+}
+
 
 enum Faction {
 	PLAYER,
@@ -65,6 +71,13 @@ const MobProbability = {
 	"Peasant" : 50,
 	"Knight": 10
 }
+
+const RarityProbability = {
+	"Common": 60, 
+	"Rare": 30,
+	"Epic": 10,
+}
+
 const MobToSprite = {
 	"Flag" : preload("res://art/assets/flags.png"),
 	"PathDot" : preload("res://art/assets/path_dot.png"),
@@ -127,4 +140,15 @@ func decide_random_mob() -> String:
 		random_value -= MobProbability[mob]
 		if random_value < 0:
 			return mob
+	return ""
+
+func decide_random_reward() -> String:
+	var total_weight = 0
+	for rarity in RarityProbability.keys():
+		total_weight += RarityProbability[rarity]
+	var random_value = randi() % total_weight
+	for rarity in RarityProbability.keys():
+		random_value -= RarityProbability[rarity]
+		if random_value < 0:
+			return rarity
 	return ""

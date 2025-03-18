@@ -204,6 +204,8 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 										Vector2i(64 if (clicked_cell.y%2==1) else 0, -10)
 					flag.tween_controller.idle()
 					moving = true
+					player.audio_controller.stream = preload("res://sounds/horse_run_sfx.mp3")
+					player.audio_controller.play()
 					player.tween_controller.walk()
 					
 					for path_pos in path.slice(1, len(path)-1):
@@ -234,5 +236,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 						mobs_on_tiles[player_pos] = player
 					player.tween_controller.idle()
 					moving = false
+					player.audio_controller.stop()
 					flag.queue_free()
 		last_mouse_pos = pos
