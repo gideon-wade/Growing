@@ -15,4 +15,5 @@ texture = ExtResource("2_k1i8b")
 script = ExtResource("3_irj83")
 
 [node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -15.727
 script = ExtResource("4_gg0hu")
