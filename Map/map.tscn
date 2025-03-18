@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c04x18amkxulk"]
 
-[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://map/map.gd" id="1_6yc6o"]
-[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://mobs/enemy/peasent.tscn" id="2_6yc6o"]
+[ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://Map/map.gd" id="1_6yc6o"]
+[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://Mobs/Enemy/peasent.tscn" id="2_6yc6o"]
 [ext_resource type="PackedScene" uid="uid://dehl2r26aays6" path="res://art_assets/plains_tileset.tscn" id="4_86j4t"]
-[ext_resource type="PackedScene" uid="uid://7w24oyjeln8j" path="res://mobs/player/impt.tscn" id="4_kffv2"]
+[ext_resource type="PackedScene" uid="uid://7w24oyjeln8j" path="res://Mobs/Player/impt.tscn" id="4_kffv2"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_6yc6o")

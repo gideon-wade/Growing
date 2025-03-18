@@ -41,6 +41,7 @@ grow_vertical = 2
 script = ExtResource("1_dajm1")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
