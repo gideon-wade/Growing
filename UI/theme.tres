@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://ce87vvxt2a536"]
 
-[ext_resource type="FontFile" uid="uid://cf3hklbrmeu8o" path="res://UI/DevinneSwash.ttf" id="1_go05t"]
+[ext_resource type="FontFile" uid="uid://cf3hklbrmeu8o" path="res://ui/DevinneSwash.ttf" id="1_go05t"]
 
 [resource]
 default_font = ExtResource("1_go05t")

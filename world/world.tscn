@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bqyqa33500h12" path="res://textures/tilemap.tres" id="2_fj7yv"]
 [ext_resource type="PackedScene" path="res://world/camera.tscn" id="3_4717r"]
 [ext_resource type="TileSet" uid="uid://duy2bgplo20an" path="res://art_assets/hex.tres" id="3_h5o24"]
-[ext_resource type="PackedScene" uid="uid://ctr3aa26mstlh" path="res://UI/ui.tscn" id="5_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://ctr3aa26mstlh" path="res://ui/ui.tscn" id="5_mmdvd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fj7yv"]
 noise_type = 5
