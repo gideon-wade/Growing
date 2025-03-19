@@ -1,4 +1,4 @@
-class_name Enemy extends RigidBody2D
+class_name Enemy extends CharacterBody2D
 
 var is_alive : bool = true
 @onready var tween_controller: TweenController = $TweenController

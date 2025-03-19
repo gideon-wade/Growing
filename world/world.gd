@@ -50,10 +50,10 @@ func place_tiles() -> void:
 			var noise_val = float(noise.get_noise_2d(x,y))
 			if noise_val < -0.43:
 				tile_map.set_cell(Vector2(x,y), source_id, water_dark_atlas)
-			elif noise_val < -0.34:
-				tile_map.set_cell(Vector2(x,y), source_id, water_semi_dark_atlas)
-			elif noise_val < -0.21:
-				tile_map.set_cell(Vector2(x,y), source_id, water_semibright_atlas)
+			#elif noise_val < -0.34:
+			#	tile_map.set_cell(Vector2(x,y), source_id, water_semi_dark_atlas)
+			#elif noise_val < -0.21:
+				#tile_map.set_cell(Vector2(x,y), source_id, water_semibright_atlas)
 			#elif noise_val < -0.14:
 				#tile_map.set_cell(Vector2(x,y), source_id, water_bright_atlas)
 			#elif noise_val < -0.06:
@@ -62,18 +62,18 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), source_id, dirt_semibright_atlas)
 			elif noise_val < 0.11:
 				tile_map.set_cell(Vector2(x,y), source_id, dirt_semi_dark_atlas)
-			elif noise_val < 0.16:
-				tile_map.set_cell(Vector2(x,y), source_id, dirt_dark_atlas)
+			#elif noise_val < 0.16:
+				#tile_map.set_cell(Vector2(x,y), source_id, dirt_dark_atlas)
 			elif noise_val < 0.22:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_bright_atlas)
 			elif noise_val < 0.37:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_semibright_atlas)
-				if randi() % 3 == 0:
-					terrain.set_cell(Vector2(x,y), source_id, HELL_HILL)
+				#if randi() % 3 == 0:
+					#terrain.set_cell(Vector2(x,y), source_id, HELL_HILL)
 			else:
 				tile_map.set_cell(Vector2(x,y), source_id, grass_dark_atlas)
-				if randi() % 2 == 0:
-					terrain.set_cell(Vector2(x,y),source_id, MOUNTAIN)
+				#if randi() % 2 == 0:
+					#terrain.set_cell(Vector2(x,y),source_id, MOUNTAIN)
 				if player_pos == null:
 					spawn_player(Vector2i(x, y))
 			var clicked_cell = Vector2i(x,y)
