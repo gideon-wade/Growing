@@ -61,6 +61,7 @@ texture_region_size = Vector2i(128, 128)
 1:2/animation_frame_6/duration = 1.0
 1:2/0 = 0
 0:4/0 = 0
+3:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nayxu"]
 texture = ExtResource("3_p8twt")

@@ -3,13 +3,13 @@ class_name World extends Node2D
 var noise : Noise
 var noises : Array[float] = []
 var terrain_id : int = 1
-var fog_id : int = 2
+var fog_id : int = 1
 @onready var tile_map: TileMapLayer = $TileMap
 @onready var terrain: TileMapLayer = $Terrian
 @onready var fog: TileMapLayer = $Fog
 var tile_size : int = 128
 #Water
-var water_dark_atlas : Vector2i = Vector2i(2,2)
+#var water_dark_atlas : Vector2i= Vector2i(2,2)
 var water_semi_dark_atlas : Vector2i = Vector2i(1,2)
 var water_semibright_atlas : Vector2i = Vector2i(0,2)
 #var water_bright_atlas : Vector2i = Vector2i(0,2)
@@ -23,8 +23,8 @@ var grass_dark_atlas : Vector2i = Vector2i(2,0)
 var grass_semibright_atlas : Vector2i = Vector2i(1,0)
 var grass_bright_atlas : Vector2i = Vector2i(0,0)
 const MOUNTAIN := Vector2i(0,4)
-const HELL_HILL := Vector2(2,4)
-
+const HELL_HILL := Vector2i(2,4)
+const FOG := Vector2i(3,3)
 var tiles = {}
 var mobs_on_tiles = {}
 const PEASANT = preload("res://art/units/peasant.png")
@@ -52,7 +52,7 @@ func place_tiles() -> void:
 			noises.append(noise.get_noise_2d(x,y))
 			var noise_val = float(noise.get_noise_2d(x,y))
 			if noise_val < -0.43:
-				tile_map.set_cell(Vector2(x,y), terrain_id, water_dark_atlas)
+				tile_map.set_cell(Vector2(x,y), terrain_id, water_semi_dark_atlas)
 			#elif noise_val < -0.34:
 			#	tile_map.set_cell(Vector2(x,y), terrain_id, water_semi_dark_atlas)
 			#elif noise_val < -0.21:
@@ -90,7 +90,7 @@ func place_fog() -> void:
 		for y in range(noise_texture.height):
 			var difference = abs(Vector2i(x, y) - player_pos)
 			if difference.x > GameManager.player_view_distance || difference.y > GameManager.player_view_distance:
-				$Fog.set_cell(Vector2(x,y), fog_id, Vector2i(0,0))
+				$Fog.set_cell(Vector2(x,y), fog_id, FOG)
 	
 func place_mobs() -> void:
 	for tile in tiles:
