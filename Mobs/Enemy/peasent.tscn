@@ -8,14 +8,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmm33"]
 radius = 22.0907
 
-[node name="Peasent" type="RigidBody2D"]
-gravity_scale = 0.0
-contact_monitor = true
-max_contacts_reported = 10
+[node name="Peasent" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_gddri")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-rotation = -6.28319
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_b7dg7")
 
@@ -40,5 +38,6 @@ metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 
 [node name="AttackTimer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -1,10 +1,11 @@
 class_name Peasent extends Enemy
 
-const SPEED = 1.4
+const SPEED = 110
 
 var life = 100
 var attack = 20
 @onready var map: Map = get_parent()
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var walking : bool  = false
 var celebrating : bool = false
 var can_attack : bool = true
@@ -35,7 +36,11 @@ func _physics_process(delta: float) -> void:
 	if closest_player == null:
 		return
 	var angle = position.angle_to_point(closest_player.position)
-	var collider: KinematicCollision2D = move_and_collide(Vector2(cos(angle), sin(angle)) * SPEED)
+	navigation_agent.target_position = closest_player.global_position
+	var dir = to_local(navigation_agent.get_next_path_position()).normalized()
+	velocity = dir * SPEED
+	move_and_slide()
+	var collider: KinematicCollision2D = get_last_slide_collision()
 	if !walking:
 		tween_controller.walk(true)
 		walking = true
