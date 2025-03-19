@@ -4,7 +4,6 @@ const SPEED = 80
 
 var life = 100
 var attack = 25
-@onready var map: Map = get_parent()
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var walking : bool  = false
 var celebrating : bool = false
@@ -12,6 +11,7 @@ var can_attack : bool = true
 
 func _ready() -> void:
 	super()
+	map = get_parent()
 	unit_name = "Imp"
 	tween_controller.original_sprite_scale = $Sprite.scale
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://7w24oyjeln8j"]
+[gd_scene load_steps=7 format=3 uid="uid://7w24oyjeln8j"]
 
 [ext_resource type="Script" uid="uid://eh7ayotkdycj" path="res://mobs/Player/impt.gd" id="1_gkks1"]
 [ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/impt.png" id="2_gkks1"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vpwl"]
 radius = 24.0832
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkks1"]
+size = Vector2(75, 115)
 
 [node name="Impt" type="CharacterBody2D"]
 input_pickable = true
@@ -20,6 +23,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_gkks1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 14)
 shape = SubResource("CircleShape2D_0vpwl")
 
 [node name="Label" type="Label" parent="."]
@@ -39,5 +43,13 @@ metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="MouseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+position = Vector2(-0.5, -22.5)
+shape = SubResource("RectangleShape2D_gkks1")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
