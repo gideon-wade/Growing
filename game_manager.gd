@@ -3,6 +3,8 @@ extends Node2D
 signal hide_world_ui
 signal show_world_ui
 
+var player_view_distance = 3
+
 enum UnitType {
 	PEASENT,
 	IMP,
@@ -91,6 +93,7 @@ var map: Map
 
 #world.tscn generates these
 var tiles 
+var fogs
 #tiles are 2d arrays with [0]=TileData and [1]=local_position
 
 var saved_world: World

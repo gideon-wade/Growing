@@ -2,12 +2,14 @@ class_name World extends Node2D
 @export var noise_texture : NoiseTexture2D
 var noise : Noise
 var noises : Array[float] = []
-var source_id : int = 1
+var terrain_id : int = 1
+var fog_id : int = 2
 @onready var tile_map: TileMapLayer = $TileMap
 @onready var terrain: TileMapLayer = $Terrian
+@onready var fog: TileMapLayer = $Fog
 var tile_size : int = 128
 #Water
-var water_dark_atlas : Vector2i= Vector2i(2,2)
+var water_dark_atlas : Vector2i = Vector2i(2,2)
 var water_semi_dark_atlas : Vector2i = Vector2i(1,2)
 var water_semibright_atlas : Vector2i = Vector2i(0,2)
 #var water_bright_atlas : Vector2i = Vector2i(0,2)
@@ -40,6 +42,7 @@ func generate():
 	var rng = RandomNumberGenerator.new()
 	noise.seed = rng.randi()
 	place_tiles()
+	place_fog()
 	place_mobs()
 	play_idle_tween_mobs()
 
@@ -49,31 +52,31 @@ func place_tiles() -> void:
 			noises.append(noise.get_noise_2d(x,y))
 			var noise_val = float(noise.get_noise_2d(x,y))
 			if noise_val < -0.43:
-				tile_map.set_cell(Vector2(x,y), source_id, water_dark_atlas)
+				tile_map.set_cell(Vector2(x,y), terrain_id, water_dark_atlas)
 			#elif noise_val < -0.34:
-			#	tile_map.set_cell(Vector2(x,y), source_id, water_semi_dark_atlas)
+			#	tile_map.set_cell(Vector2(x,y), terrain_id, water_semi_dark_atlas)
 			#elif noise_val < -0.21:
-				#tile_map.set_cell(Vector2(x,y), source_id, water_semibright_atlas)
+				#tile_map.set_cell(Vector2(x,y), terrain_id, water_semibright_atlas)
 			#elif noise_val < -0.14:
-				#tile_map.set_cell(Vector2(x,y), source_id, water_bright_atlas)
+				#tile_map.set_cell(Vector2(x,y), terrain_id, water_bright_atlas)
 			#elif noise_val < -0.06:
-				#tile_map.set_cell(Vector2(x,y), source_id, dirt_bright_atlas)
+				#tile_map.set_cell(Vector2(x,y), terrain_id, dirt_bright_atlas)
 			elif noise_val < 0.02:
-				tile_map.set_cell(Vector2(x,y), source_id, dirt_semibright_atlas)
+				tile_map.set_cell(Vector2(x,y), terrain_id, dirt_semibright_atlas)
 			elif noise_val < 0.11:
-				tile_map.set_cell(Vector2(x,y), source_id, dirt_semi_dark_atlas)
+				tile_map.set_cell(Vector2(x,y), terrain_id, dirt_semi_dark_atlas)
 			#elif noise_val < 0.16:
-				#tile_map.set_cell(Vector2(x,y), source_id, dirt_dark_atlas)
+				#tile_map.set_cell(Vector2(x,y), terrain_id, dirt_dark_atlas)
 			elif noise_val < 0.22:
-				tile_map.set_cell(Vector2(x,y), source_id, grass_bright_atlas)
+				tile_map.set_cell(Vector2(x,y), terrain_id, grass_bright_atlas)
 			elif noise_val < 0.37:
-				tile_map.set_cell(Vector2(x,y), source_id, grass_semibright_atlas)
+				tile_map.set_cell(Vector2(x,y), terrain_id, grass_semibright_atlas)
 				#if randi() % 3 == 0:
-					#terrain.set_cell(Vector2(x,y), source_id, HELL_HILL)
+					#terrain.set_cell(Vector2(x,y), terrain_id, HELL_HILL)
 			else:
-				tile_map.set_cell(Vector2(x,y), source_id, grass_dark_atlas)
+				tile_map.set_cell(Vector2(x,y), terrain_id, grass_dark_atlas)
 				#if randi() % 2 == 0:
-					#terrain.set_cell(Vector2(x,y),source_id, MOUNTAIN)
+					#terrain.set_cell(Vector2(x,y),terrain_id, MOUNTAIN)
 				if player_pos == null:
 					spawn_player(Vector2i(x, y))
 			var clicked_cell = Vector2i(x,y)
@@ -81,7 +84,14 @@ func place_tiles() -> void:
 			if tile:
 				tiles[clicked_cell] = tile
 		GameManager.tiles = tiles
-				
+
+func place_fog() -> void:
+	for x in range(noise_texture.width):
+		for y in range(noise_texture.height):
+			var difference = abs(Vector2i(x, y) - player_pos)
+			if difference.x > GameManager.player_view_distance || difference.y > GameManager.player_view_distance:
+				$Fog.set_cell(Vector2(x,y), fog_id, Vector2i(0,0))
+	
 func place_mobs() -> void:
 	for tile in tiles:
 		var valid = true
@@ -105,13 +115,16 @@ func spawn_mob(tile) -> void:
 		var mob = mob_scene.instantiate()
 		mobs_on_tiles[tile] = mob
 		mob.mob_name = mob_name
-		self.add_child(mob)
+		$Mobs.add_child(mob)
 		mob.sprite.texture = GameManager.MobToSprite[mob_name]
 		var sprite_scale = Vector2(0.2, 0.2)
 		mob.sprite.scale = sprite_scale
 		mob.tween_controller.original_sprite_scale = sprite_scale
 		mob.position = tile * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + Vector2i(64 if (tile.y%2==1) else 0, 0)
-
+		mob.fog = $Fog
+		mob.pos = tile
+		mob.visible = false
+		
 func spawn_player(tile) -> void:
 	player_pos = tile
 	
@@ -119,6 +132,7 @@ func spawn_player(tile) -> void:
 	mobs_on_tiles[tile] = player
 	player.mob_name = "player"
 	self.add_child(player)
+	player.is_player = true
 	player.sprite.texture = GameManager.MobToSprite["Player"]
 	var sprite_scale = Vector2(0.3, 0.3)
 	player.sprite.scale = sprite_scale
@@ -189,6 +203,8 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			if (last_mouse_pos - pos).length() < 10 and not moving:
 				var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
+				if fog.get_cell_tile_data(clicked_cell) != null:
+					return
 				var player: Mob = mobs_on_tiles[player_pos]
 				var path := find_path(player_pos, clicked_cell)
 				if len(path) > 0:# and not moving:
@@ -234,8 +250,28 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 							GameManager.start_battle(mobs_on_tiles[player_pos])
 							mobs_on_tiles[player_pos].queue_free()
 						mobs_on_tiles[player_pos] = player
+						update_fog(path_pos)
 					player.tween_controller.idle()
 					moving = false
 					player.audio_controller.stop()
 					flag.queue_free()
 		last_mouse_pos = pos
+
+func update_fog(path_pos) -> void:
+	var fogs_in_vision = get_neighbour_fogs(path_pos)
+	for fog in fogs_in_vision:
+		$Fog.set_cell(fog, -1) # delete fog
+
+func get_neighbour_fogs(cur_pos: Vector2i) -> Array[Vector2i]:
+	var out: Array[Vector2i] = []
+	for i in range(GameManager.player_view_distance + 1):
+		for j in range(GameManager.player_view_distance + 1):
+			if fog.get_cell_tile_data(cur_pos + Vector2i(i, j)) != null:
+				out.append(cur_pos + Vector2i(i, j))
+			if fog.get_cell_tile_data(cur_pos + Vector2i(-i, j)) != null:
+				out.append(cur_pos + Vector2i(-i, j))
+			if fog.get_cell_tile_data(cur_pos + Vector2i(i, -j)) != null:
+				out.append(cur_pos + Vector2i(i, -j))
+			if fog.get_cell_tile_data(cur_pos + Vector2i(-i, -j)) != null:
+				out.append(cur_pos + Vector2i(-i, -j))
+	return out
