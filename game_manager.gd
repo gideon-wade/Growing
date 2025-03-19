@@ -3,7 +3,7 @@ extends Node2D
 signal hide_world_ui
 signal show_world_ui
 
-var player_view_distance = 3
+var player_view_distance = 15
 
 enum UnitType {
 	PEASENT,

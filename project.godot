@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Growing"
-run/main_scene="uid://c04x18amkxulk"
+run/main_scene="uid://dfk1nnrr3h1f0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

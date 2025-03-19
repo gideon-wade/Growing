@@ -15,6 +15,5 @@ func _process(delta : float) -> void:
 	if !has_been_revealed:
 		if pos && !is_player:
 			if fog.get_cell_tile_data(pos) != null:
-				print(fog.get_cell_tile_data(pos))
 				self.visible = true
 				has_been_revealed = true

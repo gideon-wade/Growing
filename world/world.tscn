@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b17ri1yeqsfux" path="res://world/world.gd" id="1_fj7yv"]
 [ext_resource type="TileSet" uid="uid://bqyqa33500h12" path="res://textures/tilemap.tres" id="2_fj7yv"]
-[ext_resource type="PackedScene" path="res://world/camera.tscn" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://drksjlt18i3ar" path="res://world/camera.tscn" id="3_4717r"]
 [ext_resource type="TileSet" uid="uid://hwhv2tpc0lyw" path="res://art_assets/hex.tres" id="3_h5o24"]
-[ext_resource type="PackedScene" uid="uid://ctr3aa26mstlh" path="res://ui/ui.tscn" id="5_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://ctr3aa26mstlh" path="res://UI/ui.tscn" id="5_mmdvd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fj7yv"]
 noise_type = 5
@@ -12,12 +12,12 @@ seed = -1
 frequency = 0.1718
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tlwt5"]
-width = 32
-height = 32
+width = 256
+height = 256
 noise = SubResource("FastNoiseLite_fj7yv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4717r"]
-size = Vector2(59887, 41112)
+size = Vector2(149536, 131302)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_fj7yv")
@@ -43,7 +43,7 @@ zoom = Vector2(0.7, 0.7)
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(29943.5, 20556)
+position = Vector2(74768, 65651)
 shape = SubResource("RectangleShape2D_4717r")
 
 [node name="UI" parent="." instance=ExtResource("5_mmdvd")]
