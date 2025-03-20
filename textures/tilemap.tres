@@ -1,39 +1,15 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bqyqa33500h12"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bqyqa33500h12"]
 
-[ext_resource type="Texture2D" uid="uid://mi0aj24fl5it" path="res://textures/hexatiles_growing.png" id="1_q3qn3"]
 [ext_resource type="Texture2D" uid="uid://2ot1x0bv0x1i" path="res://art/tileset/hex/tileset_hex_1024.png" id="2_mbii3"]
-[ext_resource type="Texture2D" uid="uid://b2kj8stkgp7li" path="res://art/tileset/hex/tileset_hex_1024_fog.png" id="3_p8twt"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlwt5"]
-texture = ExtResource("1_q3qn3")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/custom_data_2 = true
-1:0/0 = 0
-1:0/0/custom_data_2 = true
-2:0/0 = 0
-2:0/0/custom_data_0 = true
-2:0/0/custom_data_2 = true
-0:1/0 = 0
-0:1/0/custom_data_2 = true
-1:1/0 = 0
-1:1/0/custom_data_0 = true
-1:1/0/custom_data_2 = true
-2:1/0 = 0
-2:1/0/custom_data_2 = true
-3:1/0 = 0
-3:1/0/custom_data_2 = true
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8twt"]
 texture = ExtResource("2_mbii3")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
+0:0/0/custom_data_0 = true
 0:0/0/custom_data_2 = true
 1:0/0 = 0
+1:0/0/custom_data_0 = true
 1:0/0/custom_data_2 = true
 2:0/0 = 0
 2:0/0/custom_data_0 = true
@@ -45,10 +21,13 @@ texture_region_size = Vector2i(128, 128)
 5:0/0 = 0
 5:0/0/custom_data_2 = true
 0:1/0 = 0
+0:1/0/custom_data_0 = true
 0:1/0/custom_data_2 = true
 1:1/0 = 0
+1:1/0/custom_data_0 = true
 1:1/0/custom_data_2 = true
 2:1/0 = 0
+2:1/0/custom_data_0 = true
 2:1/0/custom_data_2 = true
 0:2/0 = 0
 1:2/animation_columns = 7
@@ -63,11 +42,6 @@ texture_region_size = Vector2i(128, 128)
 0:4/0 = 0
 3:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nayxu"]
-texture = ExtResource("3_p8twt")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-
 [resource]
 tile_shape = 3
 tile_size = Vector2i(128, 128)
@@ -77,6 +51,4 @@ custom_data_layer_1/name = "Has Spawned"
 custom_data_layer_1/type = 1
 custom_data_layer_2/name = "Walkable"
 custom_data_layer_2/type = 1
-sources/0 = SubResource("TileSetAtlasSource_tlwt5")
 sources/1 = SubResource("TileSetAtlasSource_p8twt")
-sources/2 = SubResource("TileSetAtlasSource_nayxu")
