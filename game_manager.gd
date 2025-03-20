@@ -3,12 +3,13 @@ extends Node2D
 signal hide_world_ui
 signal show_world_ui
 
-var player_view_distance = 15
+var player_view_distance = 3
 
 enum UnitType {
 	PEASENT,
 	IMP,
-	IMPT,
+	SNAKE,
+	GHOST,
 	KNIGHT,
 	RANGED,
 	TANK,
@@ -33,7 +34,7 @@ const UnitSounds = {
 		"death" : 3,
 		"interact" : 2
 	},
-	"Impt" = {
+	"Snake" = {
 		"attack" : 3,
 		"celebrate" : 2,
 		"death" : 3,
@@ -62,7 +63,7 @@ const UnitSounds = {
 const UNIT = {
 	Faction.PLAYER: {
 		UnitType.IMP: preload("res://mobs/player/imp.tscn"),
-		UnitType.IMPT: preload("res://mobs/player/impt.tscn")
+		UnitType.SNAKE: preload("res://mobs/player/snake.tscn")
 	},
 	Faction.ENEMY: {
 		UnitType.PEASENT: preload("res://mobs/enemy/peasent.tscn")
@@ -99,6 +100,12 @@ var fogs
 var saved_world: World
 var has_generated = false
 var map_packed: PackedScene
+
+#player vars
+var money: int = 100
+var units: Dictionary = {UnitType.IMP: 2, \
+						 UnitType.SNAKE: 0, \
+						 UnitType.GHOST: 0}
 
 func _ready() -> void:
 	map_packed = load("res://Map/map.tscn") as PackedScene

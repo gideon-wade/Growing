@@ -1,4 +1,4 @@
-class_name Impt extends Player
+class_name Snake extends Player
 
 const SPEED = 140
 
@@ -12,7 +12,7 @@ var can_attack : bool = true
 func _ready() -> void:
 	super()
 	map = get_parent()
-	unit_name = "Impt"
+	unit_name = "Snake"
 	tween_controller.original_sprite_scale = $Sprite.scale
 
 func _physics_process(delta: float) -> void:
