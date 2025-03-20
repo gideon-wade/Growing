@@ -25,15 +25,16 @@ func _process(delta: float) -> void:
 			$Label.text = "You win"
 			$Label.visible = true
 			var reward : String = GameManager.decide_random_reward()
-			$Camera2D/RewardLabel.visible = true
+			var reward_label = $Camera2D/CanvasLayer/RewardLabel
+			reward_label.visible = true
 			if reward == "Common":
-				$Camera2D/RewardLabel.text = "You got a Common reward."
+				reward_label.text = "You got a Common reward."
 				audio.stream = preload("res://sounds/discover.mp3")
 			elif reward == "Rare":
-				$Camera2D/RewardLabel.text = "WOW You got a RARE reward!"
+				reward_label.text = "WOW You got a RARE reward!"
 				audio.stream = preload("res://sounds/discover_better.mp3")
 			elif reward == "Epic":
-				$Camera2D/RewardLabel.text = "OOOOKAAAAAAAY YOU GOT AN EPIC REWARD!! (crazy)"
+				reward_label.text = "OOOOKAAAAAAAY YOU GOT AN EPIC REWARD!! (crazy)"
 				audio.stream = preload("res://sounds/discover_best.mp3")
 			else:
 				print("Hello rarity doesn't exist (I fart)")
