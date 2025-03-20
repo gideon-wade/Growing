@@ -15,8 +15,6 @@ var rect : Rect2
 func _ready() -> void:
 	limit_left = -50
 	limit_top = -50
-	limit_right = 4210
-	limit_bottom = 3155
 
 func _process(delta):
 	var viewport_size = get_viewport_rect().size

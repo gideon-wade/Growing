@@ -37,6 +37,8 @@ var moving = false
 func _ready() -> void:
 	noise = noise_texture.noise
 	GameManager.world_rdy(self)
+	$Camera.limit_right = noise_texture.width * 128.5
+	$Camera.limit_bottom = noise_texture.height * 96.5
 
 func generate():
 	var rng = RandomNumberGenerator.new()
@@ -78,7 +80,7 @@ func place_tiles() -> void:
 				#if randi() % 2 == 0:
 					#terrain.set_cell(Vector2(x,y),terrain_id, MOUNTAIN)
 				if player_pos == null:
-					spawn_player(Vector2i(x, y))
+					spawn_player(Vector2i(noise_texture.width / 2, noise_texture.height / 2))
 			var clicked_cell = Vector2i(x,y)
 			var tile = tile_map.get_cell_tile_data(clicked_cell)
 			if tile:
@@ -88,9 +90,10 @@ func place_tiles() -> void:
 func place_fog() -> void:
 	for x in range(noise_texture.width):
 		for y in range(noise_texture.height):
-			var difference = abs(Vector2i(x, y) - player_pos)
-			if difference.x > GameManager.player_view_distance || difference.y > GameManager.player_view_distance:
-				$Fog.set_cell(Vector2(x,y), fog_id, FOG)
+			#var difference = abs(Vector2i(x, y) - player_pos)
+			#if difference.x > GameManager.player_view_distance || difference.y > GameManager.player_view_distance:
+			$Fog.set_cell(Vector2(x,y), fog_id, FOG)
+	update_fog(player_pos)
 	
 func place_mobs() -> void:
 	for tile in tiles:
@@ -209,7 +212,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				var path := find_path(player_pos, clicked_cell)
 				if len(path) > 0:# and not moving:
 					var flag = mob_scene.instantiate()
-					#mobs_on_tiles[clicked_cell] = flag
 					flag.mob_name = "Flag"
 					self.add_child(flag)
 					flag.sprite.texture = GameManager.MobToSprite["Flag"]
@@ -262,16 +264,31 @@ func update_fog(path_pos) -> void:
 	for fog in fogs_in_vision:
 		$Fog.set_cell(fog, -1) # delete fog
 
+func bfs(cur_pos: Vector2i, dist) -> Array:
+	var odd = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), 
+				Vector2i(-1, 0), Vector2i(1, 1), Vector2i(1, -1)]
+	var even = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), 
+				Vector2i(-1, 0), Vector2i(-1, -1), Vector2i(-1, 1)]
+	var queue = [cur_pos]
+	var visited = {cur_pos: true}
+	var distance = {cur_pos: 0}
+	while not queue.is_empty():
+		var pos = queue.pop_front()
+		if distance[pos] >= dist:
+			continue
+		for neighbor in odd if pos.y%2 == 1 else even:
+			var new = pos + neighbor
+			if not visited.get(new, false):
+				visited[new] = true
+				queue.append(new)
+				distance[new] = distance[pos] + 1
+	
+	return visited.keys()
+
 func get_neighbour_fogs(cur_pos: Vector2i) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
-	for i in range(GameManager.player_view_distance + 1):
-		for j in range(GameManager.player_view_distance + 1):
-			if fog.get_cell_tile_data(cur_pos + Vector2i(i, j)) != null:
-				out.append(cur_pos + Vector2i(i, j))
-			if fog.get_cell_tile_data(cur_pos + Vector2i(-i, j)) != null:
-				out.append(cur_pos + Vector2i(-i, j))
-			if fog.get_cell_tile_data(cur_pos + Vector2i(i, -j)) != null:
-				out.append(cur_pos + Vector2i(i, -j))
-			if fog.get_cell_tile_data(cur_pos + Vector2i(-i, -j)) != null:
-				out.append(cur_pos + Vector2i(-i, -j))
+	var all_neighbours = bfs(cur_pos, GameManager.player_view_distance)
+	for neighbor in all_neighbours:
+		if fog.get_cell_tile_data(neighbor) != null:
+			out.append(neighbor)
 	return out
