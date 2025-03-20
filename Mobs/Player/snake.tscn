@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://7w24oyjeln8j"]
 
-[ext_resource type="Script" path="res://mobs/Player/snake.gd" id="1_tnhcj"]
+[ext_resource type="Script" uid="uid://eh7ayotkdycj" path="res://mobs/Player/snake.gd" id="1_tnhcj"]
 [ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/snake.png" id="2_a0bjp"]
-[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/Enemy/tween_controller.gd" id="3_tbrtp"]
-[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/Enemy/audio_controller.gd" id="4_0tvl0"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_tbrtp"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_0tvl0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vpwl"]
 radius = 24.0832
