@@ -8,10 +8,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, 64, 64, 64, 64, -64, -64, -64)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_rk7y4"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, 35, 64, 35, -64, 34, -64, -64, 64, -64, 45.5, -26, -22.5, 14, 64, -27, -33.5, 35)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(6, 9, 7), PackedInt32Array(4, 8, 10)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, 35, -64, 35, -64, 64, 64, 64), PackedVector2Array(-64, 34, -33.5, 35, -22.5, 14, 45.5, -26, 64, -27, 64, -64, -64, -64)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_w8qu3"]
+vertices = PackedVector2Array(64, 41, 64, 64, -33, 64, -12, 37, -64, 64, -64, -64, -9, 4, 64, -64, 64, -33.6563)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5, 6), PackedInt32Array(6, 5, 7, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, -33.6597, -9, 4, -12, 37, 64, 41, 64, 64, -33, 64, -64, 64)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pwo04"]
@@ -32,10 +32,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, 64, 64, 64, 64, -6, 0, -8, -1, -64, -64, -64)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_e4x81"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, 35, 64, 35, -64, 34, -64, -64, 64, -64, 45.5, -26, -22.5, 14, 64, -27, -33.5, 35)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(6, 9, 7), PackedInt32Array(4, 8, 10)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, 35, -64, 35, -64, 64, 64, 64), PackedVector2Array(-64, 34, -33.5, 35, -22.5, 14, 45.5, -26, 64, -27, 64, -64, -64, -64)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_i43lr"]
+vertices = PackedVector2Array(64, 41, 64, 64, -33, 64, -12, 37, -64, 64, -64, -64, -9, 4, 64, -64, 64, -33.6563)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5, 6), PackedInt32Array(6, 5, 7, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, -33.6597, -9, 4, -12, 37, 64, 41, 64, 64, -33, 64, -64, 64)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wa3vu"]
@@ -98,10 +98,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, -64, 64, -64, -6, 0, -8, 1, -64, 64, -64)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_pa8l6"]
-vertices = PackedVector2Array(47.8516, 35.25, 64, 35, 64, 64, -64, 64, 38.0078, 35.4063, 40.5, 34, -64, -33.6563, -64, -64, 64, -64, -64, 37)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 1, 0), PackedInt32Array(4, 3, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, 35, 38.0052, 35.4062, -64, 37, -64, 64, 64, 64), PackedVector2Array(64, -64, -64, -64, -64, -33.6597, 40.5, 34, 64, 38)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rhfr6"]
+vertices = PackedVector2Array(64, -64, 64, 64, 33, 64, 12, 37, 9, 4, -64, 64, -64, 41, -64, -64, -64, -33.6563)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(2, 5, 6, 3), PackedInt32Array(7, 0, 4, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(64, -64, -64, -64, -64, -33.6597, 9, 4, 12, 37, -64, 41, -64, 64, 33, 64, 64, 64)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_83nuv"]
@@ -116,10 +116,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, -64, 27.5, -64, 17.5, 34, -64, 35, -64, 64, 64, 64), PackedVector2Array(2.65735, -64, 0.885803, -31.8881, -64, -30.1165, -64, -64)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_vmhvu"]
-vertices = PackedVector2Array(47.8516, 35.25, 64, 35, 64, 64, -64, 64, 38.0078, 35.4063, 40.5, 34, -64, -33.6563, -64, -64, 64, -64, -64, 37)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 1, 0), PackedInt32Array(4, 3, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, 35, 38.0052, 35.4062, -64, 37, -64, 64, 64, 64), PackedVector2Array(64, -64, -64, -64, -64, -33.6597, 40.5, 34, 64, 38)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_owk1p"]
+vertices = PackedVector2Array(64, -64, 64, 64, 33, 64, 12, 37, 9, 4, -64, 64, -64, 41, -64, -64, -64, -33.6563)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(2, 5, 6, 3), PackedInt32Array(7, 0, 4, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(64, -64, -64, -64, -64, -33.6597, 9, 4, 12, 37, -64, 41, -64, 64, 33, 64, 64, 64)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wexsb"]
@@ -134,10 +134,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, -39.5, -64, -39.5, 64, -64, 64), PackedVector2Array(43.5, -64, 48.5, 64, 64, 64, 64, -64)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_w8qu3"]
-vertices = PackedVector2Array(-39.5, 64, -64, 64, -64, -64, -39.5, -64, 64, 64, 48.5, 64, 43.5, -64, 64, -64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, -39.5, -64, -39.5, 64, -64, 64), PackedVector2Array(43.5, -64, 48.5, 64, 64, 64, 64, -64)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nquog"]
+vertices = PackedVector2Array(48, -64, 64, -64, 64, 64, 46, 35, -36, 64, -34, 41, -64, 64, -64, -64, -39.5, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, -39.5, -64, -34, 41, 46, 35, 48, -64, 64, -64, 64, 64, -36, 64, -64, 64)])
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q3dyb"]
@@ -146,14 +146,14 @@ texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_puf5f")
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.5, 3, 64, -29, 64, 36, -30.5, 36)
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_e4x81")
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -23, 25.5, -21, -10, -1, -12, 36, 64, 38)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_i43lr")
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -23, 64, -29, 64, 36, -64, 38)
 2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wxnhv")
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -23, -25.5, -21, 35.5, 35, -64, 38)
-3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pa8l6")
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -23, -25.5, -21, 10, -1, 12, 36, -64, 38)
+3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rhfr6")
 4:0/0 = 0
 5:0/0 = 0
 6:0/0 = 0
@@ -161,8 +161,8 @@ texture_region_size = Vector2i(128, 128)
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-38.5, -43, 42.5, -41, 44.5, 64, -41.5, 64)
 7:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wexsb")
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.5, 3, 64, -29, 64, 36, -30.5, 36)
-0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rk7y4")
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -23, 25.5, -21, -10, -1, -12, 36, 64, 38)
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_w8qu3")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -23, -4.5, -22, -6.5, 64, -64, 37)
 1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wa3vu")
@@ -173,7 +173,7 @@ texture_region_size = Vector2i(128, 128)
 3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_83nuv")
 4:1/0 = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -23, -25.5, -21, 35.5, 35, -64, 38)
-4:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_vmhvu")
+4:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_owk1p")
 5:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -194,7 +194,7 @@ texture_region_size = Vector2i(128, 128)
 6:2/0 = 0
 7:2/0 = 0
 7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40.5, -64, 43.5, -64, 44.5, 64, -41.5, 64)
-7:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_w8qu3")
+7:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nquog")
 0:3/0 = 0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -23, -25.5, -21, 35.5, 35, -64, 38)
 1:3/0 = 0

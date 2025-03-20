@@ -33,6 +33,8 @@ var player_pos = null
 
 var last_mouse_pos = null
 var moving = false
+var stop_moving = false
+var last_move_time = 0
 
 func _ready() -> void:
 	noise = noise_texture.noise
@@ -204,60 +206,78 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event is InputEventMouseButton:
 		var pos = event.position
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-			if (last_mouse_pos - pos).length() < 10 and not moving:
-				var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
+			var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
+			if (last_mouse_pos - pos).length() < 10 and moving:
+				if Time.get_ticks_msec() - last_move_time > 250:
+					stop_moving = true
+			elif (last_mouse_pos - pos).length() < 10 and not moving:
 				if fog.get_cell_tile_data(clicked_cell) != null:
 					return
-				var player: Mob = mobs_on_tiles[player_pos]
-				var path := find_path(player_pos, clicked_cell)
-				if len(path) > 0:# and not moving:
-					var flag = mob_scene.instantiate()
-					flag.mob_name = "Flag"
-					self.add_child(flag)
-					flag.sprite.texture = GameManager.MobToSprite["Flag"]
-					var sprite_scale = Vector2(0.2, 0.2)
-					flag.sprite.scale = sprite_scale
-					flag.tween_controller.original_sprite_scale = sprite_scale
-					flag.position = clicked_cell * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
-										Vector2i(64 if (clicked_cell.y%2==1) else 0, -10)
-					flag.tween_controller.idle()
-					moving = true
-					player.audio_controller.stream = preload("res://sounds/horse_run_sfx.mp3")
-					player.audio_controller.play()
-					player.tween_controller.walk()
-					
-					for path_pos in path.slice(1, len(path)-1):
-						var dot = mob_scene.instantiate()
-						mobs_on_tiles[path_pos] = dot
-						dot.mob_name = "dot"
-						self.add_child(dot)
-						dot.sprite.texture = GameManager.MobToSprite["PathDot"]
-						dot.sprite.scale = Vector2(0.1, 0.1)
-						dot.z_index = -1
-						dot.tween_controller.original_sprite_scale = Vector2(0.1, 0.1)
-						dot.position = path_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
-											Vector2i(64 if (path_pos.y%2==1) else 0, 20)
-					for path_pos in path:
-						mobs_on_tiles[player_pos] = null
-						player_pos = path_pos
-						var new_pos = player_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
-											Vector2i(64 if (player_pos.y%2==1) else 0, -10)
-						var move_tween = create_tween()
-						move_tween.set_trans(Tween.TRANS_QUAD)
-						move_tween.tween_property(player, "position", Vector2(new_pos), 0.5)
-						await move_tween.finished
-						if mobs_on_tiles.get(player_pos, null) != null and mobs_on_tiles[player_pos].mob_name == "dot":
-							mobs_on_tiles[player_pos].queue_free()
-						elif mobs_on_tiles.get(player_pos, null) != null:
-							GameManager.start_battle(mobs_on_tiles[player_pos])
-							mobs_on_tiles[player_pos].queue_free()
-						mobs_on_tiles[player_pos] = player
-						update_fog(path_pos)
-					player.tween_controller.idle()
-					moving = false
-					player.audio_controller.stop()
-					flag.queue_free()
+				animate_path(clicked_cell)
+				last_move_time = Time.get_ticks_msec()
+				
 		last_mouse_pos = pos
+
+func animate_path(clicked_cell) -> void:
+	var player: Mob = mobs_on_tiles[player_pos]
+	var path := find_path(player_pos, clicked_cell)
+	if len(path) > 0:# and not moving:
+		var flag = mob_scene.instantiate()
+		flag.mob_name = "Flag"
+		self.add_child(flag)
+		flag.sprite.texture = GameManager.MobToSprite["Flag"]
+		var sprite_scale = Vector2(0.2, 0.2)
+		flag.sprite.scale = sprite_scale
+		flag.tween_controller.original_sprite_scale = sprite_scale
+		flag.position = clicked_cell * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
+							Vector2i(64 if (clicked_cell.y%2==1) else 0, -10)
+		flag.tween_controller.idle()
+		moving = true
+		player.audio_controller.stream = preload("res://sounds/horse_run_sfx.mp3")
+		player.audio_controller.play()
+		player.tween_controller.walk()
+		
+		for path_pos in path.slice(1, len(path)-1):
+			var dot = mob_scene.instantiate()
+			mobs_on_tiles[path_pos] = dot
+			dot.mob_name = "dot"
+			self.add_child(dot)
+			dot.sprite.texture = GameManager.MobToSprite["PathDot"]
+			dot.sprite.scale = Vector2(0.1, 0.1)
+			dot.z_index = -1
+			dot.tween_controller.original_sprite_scale = Vector2(0.1, 0.1)
+			dot.position = path_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
+								Vector2i(64 if (path_pos.y%2==1) else 0, 20)
+		
+		for i in range(len(path)):
+			var path_pos = path[i]
+			mobs_on_tiles[player_pos] = null
+			player_pos = path_pos
+			var new_pos = player_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
+								Vector2i(64 if (player_pos.y%2==1) else 0, -10)
+			var move_tween = create_tween()
+			move_tween.set_trans(Tween.TRANS_QUAD)
+			move_tween.tween_property(player, "position", Vector2(new_pos), 0.5)
+			await move_tween.finished
+			if mobs_on_tiles.get(player_pos, null) != null and mobs_on_tiles[player_pos].mob_name == "dot":
+				mobs_on_tiles[player_pos].queue_free()
+			elif mobs_on_tiles.get(player_pos, null) != null:
+				GameManager.start_battle(mobs_on_tiles[player_pos], get_biome(player_pos))
+				mobs_on_tiles[player_pos].queue_free()
+			mobs_on_tiles[player_pos] = player
+			update_fog(path_pos)
+			if stop_moving:
+				stop_moving = false
+				for j in range(i, len(path)-1):
+					path_pos = path[j]
+					if mobs_on_tiles.get(path_pos, null) != null and mobs_on_tiles[path_pos].mob_name == "dot":
+						mobs_on_tiles[path_pos].queue_free()
+						mobs_on_tiles[path_pos] = null
+				break
+		player.tween_controller.idle()
+		moving = false
+		player.audio_controller.stop()
+		flag.queue_free()
 
 func update_fog(path_pos) -> void:
 	var fogs_in_vision = get_neighbour_fogs(path_pos)
@@ -284,6 +304,9 @@ func bfs(cur_pos: Vector2i, dist) -> Array:
 				distance[new] = distance[pos] + 1
 	
 	return visited.keys()
+const PLAINS := "plains"
+const HILLS = "hills"
+const MOUNTAINS = "mountains"
 
 func get_neighbour_fogs(cur_pos: Vector2i) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
@@ -292,3 +315,14 @@ func get_neighbour_fogs(cur_pos: Vector2i) -> Array[Vector2i]:
 		if fog.get_cell_tile_data(neighbor) != null:
 			out.append(neighbor)
 	return out
+
+func get_biome(pos : Vector2i) -> String:
+	var tile = tiles[pos]
+	if tile.get_custom_data(PLAINS):
+		return PLAINS
+	elif tile.get_custom_data(HILLS):
+		return HILLS
+	elif tile.get_custom_data(MOUNTAINS):
+		return MOUNTAINS
+	push_error("could not find tile data for battle in pos: ", pos)
+	return PLAINS 

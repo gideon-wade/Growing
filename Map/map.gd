@@ -6,11 +6,29 @@ enum State {
 	BATTLE,
 	POSTGAME
 }
-
+const IMP_SPAWN := "ImpSpawn"
+const SNAKE_SPAWN := "SnakeSpawn"
+const GHOST_SPAWN := "GhostSpawn"
 var state = State.PREGAME
+@onready var spawn_points = {GameManager.UnitType.IMP: [self.find_child(IMP_SPAWN)],
+							GameManager.UnitType.SNAKE: [self.find_child(SNAKE_SPAWN)],
+							GameManager.UnitType.GHOST: [self.find_child(GHOST_SPAWN)],
+							}
+
+@onready var plains := $BiomeMaps/Plains0
+@onready var hills := $BiomeMaps/Hils0
+@onready var mountains := $BiomeMaps/Mountain0
+var biome : String = "hilly"
+const PLAINS = "plains"
+const HILLS = "hills"
+const MOUNTAINS = "mountains"
+
+var active_tile_map : TileMapLayer
 
 func _on_ready() -> void:
 	GameManager.map = self
+	spawn_tile_map()
+	spawnPlayerUnits()
 
 func _process(delta: float) -> void:
 	if state != State.POSTGAME:
@@ -49,6 +67,37 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(4).timeout
 			GameManager.end_battle()
 
+func spawnPlayerUnits():
+	for unit in GameManager.units:
+		for amount in range(GameManager.units[unit]):
+			var unit_scene = GameManager.UNIT[GameManager.Faction.PLAYER][unit].instantiate()
+			var spawn_point: Marker2D = spawn_points[unit].pick_random()
+			unit_scene.global_position = spawn_point.global_position + Vector2(randf(), randf())
+			unit_scene.unit_name = GameManager.UnitNames[unit]
+			add_child(unit_scene)
+
+func spawn_tile_map() -> void:
+	# disable all other tilemaps
+	const TILE_MAP_LAYER := "TileMapLayer"
+	for child in $BiomeMaps.get_children():
+		var tilemap_layer = child.find_child(TILE_MAP_LAYER)
+		tilemap_layer.enabled = false
+		child.visible = false
+	print("biome : ", biome)
+	var selected_biome
+	if biome == PLAINS:
+		selected_biome = plains
+	elif biome == HILLS:
+		selected_biome = hills
+	elif biome == MOUNTAINS:
+		selected_biome = mountains
+	else :
+		push_error("Biome : ", biome, " not reconised")
+		selected_biome = plains
+	active_tile_map = selected_biome.find_child(TILE_MAP_LAYER)
+	selected_biome.visible = true
+	active_tile_map.enabled = true
+	
 func _on_button_pressed() -> void:
 	$Button.queue_free()
 	state = State.BATTLE

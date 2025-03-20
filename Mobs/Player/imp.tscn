@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/Enemy/audio_controller.gd" id="4_hi7r1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rys3d"]
-radius = 29.0689
+radius = 27.0185
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfctu"]
 size = Vector2(75, 115)
@@ -43,6 +43,7 @@ script = ExtResource("4_hi7r1")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [node name="MouseArea" type="Area2D" parent="."]
 position = Vector2(-4, -20)

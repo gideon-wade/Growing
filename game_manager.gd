@@ -3,12 +3,13 @@ extends Node2D
 signal hide_world_ui
 signal show_world_ui
 
-var player_view_distance = 15
+var player_view_distance = 3
 
 enum UnitType {
 	PEASENT,
 	IMP,
-	IMPT,
+	SNAKE,
+	GHOST,
 	KNIGHT,
 	RANGED,
 	TANK,
@@ -33,7 +34,7 @@ const UnitSounds = {
 		"death" : 3,
 		"interact" : 2
 	},
-	"Impt" = {
+	"Snake" = {
 		"attack" : 3,
 		"celebrate" : 2,
 		"death" : 3,
@@ -62,7 +63,8 @@ const UnitSounds = {
 const UNIT = {
 	Faction.PLAYER: {
 		UnitType.IMP: preload("res://mobs/player/imp.tscn"),
-		UnitType.IMPT: preload("res://mobs/player/impt.tscn")
+		UnitType.SNAKE: preload("res://mobs/player/snake.tscn"),
+		UnitType.GHOST: preload("res://mobs/player/imp.tscn"),
 	},
 	Faction.ENEMY: {
 		UnitType.PEASENT: preload("res://mobs/enemy/peasent.tscn")
@@ -80,6 +82,12 @@ const RarityProbability = {
 	"Epic": 10,
 }
 
+const RarityReward = {
+	"Common": 15, 
+	"Rare": 30,
+	"Epic": 100,
+}
+
 const MobToSprite = {
 	"Flag" : preload("res://art/assets/flags.png"),
 	"PathDot" : preload("res://art/assets/path_dot.png"),
@@ -91,6 +99,15 @@ const MobToSprite = {
 
 var map: Map
 
+var UnitCosts: Dictionary = {UnitType.IMP: 10, \
+							UnitType.SNAKE: 25, \
+							UnitType.GHOST: 40,
+							}
+
+var UnitNames: Dictionary = {UnitType.IMP: "Imp", \
+							UnitType.SNAKE: "Snake", \
+							UnitType.GHOST: "Ghost",
+							}
 #world.tscn generates these
 var tiles 
 var fogs
@@ -99,6 +116,12 @@ var fogs
 var saved_world: World
 var has_generated = false
 var map_packed: PackedScene
+
+#player vars
+var money: int = 100
+var units: Dictionary = {UnitType.IMP: 2, \
+						 UnitType.SNAKE: 0, \
+						 UnitType.GHOST: 0}
 
 func _ready() -> void:
 	map_packed = load("res://Map/map.tscn") as PackedScene
@@ -109,14 +132,16 @@ func world_rdy(world: World):
 		has_generated = true
 		saved_world.generate()
 
-func start_battle(mob: Mob):
+func start_battle(mob: Mob, biome : String):
 	if mob.mob_name != "Peasant":
 		return
 	hide_world_ui.emit()
 	get_node("/root/World").process_mode = 4
 	get_node("/root/World").hide()
 	get_viewport().canvas_transform = Transform2D.IDENTITY
-	get_node("/root/").add_child(map_packed.instantiate())
+	var map_scene := map_packed.instantiate()
+	map_scene.biome = biome
+	get_node("/root/").add_child(map_scene)
 	
 
 func end_battle():
@@ -153,5 +178,6 @@ func decide_random_reward() -> String:
 	for rarity in RarityProbability.keys():
 		random_value -= RarityProbability[rarity]
 		if random_value < 0:
+			money += RarityReward[rarity]
 			return rarity
 	return ""

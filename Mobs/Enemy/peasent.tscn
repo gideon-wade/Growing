@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/Enemy/audio_controller.gd" id="4_j37mi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmm33"]
-radius = 22.0907
+radius = 29.0172
 
 [node name="Peasent" type="CharacterBody2D"]
 motion_mode = 1
@@ -39,5 +39,6 @@ metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

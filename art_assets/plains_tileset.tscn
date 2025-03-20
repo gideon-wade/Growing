@@ -32,3 +32,12 @@ theme_override_font_sizes/font_size = 40
 [node name="Decor" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAGAAQAAAABAAMAAAACAAAAAAAAAAMAAAA=")
 tile_set = ExtResource("1_q3dyb")
+
+[node name="ImpSpawn" type="Marker2D" parent="."]
+position = Vector2(62, 170)
+
+[node name="SnakeSpawn" type="Marker2D" parent="."]
+position = Vector2(149, 371)
+
+[node name="GhostSpawn" type="Marker2D" parent="."]
+position = Vector2(67, 424)

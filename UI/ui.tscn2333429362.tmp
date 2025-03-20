@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://ctr3aa26mstlh"]
 
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="1_2fwl4"]
-[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://ui/theme.tres" id="1_3sbvi"]
-[ext_resource type="Script" uid="uid://dy5yhk5alcgx2" path="res://ui/ui.gd" id="1_4fiuh"]
-[ext_resource type="Script" uid="uid://qi11kix783v0" path="res://ui/sidebar.gd" id="1_dajm1"]
-[ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/snake.png" id="3_hat8c"]
+[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://UI/theme.tres" id="1_3sbvi"]
+[ext_resource type="Script" uid="uid://dy5yhk5alcgx2" path="res://UI/ui.gd" id="1_4fiuh"]
+[ext_resource type="Script" uid="uid://qi11kix783v0" path="res://UI/sidebar.gd" id="1_dajm1"]
+[ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/impt.png" id="3_hat8c"]
 [ext_resource type="Texture2D" uid="uid://bwg1lvkvy78p7" path="res://art/units/ghost.png" id="4_3sbvi"]
 
 [node name="UI" type="Control"]
@@ -40,7 +40,6 @@ grow_vertical = 2
 script = ExtResource("1_dajm1")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control/HBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -227,7 +226,4 @@ size_flags_stretch_ratio = 3.0
 mouse_filter = 1
 
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/HBoxContainer3/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_back_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_buy_imp"]
-[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_but_snake"]
-[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Control2/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_units_button_pressed"]
