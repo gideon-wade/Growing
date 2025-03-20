@@ -8,9 +8,14 @@ enum State {
 }
 
 var state = State.PREGAME
+@onready var spawn_points = {GameManager.UnitType.IMP: [$ImpSpawn],
+							GameManager.UnitType.SNAKE: [$SnakeSpawn],
+							GameManager.UnitType.GHOST: [$GhostSpawn],
+							}
 
 func _on_ready() -> void:
 	GameManager.map = self
+	spawnPlayerUnits()
 
 func _process(delta: float) -> void:
 	if state != State.POSTGAME:
@@ -47,6 +52,16 @@ func _process(delta: float) -> void:
 			state = State.POSTGAME
 			await get_tree().create_timer(4).timeout
 			GameManager.end_battle()
+
+func spawnPlayerUnits():
+	for unit in GameManager.units:
+		for amount in range(GameManager.units[unit]):
+			var unit_scene = GameManager.UNIT[GameManager.Faction.PLAYER][unit].instantiate()
+			var spawn_point: Marker2D = spawn_points[unit].pick_random()
+			unit_scene.global_position = spawn_point.global_position + Vector2(randf(), randf())
+			unit_scene.unit_name = GameManager.UnitNames[unit]
+			add_child(unit_scene)
+
 
 func _on_button_pressed() -> void:
 	$Button.queue_free()

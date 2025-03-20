@@ -63,7 +63,8 @@ const UnitSounds = {
 const UNIT = {
 	Faction.PLAYER: {
 		UnitType.IMP: preload("res://mobs/player/imp.tscn"),
-		UnitType.SNAKE: preload("res://mobs/player/snake.tscn")
+		UnitType.SNAKE: preload("res://mobs/player/snake.tscn"),
+		UnitType.GHOST: preload("res://mobs/player/imp.tscn"),
 	},
 	Faction.ENEMY: {
 		UnitType.PEASENT: preload("res://mobs/enemy/peasent.tscn")
@@ -81,6 +82,12 @@ const RarityProbability = {
 	"Epic": 10,
 }
 
+const RarityReward = {
+	"Common": 15, 
+	"Rare": 30,
+	"Epic": 100,
+}
+
 const MobToSprite = {
 	"Flag" : preload("res://art/assets/flags.png"),
 	"PathDot" : preload("res://art/assets/path_dot.png"),
@@ -92,6 +99,15 @@ const MobToSprite = {
 
 var map: Map
 
+var UnitCosts: Dictionary = {UnitType.IMP: 10, \
+							UnitType.SNAKE: 25, \
+							UnitType.GHOST: 40,
+							}
+
+var UnitNames: Dictionary = {UnitType.IMP: "Imp", \
+							UnitType.SNAKE: "Snake", \
+							UnitType.GHOST: "Ghost",
+							}
 #world.tscn generates these
 var tiles 
 var fogs
@@ -160,5 +176,6 @@ func decide_random_reward() -> String:
 	for rarity in RarityProbability.keys():
 		random_value -= RarityProbability[rarity]
 		if random_value < 0:
+			money += RarityReward[rarity]
 			return rarity
 	return ""

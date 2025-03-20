@@ -38,6 +38,8 @@ func in_unsafe_place() -> bool:
 	return tile_map.get_cell_tile_data(pos).get_collision_polygons_count(0) > 0
 
 func _process(delta: float) -> void:
+	if map.state != map.State.PREGAME:
+		return
 	z_index = position.y # sets the position so units are positons infront eachother forstaar du
 	if (held or in_unsafe_place()) and get_parent().state == 0:
 		audio_controller.play_random_sound_of_type("interact", unit_name)
