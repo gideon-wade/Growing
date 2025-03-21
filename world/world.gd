@@ -81,13 +81,13 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), terrain_id, grass_dark_atlas)
 				#if randi() % 2 == 0:
 					#terrain.set_cell(Vector2(x,y),terrain_id, MOUNTAIN)
-				if player_pos == null:
-					spawn_player(Vector2i(noise_texture.width / 2, noise_texture.height / 2))
 			var clicked_cell = Vector2i(x,y)
 			var tile = tile_map.get_cell_tile_data(clicked_cell)
 			if tile:
 				tiles[clicked_cell] = tile
-		GameManager.tiles = tiles
+	GameManager.tiles = tiles
+	if player_pos == null:
+		spawn_player(Vector2i(noise_texture.width / 2, noise_texture.height / 2))
 
 func place_fog() -> void:
 	for x in range(noise_texture.width):
@@ -131,6 +131,8 @@ func spawn_mob(tile) -> void:
 		mob.visible = false
 		
 func spawn_player(tile) -> void:
+	while not tiles[tile].get_custom_data("Walkable"):
+		tile.x -= 1
 	player_pos = tile
 	
 	var player = mob_scene.instantiate()

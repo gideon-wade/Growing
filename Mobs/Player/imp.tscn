@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c3ww8xmwh8juw"]
 
-[ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://mobs/Player/imp.gd" id="1_qfctu"]
+[ext_resource type="Script" uid="uid://bs20obui0ykad" path="res://mobs/player/imp.gd" id="1_qfctu"]
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_6cjvn"]
-[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/Enemy/tween_controller.gd" id="3_kqaxa"]
-[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/Enemy/audio_controller.gd" id="4_hi7r1"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_kqaxa"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_hi7r1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rys3d"]
 radius = 27.0185
