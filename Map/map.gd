@@ -6,15 +6,28 @@ enum State {
 	BATTLE,
 	POSTGAME
 }
-
+const IMP_SPAWN := "ImpSpawn"
+const SNAKE_SPAWN := "SnakeSpawn"
+const GHOST_SPAWN := "GhostSpawn"
 var state = State.PREGAME
-@onready var spawn_points = {GameManager.UnitType.IMP: [$ImpSpawn],
-							GameManager.UnitType.SNAKE: [$SnakeSpawn],
-							GameManager.UnitType.GHOST: [$GhostSpawn],
+@onready var spawn_points = {GameManager.UnitType.IMP: [self.find_child(IMP_SPAWN)],
+							GameManager.UnitType.SNAKE: [self.find_child(SNAKE_SPAWN)],
+							GameManager.UnitType.GHOST: [self.find_child(GHOST_SPAWN)],
 							}
+
+@onready var plains := $BiomeMaps/Plains0
+@onready var hills := $BiomeMaps/Hils0
+@onready var mountains := $BiomeMaps/Mountain0
+var biome : String = "hilly"
+const PLAINS = "plains"
+const HILLS = "hills"
+const MOUNTAINS = "mountains"
+
+var active_tile_map : TileMapLayer
 
 func _on_ready() -> void:
 	GameManager.map = self
+	spawn_tile_map()
 	spawnPlayerUnits()
 
 func _process(delta: float) -> void:
@@ -30,15 +43,16 @@ func _process(delta: float) -> void:
 			$Label.text = "You win"
 			$Label.visible = true
 			var reward : String = GameManager.decide_random_reward()
-			$Camera2D/RewardLabel.visible = true
+			var reward_label = $Camera2D/CanvasLayer/RewardLabel
+			reward_label.visible = true
 			if reward == "Common":
-				$Camera2D/RewardLabel.text = "You got a Common reward."
+				reward_label.text = "You got a Common reward."
 				audio.stream = preload("res://sounds/discover.mp3")
 			elif reward == "Rare":
-				$Camera2D/RewardLabel.text = "WOW You got a RARE reward!"
+				reward_label.text = "WOW You got a RARE reward!"
 				audio.stream = preload("res://sounds/discover_better.mp3")
 			elif reward == "Epic":
-				$Camera2D/RewardLabel.text = "OOOOKAAAAAAAY YOU GOT AN EPIC REWARD!! (crazy)"
+				reward_label.text = "OOOOKAAAAAAAY YOU GOT AN EPIC REWARD!! (crazy)"
 				audio.stream = preload("res://sounds/discover_best.mp3")
 			else:
 				print("Hello rarity doesn't exist (I fart)")
@@ -62,7 +76,28 @@ func spawnPlayerUnits():
 			unit_scene.unit_name = GameManager.UnitNames[unit]
 			add_child(unit_scene)
 
-
+func spawn_tile_map() -> void:
+	# disable all other tilemaps
+	const TILE_MAP_LAYER := "TileMapLayer"
+	for child in $BiomeMaps.get_children():
+		var tilemap_layer = child.find_child(TILE_MAP_LAYER)
+		tilemap_layer.enabled = false
+		child.visible = false
+	print("biome : ", biome)
+	var selected_biome
+	if biome == PLAINS:
+		selected_biome = plains
+	elif biome == HILLS:
+		selected_biome = hills
+	elif biome == MOUNTAINS:
+		selected_biome = mountains
+	else :
+		push_error("Biome : ", biome, " not reconised")
+		selected_biome = plains
+	active_tile_map = selected_biome.find_child(TILE_MAP_LAYER)
+	selected_biome.visible = true
+	active_tile_map.enabled = true
+	
 func _on_button_pressed() -> void:
 	$Button.queue_free()
 	state = State.BATTLE

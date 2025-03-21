@@ -132,14 +132,16 @@ func world_rdy(world: World):
 		has_generated = true
 		saved_world.generate()
 
-func start_battle(mob: Mob):
+func start_battle(mob: Mob, biome : String):
 	if mob.mob_name != "Peasant":
 		return
 	hide_world_ui.emit()
 	get_node("/root/World").process_mode = 4
 	get_node("/root/World").hide()
 	get_viewport().canvas_transform = Transform2D.IDENTITY
-	get_node("/root/").add_child(map_packed.instantiate())
+	var map_scene := map_packed.instantiate()
+	map_scene.biome = biome
+	get_node("/root/").add_child(map_scene)
 	
 
 func end_battle():

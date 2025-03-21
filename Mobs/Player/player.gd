@@ -31,7 +31,7 @@ func in_unsafe_place() -> bool:
 	if map == null:
 		print("Nah")
 		return false
-	var tile_map: TileMapLayer = map.get_node("PlainsTileset").get_child(0) as TileMapLayer
+	var tile_map: TileMapLayer = map.active_tile_map as TileMapLayer
 	if tile_map == null:
 		return false
 	var pos = tile_map.local_to_map(tile_map.to_local(global_position))

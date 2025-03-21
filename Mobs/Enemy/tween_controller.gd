@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func idle(wait=false) -> void:
 	reset()
+	unit_sprite.position = Vector2(0, 0)
 	if wait:
 		await get_tree().create_timer(randf_range(0.1, 0.5)).timeout
 	unit_tween = create_tween().set_loops() #Loops until cancelled
@@ -40,6 +41,7 @@ func idle(wait=false) -> void:
 
 func walk(wait=false) -> void:
 	reset()
+	unit_sprite.position = Vector2(0, 0)
 	if wait:
 		await get_tree().create_timer(randf_range(0.05, 0.2)).timeout
 		

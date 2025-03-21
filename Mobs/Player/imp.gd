@@ -16,6 +16,7 @@ func _ready() -> void:
 	tween_controller.original_sprite_scale = $Sprite.scale
 
 func _physics_process(delta: float) -> void:
+	z_index = position.y # sets the position so units are positons infront eachother forstaar du
 	if map.state == map.State.POSTGAME and !celebrating:
 		celebrating = true
 		tween_controller.celebrate()

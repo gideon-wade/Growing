@@ -81,13 +81,13 @@ func place_tiles() -> void:
 				tile_map.set_cell(Vector2(x,y), terrain_id, grass_dark_atlas)
 				#if randi() % 2 == 0:
 					#terrain.set_cell(Vector2(x,y),terrain_id, MOUNTAIN)
-				if player_pos == null:
-					spawn_player(Vector2i(noise_texture.width / 2, noise_texture.height / 2))
 			var clicked_cell = Vector2i(x,y)
 			var tile = tile_map.get_cell_tile_data(clicked_cell)
 			if tile:
 				tiles[clicked_cell] = tile
-		GameManager.tiles = tiles
+	GameManager.tiles = tiles
+	if player_pos == null:
+		spawn_player(Vector2i(noise_texture.width / 2, noise_texture.height / 2))
 
 func place_fog() -> void:
 	for x in range(noise_texture.width):
@@ -131,6 +131,8 @@ func spawn_mob(tile) -> void:
 		mob.visible = false
 		
 func spawn_player(tile) -> void:
+	while not tiles[tile].get_custom_data("Walkable"):
+		tile.x -= 1
 	player_pos = tile
 	
 	var player = mob_scene.instantiate()
@@ -262,7 +264,7 @@ func animate_path(clicked_cell) -> void:
 			if mobs_on_tiles.get(player_pos, null) != null and mobs_on_tiles[player_pos].mob_name == "dot":
 				mobs_on_tiles[player_pos].queue_free()
 			elif mobs_on_tiles.get(player_pos, null) != null:
-				GameManager.start_battle(mobs_on_tiles[player_pos])
+				GameManager.start_battle(mobs_on_tiles[player_pos], get_biome(player_pos))
 				mobs_on_tiles[player_pos].queue_free()
 			mobs_on_tiles[player_pos] = player
 			update_fog(path_pos)
@@ -304,6 +306,9 @@ func bfs(cur_pos: Vector2i, dist) -> Array:
 				distance[new] = distance[pos] + 1
 	
 	return visited.keys()
+const PLAINS := "plains"
+const HILLS = "hills"
+const MOUNTAINS = "mountains"
 
 func get_neighbour_fogs(cur_pos: Vector2i) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
@@ -312,3 +317,14 @@ func get_neighbour_fogs(cur_pos: Vector2i) -> Array[Vector2i]:
 		if fog.get_cell_tile_data(neighbor) != null:
 			out.append(neighbor)
 	return out
+
+func get_biome(pos : Vector2i) -> String:
+	var tile = tiles[pos]
+	if tile.get_custom_data(PLAINS):
+		return PLAINS
+	elif tile.get_custom_data(HILLS):
+		return HILLS
+	elif tile.get_custom_data(MOUNTAINS):
+		return MOUNTAINS
+	push_error("could not find tile data for battle in pos: ", pos)
+	return PLAINS 
