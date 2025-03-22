@@ -13,6 +13,8 @@ extends HBoxContainer
 @onready var snake_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label
 @onready var ghost_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Label
 
+signal unit_bought
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sidebar.visible = false
@@ -21,7 +23,8 @@ func _ready():
 	imp_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.IMP]) + "$"
 	snake_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.SNAKE]) + "$"
 	ghost_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.GHOST]) + "$"
-
+	
+	unit_bought.connect(GameManager.ui_unit_bought)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,6 +47,7 @@ func buy(unit_type):
 	if GameManager.money >= GameManager.UnitCosts[unit_type]:
 		GameManager.money -= GameManager.UnitCosts[unit_type]
 		GameManager.units[unit_type] += 1
+		unit_bought.emit()
 
 func _on_buy_imp() -> void:
 	buy(GameManager.UnitType.IMP)

@@ -94,6 +94,9 @@ const MobToSprite = {
 	"Player" : preload("res://art/units/darklord.png"),
 	"Peasant" : preload("res://art/units/peasant.png"),
 	"Knight" : preload("res://art/units/knight.png"),
+	"Imp" : preload("res://art/units/imp.png"),
+	"Snake" : preload("res://art/units/snake.png"),
+	"Ghost" : preload("res://art/units/ghost.png"),
 }
 
 
@@ -181,3 +184,6 @@ func decide_random_reward() -> String:
 			money += RarityReward[rarity]
 			return rarity
 	return ""
+
+func ui_unit_bought():
+	saved_world.instantiate_entourage()

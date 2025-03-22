@@ -30,11 +30,15 @@ var mobs_on_tiles = {}
 const PEASANT = preload("res://art/units/peasant.png")
 var mob_scene = preload("res://mobs/enemy/mob.tscn")
 var player_pos = null
+var next_player_pos = null
 
 var last_mouse_pos = null
 var moving = false
 var stop_moving = false
 var last_move_time = 0
+
+var entourage_pos = []
+var entourage: Array[Mob] = []
 
 func _ready() -> void:
 	noise = noise_texture.noise
@@ -49,6 +53,7 @@ func generate():
 	place_fog()
 	place_mobs()
 	play_idle_tween_mobs()
+	instantiate_entourage()
 
 func place_tiles() -> void:
 	for x in range(noise_texture.width):
@@ -92,8 +97,6 @@ func place_tiles() -> void:
 func place_fog() -> void:
 	for x in range(noise_texture.width):
 		for y in range(noise_texture.height):
-			#var difference = abs(Vector2i(x, y) - player_pos)
-			#if difference.x > GameManager.player_view_distance || difference.y > GameManager.player_view_distance:
 			$Fog.set_cell(Vector2(x,y), fog_id, FOG)
 	update_fog(player_pos)
 	
@@ -125,7 +128,7 @@ func spawn_mob(tile) -> void:
 		var sprite_scale = Vector2(0.2, 0.2)
 		mob.sprite.scale = sprite_scale
 		mob.tween_controller.original_sprite_scale = sprite_scale
-		mob.position = tile * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + Vector2i(64 if (tile.y%2==1) else 0, 0)
+		mob.position = tile_to_global_pos(tile) + Vector2i(0, 10)
 		mob.fog = $Fog
 		mob.pos = tile
 		mob.visible = false
@@ -144,8 +147,7 @@ func spawn_player(tile) -> void:
 	var sprite_scale = Vector2(0.3, 0.3)
 	player.sprite.scale = sprite_scale
 	player.tween_controller.original_sprite_scale = sprite_scale
-	player.position = tile * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
-						Vector2i(64 if (tile.y%2==1) else 0, -10)
+	player.position = tile_to_global_pos(tile)
 	$Camera.global_position = player.global_position
 
 
@@ -231,8 +233,7 @@ func animate_path(clicked_cell) -> void:
 		var sprite_scale = Vector2(0.2, 0.2)
 		flag.sprite.scale = sprite_scale
 		flag.tween_controller.original_sprite_scale = sprite_scale
-		flag.position = clicked_cell * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
-							Vector2i(64 if (clicked_cell.y%2==1) else 0, -10)
+		flag.position = tile_to_global_pos(clicked_cell)
 		flag.tween_controller.idle()
 		moving = true
 		player.audio_controller.stream = preload("res://sounds/horse_run_sfx.mp3")
@@ -248,15 +249,19 @@ func animate_path(clicked_cell) -> void:
 			dot.sprite.scale = Vector2(0.1, 0.1)
 			dot.z_index = -1
 			dot.tween_controller.original_sprite_scale = Vector2(0.1, 0.1)
-			dot.position = path_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
-								Vector2i(64 if (path_pos.y%2==1) else 0, 20)
+			dot.position = tile_to_global_pos(path_pos) + Vector2i(0, 30)
 		
 		for i in range(len(path)):
 			var path_pos = path[i]
 			mobs_on_tiles[player_pos] = null
+			update_entourage(player_pos)
+			#if path_pos.x < player_pos.x:
+			#	player.sprite.flip_h = true
+			#else:
+			#	player.sprite.flip_h = false
 			player_pos = path_pos
-			var new_pos = player_pos * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
-								Vector2i(64 if (player_pos.y%2==1) else 0, -10)
+			next_player_pos = path[min(i+1, len(path)-1)]
+			var new_pos = tile_to_global_pos(player_pos)
 			var move_tween = create_tween()
 			move_tween.set_trans(Tween.TRANS_QUAD)
 			move_tween.tween_property(player, "position", Vector2(new_pos), 0.5)
@@ -328,3 +333,50 @@ func get_biome(pos : Vector2i) -> String:
 		return MOUNTAINS
 	push_error("could not find tile data for battle in pos: ", pos)
 	return PLAINS 
+
+func tile_to_global_pos(tile: Vector2i) -> Vector2i:
+	return tile * Vector2i(tile_size, 96) + Vector2i(tile_size / 2, tile_size / 3) + \
+					Vector2i(64 if (tile.y%2==1) else 0, -10)
+
+func instantiate_entourage():
+	for mob in entourage:
+		mob.queue_free()
+	entourage = []
+	for unit in GameManager.units:
+		var mob_name = GameManager.UnitNames[unit]
+		var image = GameManager.MobToSprite[mob_name]
+		for amount in ceil(log(GameManager.units[unit]+1)):
+			var mob = mob_scene.instantiate()
+			mob.mob_name = mob_name
+			add_child(mob)
+			mob.sprite.texture = image
+			var sprite_scale = Vector2(0.2, 0.2)
+			mob.sprite.scale = sprite_scale
+			mob.tween_controller.original_sprite_scale = sprite_scale
+			mob.tween_controller.idle()
+			entourage.append(mob)
+	draw_entourage(true)
+
+func update_entourage(pos):
+	if len(entourage_pos) > 0 and (entourage_pos.front() == pos or pos == next_player_pos):
+		return
+	entourage_pos.push_front(pos)
+	var entourage_amount = GameManager.units.values().reduce(func (acc, num): return acc + ceil(log(num+1)), 0)
+	#var entourage_amount = GameManager.units.values().reduce(func (acc, num): return acc + num, 0)
+	if len(entourage_pos) > entourage_amount:
+		entourage_pos.pop_back()
+	if len(entourage) != entourage_amount:
+		instantiate_entourage()
+	draw_entourage()
+
+func draw_entourage(instant = false):
+	if len(entourage_pos) == 0:
+		return
+	for i in range(len(entourage)):
+		var pos_i = min(i, len(entourage_pos)-1)
+		var e_pos = entourage_pos[pos_i]
+		var new_pos = tile_to_global_pos(e_pos)
+		var move_tween = create_tween()
+		move_tween.set_trans(Tween.TRANS_QUAD)
+		move_tween.tween_property(entourage[i], "position", Vector2(new_pos), 0.5 * int(not instant))
+	
