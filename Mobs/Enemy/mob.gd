@@ -14,6 +14,7 @@ func _process(delta : float) -> void:
 		has_been_revealed = true
 	if !has_been_revealed:
 		if pos && !is_player:
-			if fog.get_cell_tile_data(pos) != null:
+			if fog.get_cell_tile_data(pos) == null:
 				self.visible = true
 				has_been_revealed = true
+				audio_controller.play_random_sound_of_type("interact", mob_name)

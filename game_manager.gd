@@ -6,7 +6,7 @@ signal show_world_ui
 var player_view_distance = 3
 
 enum UnitType {
-	PEASENT,
+	PEASANT,
 	IMP,
 	SNAKE,
 	GHOST,
@@ -40,17 +40,17 @@ const UnitSounds = {
 		"death" : 3,
 		"interact" : 2
 	},
-	"Peasent" = {
+	"Peasant" = {
 		"attack" : 3,
 		"celebrate" : 3,
 		"death" : 3,
-		"interact" : 0
+		"interact" : 2
 	},
 	"Knight" = {
-		"attack" : 0,
-		"celebrate" : 0,
-		"death" : 0,
-		"interact" : 0
+		"attack" : 4,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 3
 	},
 	"Ghost" = {
 		"attack" : 0,
@@ -67,7 +67,7 @@ const UNIT = {
 		UnitType.GHOST: preload("res://mobs/player/ghost.tscn"),
 	},
 	Faction.ENEMY: {
-		UnitType.PEASENT: preload("res://mobs/enemy/peasent.tscn"),
+		UnitType.PEASANT: preload("res://mobs/enemy/peasent.tscn"),
 		UnitType.KNIGHT: preload("res://mobs/enemy/knight.tscn"),
 	}
 }
