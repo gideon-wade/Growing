@@ -20,22 +20,22 @@ tile_map_data = PackedByteArray("AAACAAEAAAACAAIAAAABAAEAAAABAAIAAAADAAEAAAADAAI
 tile_set = ExtResource("1_01vmj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(464, 501)
+position = Vector2(695, 522)
 scale = Vector2(0.464844, 0.464844)
 texture = ExtResource("2_n7clt")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(683, 501)
+position = Vector2(463, 517)
 scale = Vector2(0.464844, 0.464844)
 texture = ExtResource("3_31rel")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(942, 515)
+position = Vector2(1313, 525)
 scale = Vector2(0.464844, 0.464844)
 texture = ExtResource("4_0t8dc")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(1174, 522)
+position = Vector2(1088, 519)
 scale = Vector2(0.464844, 0.464844)
 texture = ExtResource("5_7y5n6")
 
@@ -50,6 +50,6 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_n7clt")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Sprite2D6"]
-position = Vector2(2345.33, 22.6667)
+position = Vector2(2684, 12)
 scale = Vector2(1.05729, 1.05729)
 texture = ExtResource("8_31rel")
