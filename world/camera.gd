@@ -17,6 +17,9 @@ func _ready() -> void:
 	limit_top = -50
 
 func _process(delta):
+	print("!get_parent().info_shown ", !get_parent().info_shown)
+	if get_parent().info_shown:
+		return
 	var viewport_size = get_viewport_rect().size
 	var mouse_pos = get_global_mouse_position() - global_position
 	var scaled_edge_threshold = edge_threshold / zoom.x
@@ -49,6 +52,8 @@ func _process(delta):
 		currently_moving_map = false
 
 func _input(event):
+	if get_parent().info_shown:
+		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			zoom -= Vector2(zoom_speed, zoom_speed)
@@ -59,6 +64,8 @@ func _input(event):
 		current_zoom = zoom
 		
 func move_map_around():
+	if get_parent().info_shown:
+		return
 	var ref = get_viewport().get_mouse_position()
 	
 	self.global_position -= (ref - fixed_toggle_point) / current_zoom.x

@@ -1,4 +1,4 @@
-extends HBoxContainer
+class_name Sidebar extends HBoxContainer
 
 @onready var sidebar = $Panel
 @onready var units_button = $Control2
@@ -13,10 +13,13 @@ extends HBoxContainer
 @onready var snake_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label
 @onready var ghost_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Label
 
+var world
+
 signal unit_bought
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	sidebar.visible = false
 	units_button.visible = true
 	
@@ -60,6 +63,7 @@ func _on_button_pressed() -> void:
 
 func _on_hide_info_button_pressed():
 	info.visible = false
+	world.info_shown = false
 
 func _on_info_button_pressed():
 	info.visible = true

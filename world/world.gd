@@ -7,6 +7,8 @@ var fog_id : int = 1
 @onready var tile_map: TileMapLayer = $TileMap
 @onready var terrain: TileMapLayer = $Terrian
 @onready var fog: TileMapLayer = $Fog
+@onready var ui: Control = $UI
+
 var tile_size : int = 128
 #Water
 #var water_dark_atlas : Vector2i= Vector2i(2,2)
@@ -36,6 +38,8 @@ var last_mouse_pos = null
 var moving = false
 var stop_moving = false
 var last_move_time = 0
+var info_shown : bool = false
+
 
 var entourage_pos = []
 var entourage: Array[Mob] = []
@@ -45,6 +49,11 @@ func _ready() -> void:
 	GameManager.world_rdy(self)
 	$Camera.limit_right = noise_texture.width * 128.5
 	$Camera.limit_bottom = noise_texture.height * 96.5
+	print(ui)
+	print(ui.sidebar)
+	print(ui.sidebar.world)
+	ui.sidebar.world = self
+	print(ui.sidebar.world)
 
 func generate():
 	var rng = RandomNumberGenerator.new()
