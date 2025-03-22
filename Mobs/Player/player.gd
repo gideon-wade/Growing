@@ -8,6 +8,7 @@ var held = false
 var unit_name : String
 var attack_speed : float = 0.55
 var map: Map;
+var celebrating : bool = false
 
 var is_alive : bool = true
 func _ready() -> void:
@@ -38,6 +39,19 @@ func in_unsafe_place() -> bool:
 	return tile_map.get_cell_tile_data(pos).get_collision_polygons_count(0) > 0
 
 func _process(delta: float) -> void:
+	if map.state == map.State.POSTGAME:
+		if len(GameManager.get_units(Enemy)) == 0:
+			if not celebrating:
+				celebrating = true
+				tween_controller.celebrate()
+				audio_controller.play_random_sound_of_type("celebrate", unit_name)
+		elif is_alive:
+			is_alive = false
+			$CollisionShape2D.disabled = true
+			tween_controller.die()
+			audio_controller.play_random_sound_of_type("death", unit_name)
+			await tween_controller.unit_tween.finished
+			#queue_free()
 	if map.state != map.State.PREGAME:
 		return
 	z_index = position.y # sets the position so units are positons infront eachother forstaar du
@@ -50,3 +64,7 @@ func _process(delta: float) -> void:
 		pos.x = clamp(pos.x, width, get_viewport_rect().size[0]  - width)
 		pos.y = clamp(pos.y, height, get_viewport_rect().size[1] - height)
 		global_position = pos
+	if in_unsafe_place():
+		sprite.modulate = Color(1, 0, 0)
+	else:
+		sprite.modulate = Color(1, 1, 1)

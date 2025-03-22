@@ -6,7 +6,6 @@ var life = 100
 var attack = 25
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var walking : bool  = false
-var celebrating : bool = false
 var can_attack : bool = true
 
 func _ready() -> void:
@@ -17,14 +16,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	z_index = position.y # sets the position so units are positons infront eachother forstaar du
-	if map.state == map.State.POSTGAME:
-		if len(GameManager.get_units(Enemy)) == 0:
-			if not celebrating:
-				celebrating = true
-				tween_controller.celebrate()
-				audio_controller.play_random_sound_of_type("celebrate", unit_name)
-		else:
-			tween_controller.idle()
 	if map.state != map.State.BATTLE or !is_alive:
 		return
 	var enemies: Array = GameManager.get_units(Enemy)

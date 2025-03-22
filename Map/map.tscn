@@ -37,9 +37,6 @@ position = Vector2(1134, 243)
 [node name="Peasent5" parent="." instance=ExtResource("2_6yc6o")]
 position = Vector2(1082, 400)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(706, 352)
-
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 
 [node name="BattleUI" parent="." node_paths=PackedStringArray("map") instance=ExtResource("6_3g1qk")]

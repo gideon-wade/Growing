@@ -6,7 +6,6 @@ var life = 70
 var attack = 40
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var walking : bool  = false
-var celebrating : bool = false
 var can_attack : bool = true
 
 func _ready() -> void:
@@ -16,10 +15,6 @@ func _ready() -> void:
 	tween_controller.original_sprite_scale = $Sprite.scale
 
 func _physics_process(delta: float) -> void:
-	if map.state == map.State.POSTGAME and !celebrating:
-		celebrating = true
-		tween_controller.celebrate()
-		audio_controller.play_random_sound_of_type("celebrate", unit_name)
 	if map.state != map.State.BATTLE or !is_alive:
 		return
 	var enemies: Array = GameManager.get_units(Enemy)

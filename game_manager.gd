@@ -84,9 +84,9 @@ const RarityProbability = {
 }
 
 const RarityReward = {
-	"Common": 15, 
-	"Rare": 30,
-	"Epic": 100,
+	"Common": 35, 
+	"Rare": 80,
+	"Epic": 200,
 }
 
 const MobToSprite = {
@@ -127,6 +127,9 @@ var units: Dictionary = {UnitType.IMP: 2, \
 						 UnitType.SNAKE: 0, \
 						 UnitType.GHOST: 0}
 
+var pre_camera_pos: Vector2
+var pre_camera_zoom: Vector2
+
 func _ready() -> void:
 	map_packed = load("res://Map/map.tscn") as PackedScene
 
@@ -140,19 +143,37 @@ func start_battle(mob: Mob, biome : String):
 	if mob.mob_name != "Peasant" and mob.mob_name != "Knight":
 		return
 	hide_world_ui.emit()
+	var camera: Camera2D = get_node("/root/World/Camera")
+	pre_camera_pos = camera.global_position
+	pre_camera_zoom = camera.current_zoom
+	camera.zoom = camera.max_zoom
+	camera.min_zoom = camera.max_zoom
+	camera.global_position = Vector2(700, 300)
+	camera.limit_top = -500
+	camera.limit_left = -600
+	camera.limit_right = 1600
+	camera.limit_bottom = 750
+	camera.position_smoothing_enabled = false
 	get_node("/root/World").process_mode = 4
 	get_node("/root/World").hide()
-	get_viewport().canvas_transform = Transform2D.IDENTITY
 	var map_scene := map_packed.instantiate()
 	map_scene.biome = biome
 	map_scene.mob = mob
+	map_scene.camera = camera
 	get_node("/root/").add_child(map_scene)
 	
 
 func end_battle():
 	get_node("/root/Map").queue_free()
+	var camera: Camera2D = get_node("/root/World/Camera")
+	camera.position_smoothing_enabled = false
 	get_node("/root/World").process_mode = 0
+	get_node("/root/World").init_camera()
 	get_node("/root/World").show()
+	camera.global_position = pre_camera_pos
+	camera.current_zoom = pre_camera_zoom
+	camera.zoom = pre_camera_zoom
+	camera.min_zoom = Vector2(0.45, 0.45)
 	show_world_ui.emit()
 
 func get_units(type):

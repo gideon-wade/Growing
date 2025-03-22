@@ -2,19 +2,20 @@ extends Camera2D
 
 var speed = 50
 var zoom_speed = 0.03
-var min_zoom = Vector2(0.15, 0.15)
+var min_zoom = Vector2(0.45, 0.45)
 var max_zoom = Vector2(0.85, 0.85)
 var edge_threshold = 25
 var current_zoom = Vector2(1, 1)
 
 var fixed_toggle_point = Vector2(0,0)
 var currently_moving_map = false
+var frozen: bool = false
 
 var rect : Rect2 
 
 func _ready() -> void:
-	limit_left = -50
-	limit_top = -50
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	position_smoothing_enabled = false
 
 func _process(delta):
 	if get_parent().info_shown:
@@ -24,18 +25,6 @@ func _process(delta):
 	var scaled_edge_threshold = edge_threshold / zoom.x
 
 	var movement = Vector2.ZERO
-
-	var camera_view_half_width = viewport_size.x * 0.5 / zoom.x
-	var camera_view_half_height = viewport_size.y * 0.5 / zoom.y
-	
-	if mouse_pos.x < -camera_view_half_width + scaled_edge_threshold:
-		movement.x -= 1
-	elif mouse_pos.x > camera_view_half_width - scaled_edge_threshold:
-		movement.x += 1
-	if mouse_pos.y < -camera_view_half_height + scaled_edge_threshold:
-		movement.y -= 1
-	elif mouse_pos.y > camera_view_half_height - scaled_edge_threshold:
-		movement.y += 1
 		
 	movement = movement.normalized() * speed
 	position += movement * delta * (1 / (current_zoom.x))
@@ -63,10 +52,10 @@ func _input(event):
 		current_zoom = zoom
 		
 func move_map_around():
-	if get_parent().info_shown:
+	if get_parent().info_shown or frozen:
 		return
+	position_smoothing_enabled = true
 	var ref = get_viewport().get_mouse_position()
-	
 	self.global_position -= (ref - fixed_toggle_point) / current_zoom.x
 	var clamp_x = (get_viewport().get_visible_rect().size[0] / 2) * (1 / current_zoom.x)
 	var clamp_y = (get_viewport().get_visible_rect().size[1] / 2) * (1 / current_zoom.y)

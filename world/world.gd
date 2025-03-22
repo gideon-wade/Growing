@@ -47,13 +47,17 @@ var entourage: Array[Mob] = []
 func _ready() -> void:
 	noise = noise_texture.noise
 	GameManager.world_rdy(self)
-	$Camera.limit_right = noise_texture.width * 128.5
-	$Camera.limit_bottom = noise_texture.height * 96.5
 	print(ui)
 	print(ui.sidebar)
 	print(ui.sidebar.world)
 	ui.sidebar.world = self
 	print(ui.sidebar.world)
+
+func init_camera() -> void:
+	$Camera.limit_left = -50
+	$Camera.limit_top = -50
+	$Camera.limit_right = noise_texture.width * 128.5
+	$Camera.limit_bottom = noise_texture.height * 96.5
 
 func generate():
 	var rng = RandomNumberGenerator.new()
@@ -367,6 +371,8 @@ func instantiate_entourage():
 			mob.tween_controller.original_sprite_scale = sprite_scale
 			mob.tween_controller.idle()
 			entourage.append(mob)
+	if len(entourage_pos) == 0:
+		entourage_pos = [player_pos]
 	draw_entourage(true)
 
 func update_entourage(pos):

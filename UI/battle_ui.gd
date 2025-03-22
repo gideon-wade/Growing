@@ -34,6 +34,7 @@ func _on_battle_won(reward : String):
 func _on_battle_lost():
 	label.text = "You lose"
 	panel.visible = true
+	give_up_button.visible = false
 
 func _on_button_pressed():
 	start_battle.emit()

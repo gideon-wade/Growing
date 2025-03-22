@@ -22,6 +22,7 @@ var state = State.PREGAME
 @onready var mountains := $BiomeMaps/Mountain0
 var biome : String = "hilly"
 var mob: Mob
+var camera: Camera2D
 
 const PLAINS = "plains"
 const HILLS = "hills"
@@ -36,6 +37,11 @@ func _on_ready() -> void:
 	spawnEnemyUnits()
 
 func _process(delta: float) -> void:
+	if state == State.PREGAME:
+		if GameManager.get_units(Player).any(func (unit): return unit.held or unit.in_unsafe_place()):
+			camera.frozen = true
+		else:
+			camera.frozen = false
 	if state != State.POSTGAME:
 		var players = 0
 		var enemies = 0
