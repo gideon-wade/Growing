@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctr3aa26mstlh"]
+[gd_scene load_steps=8 format=3 uid="uid://ctr3aa26mstlh"]
 
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="1_2fwl4"]
-[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://UI/theme.tres" id="1_3sbvi"]
-[ext_resource type="Script" uid="uid://dy5yhk5alcgx2" path="res://UI/ui.gd" id="1_4fiuh"]
-[ext_resource type="Script" uid="uid://qi11kix783v0" path="res://UI/sidebar.gd" id="1_dajm1"]
+[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://ui/theme.tres" id="1_3sbvi"]
+[ext_resource type="Script" uid="uid://dy5yhk5alcgx2" path="res://ui/ui.gd" id="1_4fiuh"]
+[ext_resource type="Script" uid="uid://qi11kix783v0" path="res://ui/sidebar.gd" id="1_dajm1"]
 [ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/snake.png" id="3_hat8c"]
 [ext_resource type="Texture2D" uid="uid://bwg1lvkvy78p7" path="res://art/units/ghost.png" id="4_3sbvi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_obcwv"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -207,27 +209,125 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/Control2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer/Control2"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.097561
-anchor_top = 0.0354938
-anchor_right = 0.331
-anchor_bottom = 0.106
-offset_right = 0.00299835
-offset_bottom = 0.311684
-size_flags_horizontal = 6
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/HBoxContainer/Control2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/Control2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Units"
 metadata/_edit_use_anchors_ = true
+
+[node name="InfoButton" type="Button" parent="CanvasLayer/Control/HBoxContainer/Control2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "info"
 
 [node name="Control" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
+size_flags_stretch_ratio = 2.0
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+text = "Hail! Dark Sovereign of the Infernal Abyss! "
+label_settings = SubResource("LabelSettings_obcwv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+bbcode_enabled = true
+text = "[font_size={20}][center][b]Hail! Dark Lord of the Infernal Abyss![/b] 
+
+[left][font_size={15}]The forces of heaven are invading our tormented lands. Gather your wicked forces and repel them.
+
+Controls : 
+[indent]Click on a world tile to move there[/indent]
+[indent]Click the units button on the top left to summon units[/indent]
+[indent]Engange the enemy by clicking on the tile they are standing on[/indent]
+[indent]Winning battles gives you dillions that can be used to enlarge your army[/indent]
+[indent]Be carefull not to to attack an enemy that is too powerful for your army[/indent]
+
+
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Close"
+
+[node name="Control2" type="Control" parent="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 1
 
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/HBoxContainer3/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_buy_imp"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_but_snake"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Control2/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_units_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Control2/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_units_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Control2/VBoxContainer/HBoxContainer/InfoButton" to="CanvasLayer/Control/HBoxContainer" method="_on_info_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Control/MarginContainer/VBoxContainer/Panel/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/Button" to="CanvasLayer/Control/HBoxContainer" method="_on_hide_info_button_pressed"]

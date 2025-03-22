@@ -43,7 +43,8 @@ script = ExtResource("4_hi7r1")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
+target_desired_distance = 25.0
+path_postprocessing = 1
 
 [node name="MouseArea" type="Area2D" parent="."]
 position = Vector2(-4, -20)

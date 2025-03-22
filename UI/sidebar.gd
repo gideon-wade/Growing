@@ -2,6 +2,8 @@ extends HBoxContainer
 
 @onready var sidebar = $Panel
 @onready var units_button = $Control2
+@onready var info = $Control/MarginContainer
+
 @onready var money_label: Label = $Panel/VBoxContainer2/HBoxContainer3/Label
 @onready var imp_amount: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Label2
 @onready var snake_amount: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label2
@@ -51,3 +53,9 @@ func _on_but_snake() -> void:
 
 func _on_button_pressed() -> void:
 	buy(GameManager.UnitType.GHOST)
+
+func _on_hide_info_button_pressed():
+	info.visible = false
+
+func _on_info_button_pressed():
+	info.visible = true
