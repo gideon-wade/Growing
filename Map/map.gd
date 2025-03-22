@@ -51,20 +51,7 @@ func _process(delta: float) -> void:
 			elif unit is Enemy:
 				enemies += 1
 		if enemies == 0:
-			var reward : String = GameManager.decide_random_reward()
-			battle_won.emit(reward)
-			if reward == "Common":
-				audio.stream = preload("res://sounds/discover.mp3")
-			elif reward == "Rare":
-				audio.stream = preload("res://sounds/discover_better.mp3")
-			elif reward == "Epic":
-				audio.stream = preload("res://sounds/discover_best.mp3")
-			else:
-				print("Hello rarity doesn't exist (I fart)")
-			audio.play()
-			state = State.POSTGAME
-			await get_tree().create_timer(4).timeout
-			GameManager.end_battle()
+			win()
 		elif players == 0:
 			lose()
 			
@@ -118,6 +105,24 @@ func lose():
 	GameManager.money += GameManager.RarityReward["Lost"]
 	
 	await get_tree().create_timer(4).timeout
+	GameManager.difficulty_score += 20
+	GameManager.end_battle()
+
+func win():
+	var reward : String = GameManager.decide_random_reward()
+	battle_won.emit(reward)
+	if reward == "Common":
+		audio.stream = preload("res://sounds/discover.mp3")
+	elif reward == "Rare":
+		audio.stream = preload("res://sounds/discover_better.mp3")
+	elif reward == "Epic":
+		audio.stream = preload("res://sounds/discover_best.mp3")
+	else:
+		print("Hello rarity doesn't exist (I fart)")
+	audio.play()
+	state = State.POSTGAME
+	await get_tree().create_timer(4).timeout
+	GameManager.difficulty_score += 60
 	GameManager.end_battle()
 
 func _on_battle_ui_give_up():

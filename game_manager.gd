@@ -122,6 +122,8 @@ var saved_world: World
 var has_generated = false
 var map_packed: PackedScene
 
+var difficulty_score = 100
+
 #player vars
 var money: int = 100
 var units: Dictionary = {UnitType.IMP: 2, \
