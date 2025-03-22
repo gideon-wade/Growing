@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://dehl2r26aays6"]
 
 [ext_resource type="TileSet" uid="uid://cou5h2nrpstn" path="res://art_assets/square_tileset.tres" id="1_q3dyb"]
-[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://ui/theme.tres" id="2_q3dyb"]
+[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://UI/theme.tres" id="2_q3dyb"]
 
 [node name="PlainsTileset" type="Node2D"]
 z_index = -100
