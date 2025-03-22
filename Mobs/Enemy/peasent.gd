@@ -12,7 +12,7 @@ var can_attack : bool = true
 
 func _ready() -> void:
 	super()
-	unit_name = "Peasent"
+	unit_name = "Peasant"
 	tween_controller.original_sprite_scale = $Sprite.scale
 
 func _physics_process(delta: float) -> void:
