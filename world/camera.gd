@@ -17,7 +17,6 @@ func _ready() -> void:
 	limit_top = -50
 
 func _process(delta):
-	print("!get_parent().info_shown ", !get_parent().info_shown)
 	if get_parent().info_shown:
 		return
 	var viewport_size = get_viewport_rect().size
