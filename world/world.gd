@@ -218,7 +218,7 @@ func find_path(start: Vector2i, end: Vector2i) -> Array[Vector2i]:
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		var pos = event.position
-		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and not info_shown:
 			var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
 			if (last_mouse_pos - pos).length() < 10 and moving:
 				if Time.get_ticks_msec() - last_move_time > 250:
