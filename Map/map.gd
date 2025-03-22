@@ -21,6 +21,8 @@ var state = State.PREGAME
 @onready var hills := $BiomeMaps/Hils0
 @onready var mountains := $BiomeMaps/Mountain0
 var biome : String = "hilly"
+var mob: Mob
+
 const PLAINS = "plains"
 const HILLS = "hills"
 const MOUNTAINS = "mountains"
@@ -31,6 +33,7 @@ func _on_ready() -> void:
 	GameManager.map = self
 	spawn_tile_map()
 	spawnPlayerUnits()
+	spawnEnemyUnits()
 
 func _process(delta: float) -> void:
 	if state != State.POSTGAME:
@@ -68,6 +71,9 @@ func spawnPlayerUnits():
 			unit_scene.global_position = spawn_point.global_position + Vector2(randf(), randf())
 			unit_scene.unit_name = GameManager.UnitNames[unit]
 			add_child(unit_scene)
+
+func spawnEnemyUnits():
+	pass
 
 func spawn_tile_map() -> void:
 	# disable all other tilemaps

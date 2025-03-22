@@ -137,7 +137,7 @@ func world_rdy(world: World):
 		saved_world.generate()
 
 func start_battle(mob: Mob, biome : String):
-	if mob.mob_name != "Peasant":
+	if mob.mob_name != "Peasant" and mob.mob_name != "Knight":
 		return
 	hide_world_ui.emit()
 	get_node("/root/World").process_mode = 4
@@ -145,6 +145,7 @@ func start_battle(mob: Mob, biome : String):
 	get_viewport().canvas_transform = Transform2D.IDENTITY
 	var map_scene := map_packed.instantiate()
 	map_scene.biome = biome
+	map_scene.mob = mob
 	get_node("/root/").add_child(map_scene)
 	
 
