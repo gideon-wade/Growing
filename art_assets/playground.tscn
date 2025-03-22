@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bx4as3s4peet1"]
+[gd_scene load_steps=10 format=4 uid="uid://bx4as3s4peet1"]
 
 [ext_resource type="TileSet" uid="uid://hd4663rxnmcx" path="res://art_assets/tile_set.tres" id="1_01vmj"]
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_n7clt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bwg1lvkvy78p7" path="res://art/units/ghost.png" id="6_bfvhb"]
 [ext_resource type="Texture2D" uid="uid://coyco5b4pmpfy" path="res://art/units/darklord.png" id="7_n7clt"]
 [ext_resource type="Texture2D" uid="uid://bdr0yaskjd4n0" path="res://art/units/arch_angel.png" id="8_31rel"]
+[ext_resource type="Texture2D" uid="uid://bcsfwdt24676c" path="res://art/units/lesser_angel.png" id="9_0t8dc"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -53,3 +54,8 @@ texture = ExtResource("7_n7clt")
 position = Vector2(2684, 12)
 scale = Vector2(1.05729, 1.05729)
 texture = ExtResource("8_31rel")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(1569, 481)
+scale = Vector2(0.636719, 0.636719)
+texture = ExtResource("9_0t8dc")

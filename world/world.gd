@@ -157,6 +157,7 @@ func spawn_player(tile) -> void:
 	self.add_child(player)
 	player.is_player = true
 	player.sprite.texture = GameManager.MobToSprite["Player"]
+	player.sprite.z_index = 10
 	var sprite_scale = Vector2(0.3, 0.3)
 	player.sprite.scale = sprite_scale
 	player.tween_controller.original_sprite_scale = sprite_scale

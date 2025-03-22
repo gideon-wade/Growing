@@ -149,8 +149,8 @@ func start_battle(mob: Mob, biome : String):
 	camera.zoom = camera.max_zoom
 	camera.min_zoom = camera.max_zoom
 	camera.global_position = Vector2(700, 300)
-	camera.limit_top = -500
-	camera.limit_left = -600
+	camera.limit_top = -200
+	camera.limit_left = -300
 	camera.limit_right = 1600
 	camera.limit_bottom = 750
 	camera.position_smoothing_enabled = false
