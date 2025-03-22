@@ -367,6 +367,7 @@ func instantiate_entourage():
 	draw_entourage(true)
 
 func update_entourage(pos):
+	print(entourage_pos, " ", pos, " ", player_pos)
 	if len(entourage_pos) > 0 and (entourage_pos.front() == pos or pos == next_player_pos):
 		return
 	entourage_pos.push_front(pos)

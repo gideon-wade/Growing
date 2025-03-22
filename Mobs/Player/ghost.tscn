@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnsljv57e6era"]
+
+[ext_resource type="Script" uid="uid://ybyym8iujknw" path="res://mobs/player/ghost.gd" id="1_c774p"]
+[ext_resource type="Texture2D" uid="uid://bwg1lvkvy78p7" path="res://art/units/ghost.png" id="2_c774p"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_f7xg0"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_ibhhv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vpwl"]
+radius = 24.0832
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkks1"]
+size = Vector2(75, 115)
+
+[node name="Ghost" type="CharacterBody2D"]
+input_pickable = true
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_c774p")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_c774p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 14)
+shape = SubResource("CircleShape2D_0vpwl")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TweenController" type="Node" parent="."]
+script = ExtResource("3_f7xg0")
+metadata/_custom_type_script = "uid://drrepm7kwhwhi"
+
+[node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.698
+script = ExtResource("4_ibhhv")
+metadata/_custom_type_script = "uid://cjcslf3plpk6a"
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 25.0
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="MouseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+position = Vector2(-0.5, -22.5)
+shape = SubResource("RectangleShape2D_gkks1")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

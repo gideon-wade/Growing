@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh37h4k6rbpli"]
+[gd_scene load_steps=6 format=3 uid="uid://ltpah472mq3a"]
 
-[ext_resource type="Script" uid="uid://b63cupsjvyoh7" path="res://mobs/enemy/peasent.gd" id="1_gddri"]
-[ext_resource type="Texture2D" uid="uid://cev7snb1s0noa" path="res://art/units/peasant.png" id="2_b7dg7"]
-[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_ul8ss"]
-[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_j37mi"]
+[ext_resource type="Script" uid="uid://b45nufhnjidau" path="res://mobs/enemy/knight.gd" id="1_6deyl"]
+[ext_resource type="Texture2D" uid="uid://ck88kks3no0a6" path="res://art/units/knight.png" id="2_6deyl"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_fbcjv"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_61bqi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmm33"]
 radius = 29.0172
 
-[node name="Peasent" type="CharacterBody2D"]
+[node name="Knight" type="CharacterBody2D"]
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_gddri")
+script = ExtResource("1_6deyl")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_b7dg7")
+texture = ExtResource("2_6deyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 40)
@@ -29,14 +29,15 @@ offset_right = 22.0
 offset_bottom = -67.0
 
 [node name="TweenController" type="Node" parent="."]
-script = ExtResource("3_ul8ss")
+script = ExtResource("3_fbcjv")
 
 [node name="AudioController" type="AudioStreamPlayer2D" parent="."]
 volume_db = -13.698
-script = ExtResource("4_j37mi")
+script = ExtResource("4_61bqi")
 metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 25.0

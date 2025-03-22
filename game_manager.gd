@@ -64,10 +64,11 @@ const UNIT = {
 	Faction.PLAYER: {
 		UnitType.IMP: preload("res://mobs/player/imp.tscn"),
 		UnitType.SNAKE: preload("res://mobs/player/snake.tscn"),
-		UnitType.GHOST: preload("res://mobs/player/imp.tscn"),
+		UnitType.GHOST: preload("res://mobs/player/ghost.tscn"),
 	},
 	Faction.ENEMY: {
-		UnitType.PEASENT: preload("res://mobs/enemy/peasent.tscn")
+		UnitType.PEASENT: preload("res://mobs/enemy/peasent.tscn"),
+		UnitType.KNIGHT: preload("res://mobs/enemy/knight.tscn"),
 	}
 }
 # > 0 and <= 100
