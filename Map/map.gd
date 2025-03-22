@@ -1,6 +1,9 @@
 class_name Map extends Node2D
 @onready var audio: AudioStreamPlayer2D = $Audio
 
+signal battle_won(reward :String)
+signal battle_lost
+signal battle_start
 enum State {
 	PREGAME,
 	BATTLE,
@@ -14,7 +17,6 @@ var state = State.PREGAME
 							GameManager.UnitType.SNAKE: [self.find_child(SNAKE_SPAWN)],
 							GameManager.UnitType.GHOST: [self.find_child(GHOST_SPAWN)],
 							}
-
 @onready var plains := $BiomeMaps/Plains0
 @onready var hills := $BiomeMaps/Hils0
 @onready var mountains := $BiomeMaps/Mountain0
@@ -40,19 +42,13 @@ func _process(delta: float) -> void:
 			elif unit is Enemy:
 				enemies += 1
 		if enemies == 0:
-			$Label.text = "You win"
-			$Label.visible = true
 			var reward : String = GameManager.decide_random_reward()
-			var reward_label = $Camera2D/CanvasLayer/RewardLabel
-			reward_label.visible = true
+			battle_won.emit(reward)
 			if reward == "Common":
-				reward_label.text = "You got a Common reward."
 				audio.stream = preload("res://sounds/discover.mp3")
 			elif reward == "Rare":
-				reward_label.text = "WOW You got a RARE reward!"
 				audio.stream = preload("res://sounds/discover_better.mp3")
 			elif reward == "Epic":
-				reward_label.text = "OOOOKAAAAAAAY YOU GOT AN EPIC REWARD!! (crazy)"
 				audio.stream = preload("res://sounds/discover_best.mp3")
 			else:
 				print("Hello rarity doesn't exist (I fart)")
@@ -61,11 +57,8 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(4).timeout
 			GameManager.end_battle()
 		elif players == 0:
-			$Label.text = "You lose"
-			$Label.visible = true
-			state = State.POSTGAME
-			await get_tree().create_timer(4).timeout
-			GameManager.end_battle()
+			lose()
+			
 
 func spawnPlayerUnits():
 	for unit in GameManager.units:
@@ -99,5 +92,19 @@ func spawn_tile_map() -> void:
 	active_tile_map.enabled = true
 	
 func _on_button_pressed() -> void:
-	$Button.queue_free()
+	#$Camera2D/CanvasLayer/Button.queue_free()
 	state = State.BATTLE
+
+
+func _on_battle_ui_start_battle():
+	state = State.BATTLE
+	battle_start.emit()
+
+func lose():
+	battle_lost.emit()
+	state = State.POSTGAME
+	await get_tree().create_timer(4).timeout
+	GameManager.end_battle()
+
+func _on_battle_ui_give_up():
+	lose()
