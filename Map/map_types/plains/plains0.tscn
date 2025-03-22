@@ -11,6 +11,8 @@ tile_set = ExtResource("1_wdf1t")
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAP7/AAABAAMAAAAAAAMAAAABAAMAAAAGAAAAAAAAAAMAAAADAAAAAAAAAAMAAAA=")
 tile_set = ExtResource("1_wdf1t")
+collision_enabled = false
+navigation_enabled = false
 
 [node name="ImpSpawn" type="Marker2D" parent="."]
 position = Vector2(147, 213)

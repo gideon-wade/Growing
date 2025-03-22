@@ -11,6 +11,8 @@ tile_set = ExtResource("1_baqnp")
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAEAAAABAAMAAAAKAP7/AAABAAMAAAANAAIAAAABAAMAAAAGAP7/AAAAAAMAAAADAP7/AAAAAAMAAAA=")
 tile_set = ExtResource("1_baqnp")
+collision_enabled = false
+navigation_enabled = false
 
 [node name="ImpSpawn" type="Marker2D" parent="."]
 position = Vector2(147, 213)
