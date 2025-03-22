@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b17ri1yeqsfux" path="res://world/world.gd" id="1_fj7yv"]
 [ext_resource type="TileSet" uid="uid://bqyqa33500h12" path="res://textures/tilemap.tres" id="2_fj7yv"]
-[ext_resource type="PackedScene" path="res://world/camera.tscn" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://drksjlt18i3ar" path="res://world/camera.tscn" id="3_4717r"]
 [ext_resource type="TileSet" uid="uid://hwhv2tpc0lyw" path="res://art_assets/hex.tres" id="3_h5o24"]
-[ext_resource type="PackedScene" uid="uid://ctr3aa26mstlh" path="res://ui/ui.tscn" id="5_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://ctr3aa26mstlh" path="res://UI/ui.tscn" id="5_mmdvd"]
 [ext_resource type="AudioStream" uid="uid://cwqy8kfl0ifie" path="res://sounds/world_music.mp3" id="6_fn3g3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fj7yv"]
@@ -52,7 +52,7 @@ zoom = Vector2(0.7, 0.7)
 [node name="Music" type="AudioStreamPlayer2D" parent="Camera"]
 position = Vector2(-576, -324)
 stream = ExtResource("6_fn3g3")
-volume_db = -10.0
+volume_db = -15.848
 autoplay = true
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

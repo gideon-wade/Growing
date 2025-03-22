@@ -53,10 +53,10 @@ const UnitSounds = {
 		"interact" : 3
 	},
 	"Ghost" = {
-		"attack" : 0,
-		"celebrate" : 0,
-		"death" : 0,
-		"interact" : 0
+		"attack" : 4,
+		"celebrate" : 3,
+		"death" : 3,
+		"interact" : 3
 	}
 }
 
@@ -140,7 +140,7 @@ func world_rdy(world: World):
 		saved_world.generate()
 
 func start_battle(mob: Mob, biome : String):
-	if mob.mob_name != "Peasant" and mob.mob_name != "Knight":
+	if mob.mob_name != "Peasant":
 		return
 	hide_world_ui.emit()
 	var camera: Camera2D = get_node("/root/World/Camera")
