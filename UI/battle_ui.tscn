@@ -90,6 +90,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
 [node name="RewardLabel" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/Control2/VBoxContainer/Panel/VBoxContainer/MarginContainer"]
 layout_mode = 2

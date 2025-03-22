@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg8mpkacey75g"
-path="res://.godot/imported/heart.png-6435ac13e460cd412ad43fdd87bd82f5.ctex"
+uid="uid://bdr0yaskjd4n0"
+path="res://.godot/imported/arch_angel.png-13571a4102cd997484188bcbfb31c3ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/heart.png"
-dest_files=["res://.godot/imported/heart.png-6435ac13e460cd412ad43fdd87bd82f5.ctex"]
+source_file="res://art/units/arch_angel.png"
+dest_files=["res://.godot/imported/arch_angel.png-13571a4102cd997484188bcbfb31c3ed.ctex"]
 
 [params]
 
