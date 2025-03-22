@@ -249,10 +249,10 @@ func animate_path(clicked_cell) -> void:
 		flag.tween_controller.original_sprite_scale = sprite_scale
 		flag.position = tile_to_global_pos(clicked_cell)
 		flag.tween_controller.idle()
+		flag.z_index = 10
 		moving = true
-		
+
 		player.audio_controller.stream = preload("res://sounds/horse_run_sfx.mp3")
-		player.audio_controller.volume_db = -25
 		player.audio_controller.pitch_scale = 1 + (1 - 2 * randf()) * 0.05
 		player.audio_controller.play()
 		player.tween_controller.walk()
