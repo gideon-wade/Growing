@@ -67,3 +67,4 @@ func _on_hide_info_button_pressed():
 
 func _on_info_button_pressed():
 	info.visible = true
+	world.info_shown = true
