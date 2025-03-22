@@ -84,6 +84,7 @@ const RarityProbability = {
 }
 
 const RarityReward = {
+	"Lost": 10, 
 	"Common": 35, 
 	"Rare": 80,
 	"Epic": 200,
@@ -140,7 +141,7 @@ func world_rdy(world: World):
 		saved_world.generate()
 
 func start_battle(mob: Mob, biome : String):
-	if mob.mob_name != "Peasant":
+	if mob.mob_name != "Peasant" and mob.mob_name != "Knight":
 		return
 	hide_world_ui.emit()
 	var camera: Camera2D = get_node("/root/World/Camera")

@@ -115,6 +115,8 @@ func _on_battle_ui_start_battle():
 func lose():
 	battle_lost.emit()
 	state = State.POSTGAME
+	GameManager.money += GameManager.RarityReward["Lost"]
+	
 	await get_tree().create_timer(4).timeout
 	GameManager.end_battle()
 
