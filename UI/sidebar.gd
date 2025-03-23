@@ -93,3 +93,8 @@ func update_price():
 func _on_buy_prisoner_pressed():
 	buy(GameManager.UnitType.PRISONER)
 	update_price()
+
+
+func _on_saw_demon_buy_button_pressed():
+	#buy(GameManager.UnitType.SAW_DEMON)
+	update_price()
