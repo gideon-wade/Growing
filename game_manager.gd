@@ -254,6 +254,7 @@ var units: Dictionary = {UnitType.IMP: 1, \
 
 var pre_camera_pos: Vector2
 var pre_camera_zoom: Vector2
+var saved_audio_pos: float
 
 func _ready() -> void:
 	map_packed = load("res://map/map.tscn") as PackedScene
@@ -286,6 +287,7 @@ func start_battle(mob: Mob, biome : String):
 	map_scene.mob = mob
 	map_scene.camera = camera
 	get_node("/root/").add_child(map_scene)
+	saved_audio_pos = saved_world.camera.music.get_playback_position()
 	saved_world.camera.music.stream = load("res://sounds/demon_battle.mp3")
 	saved_world.camera.music.play()
 
@@ -302,7 +304,7 @@ func end_battle():
 	camera.min_zoom = Vector2(0.45, 0.45)
 	show_world_ui.emit()
 	saved_world.camera.music.stream = load("res://sounds/world_music.mp3")
-	saved_world.camera.music.play()
+	saved_world.camera.music.play(max(0.0, saved_audio_pos - 0.5))
 
 func get_units(type):
 	if map == null:
