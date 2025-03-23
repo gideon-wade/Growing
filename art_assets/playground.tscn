@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bx4as3s4peet1"]
+[gd_scene load_steps=12 format=3 uid="uid://bx4as3s4peet1"]
 
 [ext_resource type="Script" uid="uid://cyuijgdpb0x47" path="res://art_assets/playground.gd" id="1_0t8dc"]
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_n7clt"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://coyco5b4pmpfy" path="res://art/units/darklord.png" id="7_n7clt"]
 [ext_resource type="Texture2D" uid="uid://bdr0yaskjd4n0" path="res://art/units/arch_angel.png" id="8_31rel"]
 [ext_resource type="Texture2D" uid="uid://bcsfwdt24676c" path="res://art/units/lesser_angel.png" id="9_0t8dc"]
+[ext_resource type="Texture2D" uid="uid://b3xb7p88aakd3" path="res://art/units/holy_gorilla.png" id="10_7y5n6"]
+[ext_resource type="Texture2D" uid="uid://dawqgpc2yxen5" path="res://art/units/prisoner.png" id="11_bfvhb"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0t8dc")
@@ -39,17 +41,17 @@ scale = Vector2(0.464844, 0.464844)
 texture = ExtResource("6_bfvhb")
 
 [node name="Sprite2D6" type="Sprite2D" parent="."]
-position = Vector2(-69, 436)
+position = Vector2(-505, 436)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_n7clt")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Sprite2D6"]
-position = Vector2(2684, 12)
-scale = Vector2(1.05729, 1.05729)
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+position = Vector2(2544, 445)
+scale = Vector2(0.792967, 0.792967)
 texture = ExtResource("8_31rel")
 
 [node name="Sprite2D7" type="Sprite2D" parent="."]
-position = Vector2(1569, 481)
+position = Vector2(1549, 481)
 scale = Vector2(0.636719, 0.636719)
 texture = ExtResource("9_0t8dc")
 
@@ -57,5 +59,20 @@ texture = ExtResource("9_0t8dc")
 offset_right = 8.0
 offset_bottom = 8.0
 text = "test"
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(1871, 481)
+scale = Vector2(0.797, 0.797)
+texture = ExtResource("10_7y5n6")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+position = Vector2(2179, 481)
+scale = Vector2(0.797, 0.797)
+texture = ExtResource("10_7y5n6")
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+position = Vector2(-22, 479)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("11_bfvhb")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -13,6 +13,7 @@ enum UnitType {
 	KNIGHT,
 	RANGED,
 	TANK,
+	PRISONER,
 }
 enum RarityType {
 	COMMON,
@@ -63,6 +64,12 @@ const UnitSounds = {
 		"celebrate" : 2,
 		"death" : 3,
 		"interact" : 3
+	},
+	"Prisoner" = {
+		"attack" : -1,
+		"celebrate" : -1,
+		"death" : -1,
+		"interact" : -1
 	}
 }
 
@@ -71,6 +78,7 @@ const UNIT = {
 		UnitType.IMP: preload("res://mobs/player/imp.tscn"),
 		UnitType.SNAKE: preload("res://mobs/player/snake.tscn"),
 		UnitType.GHOST: preload("res://mobs/player/ghost.tscn"),
+		UnitType.PRISONER : preload("res://mobs/player/prisoner.tscn"),
 	},
 	Faction.ENEMY: {
 		UnitType.PEASANT: preload("res://mobs/enemy/peasent.tscn"),
@@ -105,6 +113,7 @@ const MobToSprite = {
 	"Imp" : preload("res://art/units/imp.png"),
 	"Snake" : preload("res://art/units/snake.png"),
 	"Ghost" : preload("res://art/units/ghost.png"),
+	"Prisoner" : preload("res://art/units/prisoner.png"),
 }
 
 
@@ -112,16 +121,21 @@ var map: Map
 
 var UnitCosts: Dictionary = {UnitType.IMP: 10, \
 							UnitType.SNAKE: 25, \
-							UnitType.GHOST: 40,
+							UnitType.GHOST: 40, \
+							UnitType.PRISONER: 60,
+							
 							}
 var UnitBasePrice: Dictionary = {UnitType.IMP: 10, \
 							UnitType.SNAKE: 25, \
-							UnitType.GHOST: 40,
+							UnitType.GHOST: 40, \
+							UnitType.PRISONER: 60,
 							}
 
 var UnitNames: Dictionary = {UnitType.IMP: "Imp", \
 							UnitType.SNAKE: "Snake", \
-							UnitType.GHOST: "Ghost",
+							UnitType.GHOST: "Ghost", \
+							UnitType.PRISONER: "Prisoner",
+							
 							}
 #world.tscn generates these
 var tiles 
@@ -138,7 +152,9 @@ const DIFFICULTY_GAIN = 0.3
 var money: int = 100
 var units: Dictionary = {UnitType.IMP: 2, \
 						 UnitType.SNAKE: 0, \
-						 UnitType.GHOST: 0}
+						 UnitType.GHOST: 0, \
+						UnitType.PRISONER: 2,
+						}
 
 var pre_camera_pos: Vector2
 var pre_camera_zoom: Vector2

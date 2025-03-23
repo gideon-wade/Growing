@@ -11,7 +11,7 @@ tile_map_data = PackedByteArray("AAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD+////AAACAAI
 tile_set = ExtResource("1_wdf1t")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAGAAAAAAAAAAMAAAADAAAAAAAAAAMAAAAHAP7/AAABAAMAAAAFAP3/AAADAAMAAAACAP//AAABAAQAAAAJAAQAAAAHAAMAAAAFAP//AAAHAAMAAAALAP7/AAAHAAMAAAA=")
+tile_map_data = PackedByteArray("AAAHAP7/AAABAAMAAAAFAP3/AAADAAMAAAACAP//AAABAAQAAAAJAAQAAAAHAAMAAAAFAP//AAAHAAMAAAALAP7/AAAHAAMAAAA=")
 tile_set = ExtResource("1_wdf1t")
 collision_enabled = false
 navigation_enabled = false

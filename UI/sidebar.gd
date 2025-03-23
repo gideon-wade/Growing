@@ -8,11 +8,12 @@ class_name Sidebar extends HBoxContainer
 @onready var imp_amount: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Label2
 @onready var snake_amount: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label2
 @onready var ghost_amount: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Label2
+@onready var prisoner_amount : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Label2
 
 @onready var imp_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Label
 @onready var snake_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label
 @onready var ghost_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Label
-
+@onready var prisoner_cost : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Label
 var world
 
 signal unit_bought
@@ -34,6 +35,7 @@ func _process(delta):
 	imp_amount.text = str(GameManager.units[GameManager.UnitType.IMP])
 	snake_amount.text = str(GameManager.units[GameManager.UnitType.SNAKE])
 	ghost_amount.text = str(GameManager.units[GameManager.UnitType.GHOST])
+	prisoner_amount.text = str(GameManager.units[GameManager.UnitType.PRISONER])
 
 
 func _on_back_button_pressed():
@@ -74,3 +76,9 @@ func update_price():
 	imp_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.IMP]) + "$"
 	snake_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.SNAKE]) + "$"
 	ghost_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.GHOST]) + "$"
+	prisoner_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.PRISONER]) + "$"
+
+
+func _on_buy_prisoner_pressed():
+	buy(GameManager.UnitType.PRISONER)
+	update_price()

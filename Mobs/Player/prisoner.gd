@@ -1,9 +1,9 @@
-class_name Ghost extends Player
+class_name Prisoner extends Player
 
-const SPEED = 160
+const SPEED = 30
 
-var life = 70
-var attack = 40
+var life = 300
+var attack = 25
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var walking : bool  = false
 var can_attack : bool = true

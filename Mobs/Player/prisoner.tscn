@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://r1nvawvu5jac"]
+
+[ext_resource type="Script" uid="uid://bui0ysm4pygcf" path="res://mobs/player/prisoner.gd" id="1_y68ko"]
+[ext_resource type="Texture2D" uid="uid://dawqgpc2yxen5" path="res://art/units/prisoner.png" id="2_y68ko"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_rxwd4"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_60lgs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dcst"]
+radius = 24.0832
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qyo0"]
+size = Vector2(75, 115)
+
+[node name="Prisoner" type="CharacterBody2D"]
+script = ExtResource("1_y68ko")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(0.325, 0.325)
+texture = ExtResource("2_y68ko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 14)
+shape = SubResource("CircleShape2D_0dcst")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TweenController" type="Node" parent="."]
+script = ExtResource("3_rxwd4")
+metadata/_custom_type_script = "uid://drrepm7kwhwhi"
+
+[node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.698
+script = ExtResource("4_60lgs")
+metadata/_custom_type_script = "uid://cjcslf3plpk6a"
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 25.0
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="MouseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+position = Vector2(-0.5, -22.5)
+shape = SubResource("RectangleShape2D_3qyo0")
