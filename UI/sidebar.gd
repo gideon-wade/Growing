@@ -9,11 +9,14 @@ class_name Sidebar extends HBoxContainer
 @onready var snake_amount: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label2
 @onready var ghost_amount: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Label2
 @onready var prisoner_amount : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Label2
+@onready var saw_demon_amount : Label =$Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Label2
 
 @onready var imp_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Label
 @onready var snake_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label
 @onready var ghost_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Label
 @onready var prisoner_cost : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Label
+@onready var saw_demon_cost : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Label
+
 @onready var audio_controller: AudioController = $Panel/VBoxContainer2/ScrollContainer/AudioController
 
 
@@ -41,7 +44,7 @@ func _process(delta):
 	snake_amount.text = str(GameManager.units[GameManager.UnitType.SNAKE])
 	ghost_amount.text = str(GameManager.units[GameManager.UnitType.GHOST])
 	prisoner_amount.text = str(GameManager.units[GameManager.UnitType.PRISONER])
-
+	saw_demon_amount.text = str(GameManager.units[GameManager.UnitType.SAW_DEMON])
 
 func _on_back_button_pressed():
 	sidebar.visible = false
@@ -88,7 +91,7 @@ func update_price():
 	snake_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.SNAKE]) + "$"
 	ghost_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.GHOST]) + "$"
 	prisoner_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.PRISONER]) + "$"
-
+	saw_demon_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.SAW_DEMON]) + "$"
 
 func _on_buy_prisoner_pressed():
 	buy(GameManager.UnitType.PRISONER)
@@ -96,5 +99,5 @@ func _on_buy_prisoner_pressed():
 
 
 func _on_saw_demon_buy_button_pressed():
-	#buy(GameManager.UnitType.SAW_DEMON)
+	buy(GameManager.UnitType.SAW_DEMON)
 	update_price()

@@ -14,6 +14,7 @@ enum UnitType {
 	RANGED,
 	TANK,
 	PRISONER,
+	SAW_DEMON,
 }
 enum RarityType {
 	COMMON,
@@ -83,6 +84,12 @@ const UnitSounds = {
 		"death" : 3,
 		"interact" : 2
 	},
+	"Saw Demon" = {
+		"attack" : -1,
+		"celebrate" : -1,
+		"death" : -1,
+		"interact" : -1
+	}
 }
 
 const UNIT = {
@@ -91,6 +98,7 @@ const UNIT = {
 		UnitType.SNAKE: preload("res://mobs/player/snake.tscn"),
 		UnitType.GHOST: preload("res://mobs/player/ghost.tscn"),
 		UnitType.PRISONER : preload("res://mobs/player/prisoner.tscn"),
+		UnitType.SAW_DEMON : preload("res://mobs/player/saw_demon.tscn"),
 	},
 	Faction.ENEMY: {
 		UnitType.PEASANT: preload("res://mobs/enemy/peasent.tscn"),
@@ -126,6 +134,7 @@ const MobToSprite = {
 	"Snake" : preload("res://art/units/snake.png"),
 	"Ghost" : preload("res://art/units/ghost.png"),
 	"Prisoner" : preload("res://art/units/prisoner.png"),
+	"Saw Demon" : preload("res://art/units/saw_demon.png"),
 }
 
 const MobStats = {
@@ -152,6 +161,12 @@ const MobStats = {
 		"Att": 50,
 		"MoveSpeed": 60,
 		"AttackSpeed": 1.5,
+	},
+	"Saw Demon" : {
+		"Hp": 300,
+		"Att": 25,
+		"MoveSpeed": 80,
+		"AttackSpeed": 0.1,
 	},
 	"Peasant": {
 		"Hp": 100,
@@ -198,20 +213,23 @@ var map: Map
 var UnitCosts: Dictionary = {UnitType.IMP: 10, \
 							UnitType.SNAKE: 25, \
 							UnitType.GHOST: 40, \
-							UnitType.PRISONER: 60,
+							UnitType.PRISONER: 60,\
+							UnitType.SAW_DEMON: 200,
 							
 							}
 var UnitBasePrice: Dictionary = {UnitType.IMP: 10, \
 							UnitType.SNAKE: 25, \
 							UnitType.GHOST: 40, \
-							UnitType.PRISONER: 60,
+							UnitType.PRISONER: 60, \
+							UnitType.SAW_DEMON: 200,
+							
 							}
 
 var UnitNames: Dictionary = {UnitType.IMP: "Imp", \
 							UnitType.SNAKE: "Snake", \
 							UnitType.GHOST: "Ghost", \
-							UnitType.PRISONER: "Prisoner",
-							
+							UnitType.PRISONER: "Prisoner", \
+							UnitType.SAW_DEMON: "Saw Demon",
 							}
 #world.tscn generates these
 var tiles 
@@ -222,15 +240,16 @@ var saved_world: World
 var has_generated = false
 var map_packed: PackedScene
 
-var difficulty_score = 0.0
+var difficulty_score = 0.5
 const DIFFICULTY_GAIN_WIN = 0.2
 const DIFFICULTY_GAIN_LOSE = 0.04
 #player vars
 var money: int = 100
-var units: Dictionary = {UnitType.IMP: 1, \
+var units: Dictionary = {UnitType.IMP: 0, \
 						 UnitType.SNAKE: 0, \
 						 UnitType.GHOST: 0, \
-						UnitType.PRISONER: 0,
+						UnitType.PRISONER: 0, \
+						UnitType.SAW_DEMON: 1,
 						}
 
 var pre_camera_pos: Vector2

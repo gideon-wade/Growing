@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1sri1doc4vwe"]
 
-[ext_resource type="Script" uid="uid://vkcqwt2islgc" path="res://mobs/enemy/gorilla.gd" id="1_t3r2l"]
+[ext_resource type="Script" path="res://mobs/enemy/gorilla.gd" id="1_t3r2l"]
 [ext_resource type="Texture2D" uid="uid://b3xb7p88aakd3" path="res://art/units/holy_gorilla.png" id="2_bttq1"]
 [ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_vl2b4"]
 [ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_kmc2g"]

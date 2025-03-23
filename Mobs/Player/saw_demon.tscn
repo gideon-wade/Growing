@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://6u6egqvoqyx6"]
+
+[ext_resource type="Script" uid="uid://57my1iq3xjl2" path="res://mobs/player/saw_demon.gd" id="1_106c2"]
+[ext_resource type="Texture2D" uid="uid://dx1k4iduejfkc" path="res://art/units/saw_demon.png" id="2_106c2"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_p1ora"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_87flg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcvsm"]
+radius = 34.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfrk"]
+size = Vector2(75, 115)
+
+[node name="SawDemon" type="CharacterBody2D"]
+script = ExtResource("1_106c2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-6, -51)
+scale = Vector2(0.335938, 0.335938)
+texture = ExtResource("2_106c2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 2)
+shape = SubResource("CircleShape2D_fcvsm")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -91.0
+offset_right = 24.0
+offset_bottom = -68.0
+
+[node name="TweenController" type="Node" parent="."]
+script = ExtResource("3_p1ora")
+
+[node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.698
+script = ExtResource("4_87flg")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 25.0
+path_postprocessing = 1
+
+[node name="MouseArea" type="Area2D" parent="."]
+position = Vector2(-4, -20)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+position = Vector2(-3, -3)
+shape = SubResource("RectangleShape2D_kkfrk")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
