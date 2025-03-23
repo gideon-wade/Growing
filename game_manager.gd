@@ -221,47 +221,57 @@ const ARCH_ANGEL = preload("res://mobs/enemy/arch_angel.tscn")
 func generate_enemies() -> Array:
 	var output = []
 
-	var tier1 = [PEASENT, 5]  # Weakest 
-	var tier2 = [KNIGHT, 3]
-	var tier3 = [LESSER_ANGEL, 2]
-	var tier4 = [LESSER_ANGEL, 1]
-	var tier5 = [LESSER_ANGEL, 1]
-	var tier6 = [ARCH_ANGEL, 1]  # Strongest 
+	var tier1 = [PEASENT, SpawnRate.t1(difficulty_score)]  # Weakest 
+	var tier2 = [KNIGHT, SpawnRate.t2(difficulty_score)]
+	var tier3 = [LESSER_ANGEL, SpawnRate.t3(difficulty_score)]
+	var tier4 = [LESSER_ANGEL, SpawnRate.t4(difficulty_score)]
+	var tier5 = [LESSER_ANGEL, SpawnRate.t5(difficulty_score)]
+	var tier6 = [ARCH_ANGEL, SpawnRate.t6(difficulty_score)]  # Strongest 
 	
-	var tier1_scale = max(1.0, 1.0 - difficulty_score * 0.5) 
-	var tier2_scale = 1.0
-	var tier3_scale = 1.0 + difficulty_score * 0.5 
-	var tier4_scale = 1.0 + difficulty_score * 1.0  
-	var tier5_scale = 1.0 + difficulty_score * 1.5  
-	var tier6_scale = 1.0 + difficulty_score * 2.0  
+	output = [
+		tier1,
+		tier2,
+		tier3,
+		tier4,
+		tier5,
+		tier6,
+	]
 	
-	if difficulty_score < 0.1:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-	elif difficulty_score < 0.2:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.5)])
-	elif difficulty_score < 0.4:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale * 0.5)])
-	elif difficulty_score < 0.6:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		output.append([tier4[0], ceil(tier4[1] * tier4_scale * 0.5)])
-	elif difficulty_score < 0.8:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.8)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
-		output.append([tier5[0], ceil(tier5[1] * tier5_scale * 0.7)])
-	else:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.7)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.8)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
-		output.append([tier5[0], ceil(tier5[1] * tier5_scale)])
-		output.append([tier6[0], ceil(tier6[1] * tier6_scale * 0.8)])
+	#
+	#var tier1_scale = max(1.0, 1.0 - difficulty_score * 0.5) 
+	#var tier2_scale = 1.0
+	#var tier3_scale = 1.0 + difficulty_score * 0.5 
+	#var tier4_scale = 1.0 + difficulty_score * 1.0  
+	#var tier5_scale = 1.0 + difficulty_score * 1.5  
+	#var tier6_scale = 1.0 + difficulty_score * 2.0  
+	#
+	#if difficulty_score < 0.1:
+		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
+	#elif difficulty_score < 0.2:
+		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
+		#output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.5)])
+	#elif difficulty_score < 0.4:
+		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
+		#output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
+		#output.append([tier3[0], ceil(tier3[1] * tier3_scale * 0.5)])
+	#elif difficulty_score < 0.6:
+		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
+		#output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
+		#output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
+		#output.append([tier4[0], ceil(tier4[1] * tier4_scale * 0.5)])
+	#elif difficulty_score < 0.8:
+		#output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.8)])
+		#output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
+		#output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
+		#output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
+		#output.append([tier5[0], ceil(tier5[1] * tier5_scale * 0.7)])
+	#else:
+		#output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.7)])
+		#output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.8)])
+		#output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
+		#output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
+		#output.append([tier5[0], ceil(tier5[1] * tier5_scale)])
+		#output.append([tier6[0], ceil(tier6[1] * tier6_scale * 0.8)])
 	
 	var filtered_output = []
 	for entry in output:
