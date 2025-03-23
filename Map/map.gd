@@ -162,8 +162,7 @@ func lose():
 	state = State.POSTGAME
 	GameManager.money += GameManager.RarityReward["Lost"]
 	
-	await get_tree().create_timer(4).timeout
-	GameManager.difficulty_score += 20
+	await get_tree().create_timer(4).timeout 
 	GameManager.end_battle()
 
 func win():

@@ -224,6 +224,7 @@ func ui_unit_bought():
 const PEASENT := preload("res://mobs/enemy/peasent.tscn")
 const KNIGHT = preload("res://mobs/enemy/knight.tscn")
 const LESSER_ANGEL = preload("res://mobs/enemy/lesser_angel.tscn")
+const GORRILA = preload("res://mobs/enemy/gorrila.tscn")
 const ARCH_ANGEL = preload("res://mobs/enemy/arch_angel.tscn")
 func generate_enemies() -> Array:
 	var output = []
@@ -231,7 +232,7 @@ func generate_enemies() -> Array:
 	var tier1 = [PEASENT, SpawnRate.t1(difficulty_score)]  # Weakest 
 	var tier2 = [KNIGHT, SpawnRate.t2(difficulty_score)]
 	var tier3 = [LESSER_ANGEL, SpawnRate.t3(difficulty_score)]
-	var tier4 = [LESSER_ANGEL, SpawnRate.t4(difficulty_score)]
+	var tier4 = [GORRILA, SpawnRate.t4(difficulty_score)]
 	var tier5 = [LESSER_ANGEL, SpawnRate.t5(difficulty_score)]
 	var tier6 = [ARCH_ANGEL, SpawnRate.t6(difficulty_score)]  # Strongest 
 	
