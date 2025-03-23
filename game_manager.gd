@@ -72,10 +72,10 @@ const UnitSounds = {
 		"interact" : 2
 	},
 	"Gorilla" = {
-		"attack" : 0,
-		"celebrate" : 0,
-		"death" : 0,
-		"interact" : 0
+		"attack" : 3,
+		"celebrate" : 2,
+		"death" : 2,
+		"interact" : 3
 	},
 	"Arch Angel" = {
 		"attack" : 3,

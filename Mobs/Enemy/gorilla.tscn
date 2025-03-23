@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1sri1doc4vwe"]
+[gd_scene load_steps=6 format=3 uid="uid://dlpfalh8reiix"]
 
 [ext_resource type="Script" uid="uid://vkcqwt2islgc" path="res://mobs/enemy/gorilla.gd" id="1_t3r2l"]
 [ext_resource type="Texture2D" uid="uid://b3xb7p88aakd3" path="res://art/units/holy_gorilla.png" id="2_bttq1"]
