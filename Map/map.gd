@@ -51,6 +51,16 @@ func _process(delta: float) -> void:
 		for unit in get_children():
 			if unit is Player:
 				players += 1
+				if unit.global_position.y < 0:
+					var corners = Utils.get_sprite_corners(border)
+					
+					var min_x = corners[0].x
+					var max_x = corners[1].x
+					var min_y = corners[0].y
+					var max_y = corners[2].y
+					var random_x = randf_range(min_x, max_x)
+					var random_y = randf_range(min_y, max_y)
+					unit.global_position = Vector2(random_x, random_y)
 			elif unit is Enemy:
 				enemies += 1
 		if enemies == 0:
