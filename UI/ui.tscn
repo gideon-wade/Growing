@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/snake.png" id="3_hat8c"]
 [ext_resource type="Texture2D" uid="uid://bwg1lvkvy78p7" path="res://art/units/ghost.png" id="4_3sbvi"]
 [ext_resource type="Texture2D" uid="uid://dawqgpc2yxen5" path="res://art/units/prisoner.png" id="7_bo1jx"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="7_c7tqi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_obcwv"]
 
@@ -121,6 +122,11 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "+"
 
+[node name="ImpAudioController" type="AudioStreamPlayer2D" parent="CanvasLayer/Control/Sidebar/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+position = Vector2(-180, -78)
+script = ExtResource("7_c7tqi")
+metadata/_custom_type_script = "uid://cjcslf3plpk6a"
+
 [node name="Control" type="Control" parent="CanvasLayer/Control/Sidebar/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -158,6 +164,11 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "+"
 
+[node name="SnakeAudioController" type="AudioStreamPlayer2D" parent="CanvasLayer/Control/Sidebar/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+position = Vector2(-180, -155)
+script = ExtResource("7_c7tqi")
+metadata/_custom_type_script = "uid://cjcslf3plpk6a"
+
 [node name="Control" type="Control" parent="CanvasLayer/Control/Sidebar/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -194,6 +205,11 @@ size_flags_vertical = 3
 [node name="Button" type="Button" parent="CanvasLayer/Control/Sidebar/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 text = "+"
+
+[node name="GhostAudioController2" type="AudioStreamPlayer2D" parent="CanvasLayer/Control/Sidebar/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+position = Vector2(-180, -232)
+script = ExtResource("7_c7tqi")
+metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 
 [node name="Control" type="Control" parent="CanvasLayer/Control/Sidebar/Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2

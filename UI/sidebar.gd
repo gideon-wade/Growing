@@ -14,6 +14,11 @@ class_name Sidebar extends HBoxContainer
 @onready var snake_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label
 @onready var ghost_cost: Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/Label
 @onready var prisoner_cost : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Label
+@onready var audio_controller: AudioController = $Panel/VBoxContainer2/ScrollContainer/AudioController
+
+
+
+
 var world
 
 signal unit_bought
@@ -56,13 +61,17 @@ func buy(unit_type):
 
 func _on_buy_imp() -> void:
 	buy(GameManager.UnitType.IMP)
+	$Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ImpAudioController.play_random_sound_of_type("interact", GameManager.UnitNames[GameManager.UnitType.IMP])
 	update_price()
 	
 func _on_but_snake() -> void:
 	buy(GameManager.UnitType.SNAKE)
+	$Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/SnakeAudioController.play_random_sound_of_type("interact", GameManager.UnitNames[GameManager.UnitType.SNAKE])
 	update_price()
+	
 func _on_button_pressed() -> void:
 	buy(GameManager.UnitType.GHOST)
+	$Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer/GhostAudioController2.play_random_sound_of_type("interact", GameManager.UnitNames[GameManager.UnitType.GHOST])
 	update_price()
 	
 func _on_hide_info_button_pressed():
@@ -72,6 +81,7 @@ func _on_hide_info_button_pressed():
 func _on_info_button_pressed():
 	info.visible = true
 	world.info_shown = true
+	
 	
 func update_price():
 	imp_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.IMP]) + "$"
