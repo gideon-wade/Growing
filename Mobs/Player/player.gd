@@ -7,7 +7,7 @@ var held = false
 @onready var mouse_area: Area2D = $MouseArea
 var unit_name : String
 var attack_speed : float = 0.55
-var map: Map;
+var map: Map
 var celebrating : bool = false
 
 var is_alive : bool = true
@@ -60,11 +60,30 @@ func _process(delta: float) -> void:
 		var pos = get_global_mouse_position()
 		var width = sprite.texture.get_width()/2 * sprite.scale.x
 		var height = sprite.texture.get_height()/2 * sprite.scale.y
-		
-		pos.x = clamp(pos.x, width, get_viewport_rect().size[0]  - width)
-		pos.y = clamp(pos.y, height, get_viewport_rect().size[1] - height)
+		var corners = get_sprite_corners(map.border)
+		pos.x = clamp(pos.x, corners[0].x + width, corners[1].x - width)
+		pos.y = clamp(pos.y, corners[0].y + height, corners[2].y - height)
 		global_position = pos
 	if in_unsafe_place():
 		sprite.modulate = Color(1, 0, 0)
 	else:
 		sprite.modulate = Color(1, 1, 1)
+		
+func get_sprite_corners(x_sprite: Sprite2D) -> Array:
+	var texture_size = x_sprite.texture.get_size()
+		
+	var half_width = texture_size.x / 2.0
+	var half_height = texture_size.y / 2.0
+		
+	var top_left = Vector2(-half_width, -half_height)
+	var top_right = Vector2(half_width, -half_height)
+	var bottom_left = Vector2(-half_width, half_height)
+	var bottom_right = Vector2(half_width, half_height)
+		
+	var x_transform = x_sprite.get_global_transform()
+	top_left = x_transform * top_left
+	top_right = x_transform * top_right
+	bottom_left = x_transform * bottom_left
+	bottom_right = x_transform * bottom_right
+		
+	return [top_left, top_right, bottom_left, bottom_right]

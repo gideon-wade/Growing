@@ -23,6 +23,7 @@ var state = State.PREGAME
 var biome : String = "hilly"
 var mob: Mob
 var camera: Camera2D
+var border : Sprite2D 
 
 const PLAINS = "plains"
 const HILLS = "hills"
@@ -89,7 +90,7 @@ func spawn_tile_map() -> void:
 	active_tile_map = selected_biome.find_child(TILE_MAP_LAYER)
 	selected_biome.visible = true
 	active_tile_map.enabled = true
-	
+	border = selected_biome.find_child("Border")
 func _on_button_pressed() -> void:
 	#$Camera2D/CanvasLayer/Button.queue_free()
 	state = State.BATTLE
@@ -98,6 +99,7 @@ func _on_button_pressed() -> void:
 func _on_battle_ui_start_battle():
 	state = State.BATTLE
 	battle_start.emit()
+	border.visible = false
 
 func lose():
 	battle_lost.emit()

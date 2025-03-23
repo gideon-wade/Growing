@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://el5pw6urxd3a"]
+[gd_scene load_steps=3 format=4 uid="uid://el5pw6urxd3a"]
 
 [ext_resource type="TileSet" uid="uid://cou5h2nrpstn" path="res://art_assets/square_tileset.tres" id="1_iqeso"]
+[ext_resource type="PackedScene" uid="uid://dt24nnbk4p8an" path="res://map/border.tscn" id="2_kbnjt"]
 
 [node name="Mountain0" type="Node2D"]
 
@@ -22,3 +23,7 @@ tile_map_data = PackedByteArray("AAD9//7/AAACAAEAAAD+//7/AAACAAEAAAD+////AAACAAE
 tile_set = ExtResource("1_iqeso")
 collision_enabled = false
 navigation_enabled = false
+
+[node name="Border" parent="." instance=ExtResource("2_kbnjt")]
+position = Vector2(96, 266.68)
+scale = Vector2(0.859375, 1.13016)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://b0xrqalcefxtt"]
+[gd_scene load_steps=3 format=4 uid="uid://b0xrqalcefxtt"]
 
 [ext_resource type="TileSet" uid="uid://cou5h2nrpstn" path="res://art_assets/square_tileset.tres" id="1_baqnp"]
+[ext_resource type="PackedScene" uid="uid://dt24nnbk4p8an" path="res://map/border.tscn" id="2_me04w"]
 
 [node name="Hils0" type="Node2D"]
 
@@ -22,3 +23,7 @@ position = Vector2(207, 431)
 
 [node name="GhostSpawn" type="Marker2D" parent="."]
 position = Vector2(94, 553)
+
+[node name="Border" parent="." instance=ExtResource("2_me04w")]
+position = Vector2(96.5, 437)
+scale = Vector2(0.861328, 1.40625)
