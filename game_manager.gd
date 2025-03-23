@@ -59,7 +59,7 @@ const UnitSounds = {
 		"death" : 3,
 		"interact" : 3
 	},
-	"Lesser Angel" = {
+	"Angel" = {
 		"attack" : 4,
 		"celebrate" : 2,
 		"death" : 3,
@@ -71,12 +71,18 @@ const UnitSounds = {
 		"death" : -1,
 		"interact" : -1
 	},
+	"Gorilla" = {
+		"attack" : 0,
+		"celebrate" : 0,
+		"death" : 0,
+		"interact" : 0
+	},
 	"Arch Angel" = {
 		"attack" : 3,
 		"celebrate" : 2,
 		"death" : 3,
 		"interact" : 2
-	}
+	},
 }
 
 const UNIT = {
@@ -171,7 +177,7 @@ const MobStats = {
 		"MoveSpeed": 150,
 		"AttackSpeed": 1,
 	},
-	"ArchAngel": {
+	"Arch Angel": {
 		"Hp": 200,
 		"Att": 70,
 		"MoveSpeed": 100,
@@ -317,7 +323,7 @@ func ui_unit_bought():
 const PEASENT := preload("res://mobs/enemy/peasent.tscn")
 const KNIGHT = preload("res://mobs/enemy/knight.tscn")
 const ANGEL = preload("res://mobs/enemy/angel.tscn")
-const GORRILA = preload("res://mobs/enemy/gorrila.tscn")
+const GORILLA = preload("res://mobs/enemy/gorilla.tscn")
 const ARCH_ANGEL = preload("res://mobs/enemy/arch_angel.tscn")
 
 func generate_enemies(mob) -> Array:
@@ -327,7 +333,7 @@ func generate_enemies(mob) -> Array:
 	var tier1 = [PEASENT, SpawnRate.t1(real_score)]  # Weakest 
 	var tier2 = [KNIGHT, SpawnRate.t2(real_score)]
 	var tier3 = [ANGEL, SpawnRate.t3(real_score)]
-	var tier4 = [GORRILA, SpawnRate.t4(real_score)]
+	var tier4 = [GORILLA, SpawnRate.t4(real_score)]
 	var tier5 = [ANGEL, SpawnRate.t5(real_score)]
 	var tier6 = [ARCH_ANGEL, SpawnRate.t6(real_score)]  # Strongest 
 	

@@ -1,20 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1sri1doc4vwe"]
 
-[ext_resource type="Script" uid="uid://vkcqwt2islgc" path="res://mobs/enemy/gorrila.gd" id="1_a5s4v"]
-[ext_resource type="Texture2D" uid="uid://b3xb7p88aakd3" path="res://art/units/holy_gorilla.png" id="1_b3u03"]
-[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="2_a5s4v"]
-[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="3_ldnme"]
+[ext_resource type="Script" uid="uid://vkcqwt2islgc" path="res://mobs/enemy/gorilla.gd" id="1_t3r2l"]
+[ext_resource type="Texture2D" uid="uid://b3xb7p88aakd3" path="res://art/units/holy_gorilla.png" id="2_bttq1"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_vl2b4"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_kmc2g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqk15"]
 radius = 29.0172
 
 [node name="Gorrila" type="CharacterBody2D"]
-script = ExtResource("1_a5s4v")
+script = ExtResource("1_t3r2l")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -1.90735e-06)
 scale = Vector2(0.305, 0.305)
-texture = ExtResource("1_b3u03")
+texture = ExtResource("2_bttq1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 40)
@@ -28,11 +28,11 @@ offset_right = 22.0
 offset_bottom = -67.0
 
 [node name="TweenController" type="Node" parent="."]
-script = ExtResource("2_a5s4v")
+script = ExtResource("3_vl2b4")
 
 [node name="AudioController" type="AudioStreamPlayer2D" parent="."]
 volume_db = -13.698
-script = ExtResource("3_ldnme")
+script = ExtResource("4_kmc2g")
 metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 
 [node name="AttackTimer" type="Timer" parent="."]

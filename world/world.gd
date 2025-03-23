@@ -254,6 +254,7 @@ func animate_path(clicked_cell) -> void:
 		moving = true
 
 		player.audio_controller.stream = preload("res://sounds/horse_run_sfx.mp3")
+		player.audio_controller.volume_db = -25
 		player.audio_controller.pitch_scale = 1 + (1 - 2 * randf()) * 0.05
 		player.audio_controller.play()
 		player.tween_controller.walk()

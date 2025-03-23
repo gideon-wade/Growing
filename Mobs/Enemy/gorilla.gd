@@ -1,4 +1,4 @@
-class_name Gorrila extends Enemy
+class_name Gorilla extends Enemy
 
 var speed
 var life
@@ -11,7 +11,7 @@ var can_attack : bool = true
 
 func _ready() -> void:
 	super()
-	unit_name = "Gorrila"
+	unit_name = "Gorilla"
 	life = GameManager.MobStats[unit_name]["Hp"]
 	attack = GameManager.MobStats[unit_name]["Att"]
 	speed = GameManager.MobStats[unit_name]["MoveSpeed"]
