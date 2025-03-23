@@ -24,7 +24,7 @@ var biome : String = "hilly"
 var mob: Mob
 var camera: Camera2D
 var border : Sprite2D 
-
+var enemy_border : Sprite2D
 const PLAINS = "plains"
 const HILLS = "hills"
 const MOUNTAINS = "mountains"
@@ -35,7 +35,9 @@ func _on_ready() -> void:
 	GameManager.map = self
 	spawn_tile_map()
 	spawnPlayerUnits()
-	spawnEnemyUnits()
+	var enemies = GameManager.generate_enemies()
+	print("enemies: ",enemies)
+	spawnEnemyUnits(enemies)
 
 func _process(delta: float) -> void:
 	if state == State.PREGAME:
@@ -66,8 +68,33 @@ func spawnPlayerUnits():
 			unit_scene.unit_name = GameManager.UnitNames[unit]
 			add_child(unit_scene)
 
-func spawnEnemyUnits():
-	pass
+func spawnEnemyUnits(enemy_arr: Array):
+	var corners = Utils.get_sprite_corners(enemy_border)
+	
+	var min_x = corners[0].x
+	var max_x = corners[1].x
+	var min_y = corners[0].y
+	var max_y = corners[2].y
+	
+	# Iterate through each enemy type in the array
+	for enemy_data in enemy_arr:
+		var enemy_scene = enemy_data[0]  # The PackedScene
+		var count = enemy_data[1]		# Number of enemies to spawn of this type
+		
+		# Spawn 'count' number of this enemy type
+		for i in range(count):
+			var random_x = randf_range(min_x, max_x)
+			var random_y = randf_range(min_y, max_y)
+			var spawn_position = Vector2(random_x, random_y)
+			
+			if enemy_scene:
+				var enemy_instance = enemy_scene.instantiate()
+				add_child(enemy_instance)
+				enemy_instance.global_position = spawn_position
+				enemy_instance.add_to_group("enemies")
+			else:
+				push_error("No enemy scene provided for spawning RAUGH")
+			
 
 func spawn_tile_map() -> void:
 	# disable all other tilemaps
@@ -91,6 +118,8 @@ func spawn_tile_map() -> void:
 	selected_biome.visible = true
 	active_tile_map.enabled = true
 	border = selected_biome.find_child("Border")
+	enemy_border = selected_biome.find_child("EnemyBorder")
+	enemy_border.visible = false
 func _on_button_pressed() -> void:
 	#$Camera2D/CanvasLayer/Button.queue_free()
 	state = State.BATTLE
@@ -124,7 +153,7 @@ func win():
 	audio.play()
 	state = State.POSTGAME
 	await get_tree().create_timer(4).timeout
-	GameManager.difficulty_score += 60
+	GameManager.difficulty_score += 0.095
 	GameManager.end_battle()
 
 func _on_battle_ui_give_up():

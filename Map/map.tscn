@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c04x18amkxulk"]
+[gd_scene load_steps=6 format=3 uid="uid://c04x18amkxulk"]
 
 [ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://map/map.gd" id="1_6yc6o"]
-[ext_resource type="PackedScene" uid="uid://dh37h4k6rbpli" path="res://mobs/enemy/peasent.tscn" id="2_6yc6o"]
 [ext_resource type="PackedScene" uid="uid://b0xrqalcefxtt" path="res://map/map_types/hilly/hils0.tscn" id="5_5jdw0"]
 [ext_resource type="PackedScene" uid="uid://fbh2o6ysqdsg" path="res://ui/battle_ui.tscn" id="6_3g1qk"]
 [ext_resource type="PackedScene" uid="uid://b3rslsnt2g8co" path="res://map/map_types/plains/plains0.tscn" id="6_kxmgb"]
-[ext_resource type="PackedScene" uid="uid://ltpah472mq3a" path="res://mobs/enemy/knight.tscn" id="7_5jdw0"]
 [ext_resource type="PackedScene" uid="uid://el5pw6urxd3a" path="res://map/map_types/mountains/mountain0.tscn" id="7_e8e5r"]
 
 [node name="Map" type="Node2D"]
@@ -22,31 +20,10 @@ visible = false
 [node name="Mountain0" parent="BiomeMaps" instance=ExtResource("7_e8e5r")]
 visible = false
 
-[node name="Peasent" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(1072, 326)
-
-[node name="Peasent2" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(1140, 340)
-
-[node name="Peasent3" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(1027, 243)
-
-[node name="Peasent4" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(1134, 243)
-
-[node name="Peasent5" parent="." instance=ExtResource("2_6yc6o")]
-position = Vector2(1082, 400)
-
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 
 [node name="BattleUI" parent="." node_paths=PackedStringArray("map") instance=ExtResource("6_3g1qk")]
 map = NodePath("..")
-
-[node name="Knight" parent="." instance=ExtResource("7_5jdw0")]
-position = Vector2(971, 474)
-
-[node name="Knight2" parent="." instance=ExtResource("7_5jdw0")]
-position = Vector2(976, 364)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="give_up" from="BattleUI" to="." method="_on_battle_ui_give_up"]

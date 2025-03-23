@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://4wlimc6h7gee"]
+
+[ext_resource type="Script" uid="uid://1cl1qv7gxy0p" path="res://mobs/enemy/lesser_angel.gd" id="1_vpyb0"]
+[ext_resource type="Texture2D" uid="uid://bcsfwdt24676c" path="res://art/units/lesser_angel.png" id="2_vpyb0"]
+[ext_resource type="Script" uid="uid://drrepm7kwhwhi" path="res://mobs/enemy/tween_controller.gd" id="3_hq158"]
+[ext_resource type="Script" uid="uid://cjcslf3plpk6a" path="res://mobs/enemy/audio_controller.gd" id="4_nd4q0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lb8xq"]
+radius = 29.0172
+
+[node name="LesserAngel" type="CharacterBody2D"]
+script = ExtResource("1_vpyb0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_vpyb0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_lb8xq")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -18.0
+offset_top = -90.0
+offset_right = 22.0
+offset_bottom = -67.0
+
+[node name="TweenController" type="Node" parent="."]
+script = ExtResource("3_hq158")
+
+[node name="AudioController" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.698
+script = ExtResource("4_nd4q0")
+metadata/_custom_type_script = "uid://cjcslf3plpk6a"
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.4
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 25.0
+path_postprocessing = 1
+debug_enabled = true
