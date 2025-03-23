@@ -2,14 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dk30hfmye5q5n" path="res://map/map.gd" id="1_6yc6o"]
 [ext_resource type="PackedScene" uid="uid://b0xrqalcefxtt" path="res://map/map_types/hilly/hils0.tscn" id="5_5jdw0"]
-[ext_resource type="PackedScene" uid="uid://fbh2o6ysqdsg" path="res://ui/battle_ui.tscn" id="6_3g1qk"]
+[ext_resource type="PackedScene" uid="uid://fbh2o6ysqdsg" path="res://UI/battle_ui.tscn" id="6_3g1qk"]
 [ext_resource type="PackedScene" uid="uid://b3rslsnt2g8co" path="res://map/map_types/plains/plains0.tscn" id="6_kxmgb"]
 [ext_resource type="PackedScene" uid="uid://el5pw6urxd3a" path="res://map/map_types/mountains/mountain0.tscn" id="7_e8e5r"]
 
 [node name="Map" type="Node2D"]
+z_index = -1000
 script = ExtResource("1_6yc6o")
 
 [node name="BiomeMaps" type="Node2D" parent="."]
+z_index = -1000
 
 [node name="Hils0" parent="BiomeMaps" instance=ExtResource("5_5jdw0")]
 visible = false

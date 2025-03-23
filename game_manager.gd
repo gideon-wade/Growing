@@ -67,10 +67,10 @@ const UnitSounds = {
 		"interact" : 3
 	},
 	"Prisoner" = {
-		"attack" : -1,
-		"celebrate" : -1,
-		"death" : -1,
-		"interact" : -1
+		"attack" : 3,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 2
 	},
 	"Gorilla" = {
 		"attack" : 0,
@@ -240,16 +240,16 @@ var saved_world: World
 var has_generated = false
 var map_packed: PackedScene
 
-var difficulty_score = 0.5
+var difficulty_score = 0.0
 const DIFFICULTY_GAIN_WIN = 0.2
 const DIFFICULTY_GAIN_LOSE = 0.04
 #player vars
 var money: int = 100
-var units: Dictionary = {UnitType.IMP: 0, \
+var units: Dictionary = {UnitType.IMP: 1, \
 						 UnitType.SNAKE: 0, \
 						 UnitType.GHOST: 0, \
 						UnitType.PRISONER: 0, \
-						UnitType.SAW_DEMON: 1,
+						UnitType.SAW_DEMON: 0,
 						}
 
 var pre_camera_pos: Vector2

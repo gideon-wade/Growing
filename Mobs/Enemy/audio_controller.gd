@@ -18,7 +18,6 @@ func play_random_sound_of_type(sound_type : String, unit_name : String) -> void:
 	file_path += unit_name.to_lower() + "_" + sound_type
 	file_path += str(rng.randi_range(1, GameManager.UnitSounds[unit_name][sound_type])) + ".mp3"
 	stream = load(file_path)
-	print(file_path)
 	set_pitch_scale(rng.randf_range(0.9, 1.1))
 	play()
 

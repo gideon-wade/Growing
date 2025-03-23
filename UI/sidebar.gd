@@ -19,9 +19,6 @@ class_name Sidebar extends HBoxContainer
 
 @onready var audio_controller: AudioController = $Panel/VBoxContainer2/ScrollContainer/AudioController
 
-
-
-
 var world
 
 signal unit_bought
