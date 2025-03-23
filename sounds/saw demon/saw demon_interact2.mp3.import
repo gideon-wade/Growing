@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ycrx24o8uhde"
+path="res://.godot/imported/saw demon_interact2.mp3-d896a70de00ba3fcb5f1bafdb424e66a.mp3str"
+
+[deps]
+
+source_file="res://sounds/saw demon/saw demon_interact2.mp3"
+dest_files=["res://.godot/imported/saw demon_interact2.mp3-d896a70de00ba3fcb5f1bafdb424e66a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

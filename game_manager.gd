@@ -85,10 +85,10 @@ const UnitSounds = {
 		"interact" : 2
 	},
 	"Saw Demon" = {
-		"attack" : -1,
-		"celebrate" : -1,
-		"death" : -1,
-		"interact" : -1
+		"attack" : 4,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 3
 	}
 }
 

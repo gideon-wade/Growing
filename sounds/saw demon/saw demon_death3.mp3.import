@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1txiueph1cmj"
+path="res://.godot/imported/saw demon_death3.mp3-98ca80667efafb71690c36f7d2e1c758.mp3str"
+
+[deps]
+
+source_file="res://sounds/saw demon/saw demon_death3.mp3"
+dest_files=["res://.godot/imported/saw demon_death3.mp3-98ca80667efafb71690c36f7d2e1c758.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbmlglnb8s6hd"
+path="res://.godot/imported/saw demon_attack1.mp3-5a3a0a3a423347a2c06f88e56e6c0235.mp3str"
+
+[deps]
+
+source_file="res://sounds/saw demon/saw demon_attack1.mp3"
+dest_files=["res://.godot/imported/saw demon_attack1.mp3-5a3a0a3a423347a2c06f88e56e6c0235.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
