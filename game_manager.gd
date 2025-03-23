@@ -85,10 +85,10 @@ const UnitSounds = {
 		"interact" : 2
 	},
 	"Saw Demon" = {
-		"attack" : 4,
-		"celebrate" : 2,
-		"death" : 3,
-		"interact" : 3
+		"attack" : -1,
+		"celebrate" : -1,
+		"death" : -1,
+		"interact" : -1
 	}
 }
 
@@ -164,9 +164,9 @@ const MobStats = {
 	},
 	"Saw Demon" : {
 		"Hp": 300,
-		"Att": 25,
+		"Att": 120,
 		"MoveSpeed": 80,
-		"AttackSpeed": 0.1,
+		"AttackSpeed": 0.5,
 	},
 	"Peasant": {
 		"Hp": 100,
@@ -193,10 +193,10 @@ const MobStats = {
 		"AttackSpeed": 1,
 	},
 	"Arch Angel": {
-		"Hp": 250,
-		"Att": 70,
+		"Hp": 800,
+		"Att": 250,
 		"MoveSpeed": 140,
-		"AttackSpeed": 0.8,
+		"AttackSpeed": 2.2,
 	},
 }
 

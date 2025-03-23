@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://fbh2o6ysqdsg"]
 
-[ext_resource type="Script" uid="uid://l2o20aq5uuuu" path="res://UI/battle_ui.gd" id="1_76cpj"]
-[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://UI/theme.tres" id="1_fyysl"]
+[ext_resource type="Script" uid="uid://l2o20aq5uuuu" path="res://ui/battle_ui.gd" id="1_76cpj"]
+[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://ui/theme.tres" id="1_fyysl"]
 
 [node name="BattleUI" type="Control"]
 layout_mode = 3

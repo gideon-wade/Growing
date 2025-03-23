@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg8mpkacey75g"
-path="res://.godot/imported/heart.png-6435ac13e460cd412ad43fdd87bd82f5.ctex"
+uid="uid://rumjq2ajxpil"
+path="res://.godot/imported/castle_ui_border_box.png-38fd11d006801e05b185f5727a2b0ce7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/heart.png"
-dest_files=["res://.godot/imported/heart.png-6435ac13e460cd412ad43fdd87bd82f5.ctex"]
+source_file="res://art/ui/castle_ui_border_box.png"
+dest_files=["res://.godot/imported/castle_ui_border_box.png-38fd11d006801e05b185f5727a2b0ce7.ctex"]
 
 [params]
 

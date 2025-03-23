@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cf3hklbrmeu8o"
-path="res://.godot/imported/DevinneSwash.ttf-7e2dc7042c8adcc880ccc3a2fd9c26e0.fontdata"
+path="res://.godot/imported/DevinneSwash.ttf-e7ae8a0ff84b12eb89f024d7aeba7c23.fontdata"
 
 [deps]
 
-source_file="res://UI/DevinneSwash.ttf"
-dest_files=["res://.godot/imported/DevinneSwash.ttf-7e2dc7042c8adcc880ccc3a2fd9c26e0.fontdata"]
+source_file="res://ui/DevinneSwash.ttf"
+dest_files=["res://.godot/imported/DevinneSwash.ttf-e7ae8a0ff84b12eb89f024d7aeba7c23.fontdata"]
 
 [params]
 
