@@ -355,4 +355,4 @@ func generate_enemies(mob) -> Array:
 	return filtered_output
 
 func calc_price(n : int) -> int:
-	return 2**(n*0.2)
+	return 2**(n*0.25)

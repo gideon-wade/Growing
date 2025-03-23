@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx4as3s4peet1"]
+[gd_scene load_steps=13 format=3 uid="uid://bx4as3s4peet1"]
 
 [ext_resource type="Script" uid="uid://cyuijgdpb0x47" path="res://art_assets/playground.gd" id="1_0t8dc"]
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="2_n7clt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bcsfwdt24676c" path="res://art/units/lesser_angel.png" id="9_0t8dc"]
 [ext_resource type="Texture2D" uid="uid://b3xb7p88aakd3" path="res://art/units/holy_gorilla.png" id="10_7y5n6"]
 [ext_resource type="Texture2D" uid="uid://dawqgpc2yxen5" path="res://art/units/prisoner.png" id="11_bfvhb"]
+[ext_resource type="Texture2D" uid="uid://dx1k4iduejfkc" path="res://art/units/saw_demon.png" id="12_ui2pd"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0t8dc")
@@ -41,7 +42,7 @@ scale = Vector2(0.464844, 0.464844)
 texture = ExtResource("6_bfvhb")
 
 [node name="Sprite2D6" type="Sprite2D" parent="."]
-position = Vector2(-505, 436)
+position = Vector2(-868, 436)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_n7clt")
 
@@ -74,5 +75,10 @@ texture = ExtResource("10_7y5n6")
 position = Vector2(-22, 479)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("11_bfvhb")
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+position = Vector2(-394, 467)
+scale = Vector2(0.796875, 0.796875)
+texture = ExtResource("12_ui2pd")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
