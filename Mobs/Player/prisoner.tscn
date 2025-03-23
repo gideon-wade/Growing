@@ -38,7 +38,7 @@ script = ExtResource("4_60lgs")
 metadata/_custom_type_script = "uid://cjcslf3plpk6a"
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.7
+wait_time = 1.5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 25.0

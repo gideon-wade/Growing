@@ -1,9 +1,8 @@
 class_name ArchAngel extends Enemy
 
-const SPEED = 300
-
-var life = 1000
-var attack = 100
+var speed
+var life
+var attack
 @onready var map: Map = get_parent()
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var walking : bool  = false
@@ -13,6 +12,10 @@ var can_attack : bool = true
 func _ready() -> void:
 	super()
 	unit_name = "Arch Angel"
+	life = GameManager.MobStats[unit_name]["Hp"]
+	attack = GameManager.MobStats[unit_name]["Att"]
+	speed = GameManager.MobStats[unit_name]["MoveSpeed"]
+	$AttackTimer.wait_time = GameManager.MobStats[unit_name]["AttackSpeed"]
 	tween_controller.original_sprite_scale = $Sprite.scale
 
 func _physics_process(delta: float) -> void:
@@ -38,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	var angle = position.angle_to_point(closest_player.position)
 	navigation_agent.target_position = closest_player.global_position
 	var dir = to_local(navigation_agent.get_next_path_position()).normalized()
-	velocity = dir * SPEED
+	velocity = dir * speed
 	move_and_slide()
 	var collider: KinematicCollision2D = get_last_slide_collision()
 	if !walking:

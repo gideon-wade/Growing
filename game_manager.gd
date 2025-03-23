@@ -122,10 +122,67 @@ const MobToSprite = {
 	"Prisoner" : preload("res://art/units/prisoner.png"),
 }
 
+const MobStats = {
+	"Imp": {
+		"Hp": 100,
+		"Att": 25,
+		"MoveSpeed": 80,
+		"AttackSpeed": 1,
+	},
+	"Snake": {
+		"Hp": 110,
+		"Att": 35,
+		"MoveSpeed": 140,
+		"AttackSpeed": 1,
+	},
+	"Ghost": {
+		"Hp": 150,
+		"Att": 30,
+		"MoveSpeed": 160,
+		"AttackSpeed": 0.7,
+	},
+	"Prisoner": {
+		"Hp": 200,
+		"Att": 50,
+		"MoveSpeed": 60,
+		"AttackSpeed": 1.5,
+	},
+	"Peasant": {
+		"Hp": 100,
+		"Att": 20,
+		"MoveSpeed": 110,
+		"AttackSpeed": 1,
+	},
+	"Knight": {
+		"Hp": 300,
+		"Att": 20,
+		"MoveSpeed": 90,
+		"AttackSpeed": 1.4,
+	},
+	"Angel": {
+		"Hp": 200,
+		"Att": 45,
+		"MoveSpeed": 120,
+		"AttackSpeed": 1.4,
+	},
+	"Gorilla": {
+		"Hp": 500,
+		"Att": 30,
+		"MoveSpeed": 150,
+		"AttackSpeed": 1,
+	},
+	"ArchAngel": {
+		"Hp": 200,
+		"Att": 70,
+		"MoveSpeed": 100,
+		"AttackSpeed": 1,
+	},
+}
+
 const DifficultyMult = {
 	"Peasant" : 1,
 	"Knight" : 1.2,
-	"Angle": 1.5,
+	"Angel": 1.5,
 	"Gorrila": 1.9,
 	"ArchAngel": 2.3,
 }
@@ -259,7 +316,7 @@ func ui_unit_bought():
 
 const PEASENT := preload("res://mobs/enemy/peasent.tscn")
 const KNIGHT = preload("res://mobs/enemy/knight.tscn")
-const LESSER_ANGEL = preload("res://mobs/enemy/lesser_angel.tscn")
+const ANGEL = preload("res://mobs/enemy/angel.tscn")
 const GORRILA = preload("res://mobs/enemy/gorrila.tscn")
 const ARCH_ANGEL = preload("res://mobs/enemy/arch_angel.tscn")
 
@@ -269,9 +326,9 @@ func generate_enemies(mob) -> Array:
 
 	var tier1 = [PEASENT, SpawnRate.t1(real_score)]  # Weakest 
 	var tier2 = [KNIGHT, SpawnRate.t2(real_score)]
-	var tier3 = [LESSER_ANGEL, SpawnRate.t3(real_score)]
+	var tier3 = [ANGEL, SpawnRate.t3(real_score)]
 	var tier4 = [GORRILA, SpawnRate.t4(real_score)]
-	var tier5 = [LESSER_ANGEL, SpawnRate.t5(real_score)]
+	var tier5 = [ANGEL, SpawnRate.t5(real_score)]
 	var tier6 = [ARCH_ANGEL, SpawnRate.t6(real_score)]  # Strongest 
 	
 	output = [
