@@ -11,7 +11,7 @@ var can_attack : bool = true
 func _ready() -> void:
 	super()
 	map = get_parent()
-	unit_name = "Ghost"
+	unit_name = "Prisoner"
 	tween_controller.original_sprite_scale = $Sprite.scale
 
 func _physics_process(delta: float) -> void:
@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
 		if collider.get_collider() is Enemy:
 			#print("Atack ", can_attack)
 			if can_attack:
+				print(unit_name, " attacked")
 				can_attack = false
 				audio_controller.play_random_sound_of_type("attack", unit_name)
 				$AttackTimer.start()

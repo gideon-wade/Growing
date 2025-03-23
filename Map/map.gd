@@ -69,6 +69,7 @@ func generate_player_units() -> Array:
 			player_arr.append([scene, count, unit_name])
 	
 	return player_arr
+	
 func spawnPlayerUnits(player_arr: Array):
 	var corners = Utils.get_sprite_corners(border)
 	
@@ -106,7 +107,7 @@ func spawnEnemyUnits(enemy_arr: Array):
 	
 	for enemy_data in enemy_arr:
 		var enemy_scene = enemy_data[0] 
-		var count = enemy_data[1]		
+		var count = enemy_data[1]
 		
 
 		for i in range(count):
@@ -147,12 +148,10 @@ func spawn_tile_map() -> void:
 	border = selected_biome.find_child("Border")
 	enemy_border = selected_biome.find_child("EnemyBorder")
 	enemy_border.visible = false
-func _on_button_pressed() -> void:
-	#$Camera2D/CanvasLayer/Button.queue_free()
-	state = State.BATTLE
-
 
 func _on_battle_ui_start_battle():
+	if GameManager.get_units(Player).any(func (unit): return unit.held or unit.in_unsafe_place()):
+		return
 	state = State.BATTLE
 	battle_start.emit()
 	border.visible = false
@@ -160,9 +159,10 @@ func _on_battle_ui_start_battle():
 func lose():
 	battle_lost.emit()
 	state = State.POSTGAME
-	GameManager.money += GameManager.RarityReward["Lost"]
+	GameManager.money += int(GameManager.RarityReward["Lost"] * (1 + GameManager.difficulty_score))
 	
-	await get_tree().create_timer(4).timeout 
+	await get_tree().create_timer(4).timeout
+	GameManager.difficulty_score += GameManager.DIFFICULTY_GAIN_LOSE
 	GameManager.end_battle()
 
 func win():
@@ -179,7 +179,7 @@ func win():
 	audio.play()
 	state = State.POSTGAME
 	await get_tree().create_timer(4).timeout
-	GameManager.difficulty_score += GameManager.DIFFICULTY_GAIN
+	GameManager.difficulty_score += GameManager.DIFFICULTY_GAIN_WIN
 	GameManager.end_battle()
 
 func _on_battle_ui_give_up():

@@ -104,8 +104,8 @@ const RarityProbability = {
 }
 
 const RarityReward = {
-	"Lost": 10, 
-	"Common": 35, 
+	"Lost": 15, 
+	"Common": 45, 
 	"Rare": 80,
 	"Epic": 200,
 }
@@ -153,7 +153,8 @@ var has_generated = false
 var map_packed: PackedScene
 
 var difficulty_score = 0.0
-const DIFFICULTY_GAIN = 0.3
+const DIFFICULTY_GAIN_WIN = 0.2
+const DIFFICULTY_GAIN_LOSE = 0.04
 #player vars
 var money: int = 100
 var units: Dictionary = {UnitType.IMP: 1, \
@@ -242,7 +243,7 @@ func decide_random_reward() -> String:
 	for rarity in RarityProbability.keys():
 		random_value -= RarityProbability[rarity]
 		if random_value < 0:
-			money += RarityReward[rarity]
+			money += int(RarityReward[rarity] * (1 + difficulty_score))
 			return rarity
 	return ""
 

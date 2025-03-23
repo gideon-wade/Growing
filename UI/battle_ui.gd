@@ -22,7 +22,7 @@ func _on_battle_won(reward : String):
 	label.visible = true
 	reward_label.visible = true
 	give_up_button.visible = false
-	var money = GameManager.RarityReward[reward]
+	var money = int(GameManager.RarityReward[reward] * (1 + GameManager.difficulty_score))
 	if reward == "Common":
 		reward_label.text = "You got a common reward.\nReward: " + str(money) + " $"
 	elif reward == "Rare":
@@ -33,16 +33,16 @@ func _on_battle_won(reward : String):
 		print("Hello rarity doesn't exist (I fart)")
 
 func _on_battle_lost():
-	var money = GameManager.RarityReward["Lost"]
-	label.text = "You lose\nPenalty: " + str(money) + " $"
+	var money = int(GameManager.RarityReward["Lost"] * (1 + GameManager.difficulty_score))
+	label.text = "You lose\nConsolation: " + str(money) + " $"
 	panel.visible = true
 	give_up_button.visible = false
 
 func _on_button_pressed():
 	start_battle.emit()
-	start_button.visible = false
 
 func _on_battle_start():
+	start_button.visible = false
 	timer.start()
 
 func _on_timer_timeout():
