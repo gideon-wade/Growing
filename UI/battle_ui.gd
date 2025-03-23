@@ -8,7 +8,7 @@ signal give_up
 @onready var panel = $CanvasLayer/Control/VBoxContainer/HBoxContainer/Control2/VBoxContainer/Panel
 @onready var reward_label = $CanvasLayer/Control/VBoxContainer/HBoxContainer/Control2/VBoxContainer/Panel/VBoxContainer/MarginContainer/RewardLabel
 @onready var start_button = $CanvasLayer/Control/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer/Control3/Button
-@onready var give_up_button = $CanvasLayer/Control/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer/Control/Button
+@onready var give_up_button = $CanvasLayer/Control/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer/Control/HBoxContainer/VBoxContainer/Button
 @onready var timer = $CanvasLayer/Control/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer/Control/Timer
 func _ready():
 	map.battle_won.connect(_on_battle_won)
