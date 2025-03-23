@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://g7ggwarq615q"
+path="res://.godot/imported/lesser angel_celebrate2.mp3-239e550a97a1b6ecda716adae06a00fd.mp3str"
+
+[deps]
+
+source_file="res://sounds/lesser angel/lesser angel_celebrate2.mp3"
+dest_files=["res://.godot/imported/lesser angel_celebrate2.mp3-239e550a97a1b6ecda716adae06a00fd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

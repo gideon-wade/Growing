@@ -57,6 +57,12 @@ const UnitSounds = {
 		"celebrate" : 3,
 		"death" : 3,
 		"interact" : 3
+	},
+	"Lesser Angel" = {
+		"attack" : 4,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 3
 	}
 }
 

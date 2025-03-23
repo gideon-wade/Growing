@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://buysc5v2wdkak"
+path="res://.godot/imported/lesser angel_death2.mp3-74a5c0c9b1dcf4b8772888429adca672.mp3str"
+
+[deps]
+
+source_file="res://sounds/lesser angel/lesser angel_death2.mp3"
+dest_files=["res://.godot/imported/lesser angel_death2.mp3-74a5c0c9b1dcf4b8772888429adca672.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
