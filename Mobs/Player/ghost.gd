@@ -43,7 +43,6 @@ func _physics_process(delta: float) -> void:
 		if collider.get_collider() is Enemy:
 			#print("Atack ", can_attack)
 			if can_attack:
-				print(unit_name, " attacked")
 				can_attack = false
 				audio_controller.play_random_sound_of_type("attack", unit_name)
 				$AttackTimer.start()

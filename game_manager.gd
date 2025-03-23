@@ -122,6 +122,13 @@ const MobToSprite = {
 	"Prisoner" : preload("res://art/units/prisoner.png"),
 }
 
+const DifficultyMult = {
+	"Peasant" : 1,
+	"Knight" : 1.2,
+	"Angle": 1.5,
+	"Gorrila": 1.9,
+	"ArchAngel": 2.3,
+}
 
 var map: Map
 
@@ -167,7 +174,7 @@ var pre_camera_pos: Vector2
 var pre_camera_zoom: Vector2
 
 func _ready() -> void:
-	map_packed = load("res://Map/map.tscn") as PackedScene
+	map_packed = load("res://map/map.tscn") as PackedScene
 
 func world_rdy(world: World):
 	if not has_generated:
@@ -185,8 +192,8 @@ func start_battle(mob: Mob, biome : String):
 	camera.zoom = camera.max_zoom
 	camera.min_zoom = camera.max_zoom
 	camera.global_position = Vector2(700, 300)
-	camera.limit_top = -200
-	camera.limit_left = -300
+	camera.limit_top = -400
+	camera.limit_left = -600
 	camera.limit_right = 1600
 	camera.limit_bottom = 750
 	camera.position_smoothing_enabled = false
@@ -255,15 +262,17 @@ const KNIGHT = preload("res://mobs/enemy/knight.tscn")
 const LESSER_ANGEL = preload("res://mobs/enemy/lesser_angel.tscn")
 const GORRILA = preload("res://mobs/enemy/gorrila.tscn")
 const ARCH_ANGEL = preload("res://mobs/enemy/arch_angel.tscn")
-func generate_enemies() -> Array:
-	var output = []
 
-	var tier1 = [PEASENT, SpawnRate.t1(difficulty_score)]  # Weakest 
-	var tier2 = [KNIGHT, SpawnRate.t2(difficulty_score)]
-	var tier3 = [LESSER_ANGEL, SpawnRate.t3(difficulty_score)]
-	var tier4 = [GORRILA, SpawnRate.t4(difficulty_score)]
-	var tier5 = [LESSER_ANGEL, SpawnRate.t5(difficulty_score)]
-	var tier6 = [ARCH_ANGEL, SpawnRate.t6(difficulty_score)]  # Strongest 
+func generate_enemies(mob) -> Array:
+	var output = []
+	var real_score = difficulty_score * DifficultyMult[mob.mob_name]
+
+	var tier1 = [PEASENT, SpawnRate.t1(real_score)]  # Weakest 
+	var tier2 = [KNIGHT, SpawnRate.t2(real_score)]
+	var tier3 = [LESSER_ANGEL, SpawnRate.t3(real_score)]
+	var tier4 = [GORRILA, SpawnRate.t4(real_score)]
+	var tier5 = [LESSER_ANGEL, SpawnRate.t5(real_score)]
+	var tier6 = [ARCH_ANGEL, SpawnRate.t6(real_score)]  # Strongest 
 	
 	output = [
 		tier1,

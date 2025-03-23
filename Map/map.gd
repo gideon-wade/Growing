@@ -35,7 +35,7 @@ func _on_ready() -> void:
 	GameManager.map = self
 	spawn_tile_map()
 	spawnPlayerUnits(generate_player_units())
-	var enemies = GameManager.generate_enemies()
+	var enemies = GameManager.generate_enemies(mob)
 	print("enemies: ",enemies)
 	spawnEnemyUnits(enemies)
 
