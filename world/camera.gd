@@ -13,6 +13,8 @@ var frozen: bool = false
 
 var rect : Rect2 
 
+@onready var music: AudioStreamPlayer2D = $Music
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	position_smoothing_enabled = false
