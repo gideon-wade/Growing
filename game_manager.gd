@@ -70,6 +70,12 @@ const UnitSounds = {
 		"celebrate" : -1,
 		"death" : -1,
 		"interact" : -1
+	},
+	"Arch Angel" = {
+		"attack" : 3,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 2
 	}
 }
 
@@ -150,10 +156,10 @@ var difficulty_score = 0.0
 const DIFFICULTY_GAIN = 0.3
 #player vars
 var money: int = 100
-var units: Dictionary = {UnitType.IMP: 2, \
+var units: Dictionary = {UnitType.IMP: 1, \
 						 UnitType.SNAKE: 0, \
 						 UnitType.GHOST: 0, \
-						UnitType.PRISONER: 2,
+						UnitType.PRISONER: 0,
 						}
 
 var pre_camera_pos: Vector2

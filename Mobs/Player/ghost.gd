@@ -16,7 +16,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	z_index = position.y # sets the position so units are positons infront eachother forstaar du
-
 	if map.state != map.State.BATTLE or !is_alive:
 		return
 	var enemies: Array = GameManager.get_units(Enemy)
