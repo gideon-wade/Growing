@@ -8,6 +8,7 @@ var fog_id : int = 1
 @onready var terrain: TileMapLayer = $Terrian
 @onready var fog: TileMapLayer = $Fog
 @onready var ui: Control = $UI
+@onready var camera: Camera2D = $Camera
 
 var tile_size : int = 128
 #Water

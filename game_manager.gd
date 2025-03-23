@@ -164,7 +164,8 @@ func start_battle(mob: Mob, biome : String):
 	map_scene.mob = mob
 	map_scene.camera = camera
 	get_node("/root/").add_child(map_scene)
-	
+	saved_world.camera.music.stream = load("res://sounds/demon_battle.mp3")
+	saved_world.camera.music.play()
 
 func end_battle():
 	get_node("/root/Map").queue_free()
@@ -178,6 +179,8 @@ func end_battle():
 	camera.zoom = pre_camera_zoom
 	camera.min_zoom = Vector2(0.45, 0.45)
 	show_world_ui.emit()
+	saved_world.camera.music.stream = load("res://sounds/world_music.mp3")
+	saved_world.camera.music.play()
 
 func get_units(type):
 	if map == null:
