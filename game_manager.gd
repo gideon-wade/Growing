@@ -108,6 +108,10 @@ var UnitCosts: Dictionary = {UnitType.IMP: 10, \
 							UnitType.SNAKE: 25, \
 							UnitType.GHOST: 40,
 							}
+var UnitBasePrice: Dictionary = {UnitType.IMP: 10, \
+							UnitType.SNAKE: 25, \
+							UnitType.GHOST: 40,
+							}
 
 var UnitNames: Dictionary = {UnitType.IMP: "Imp", \
 							UnitType.SNAKE: "Snake", \
@@ -240,42 +244,6 @@ func generate_enemies() -> Array:
 		tier6,
 	]
 	
-	#
-	#var tier1_scale = max(1.0, 1.0 - difficulty_score * 0.5) 
-	#var tier2_scale = 1.0
-	#var tier3_scale = 1.0 + difficulty_score * 0.5 
-	#var tier4_scale = 1.0 + difficulty_score * 1.0  
-	#var tier5_scale = 1.0 + difficulty_score * 1.5  
-	#var tier6_scale = 1.0 + difficulty_score * 2.0  
-	#
-	#if difficulty_score < 0.1:
-		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-	#elif difficulty_score < 0.2:
-		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		#output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.5)])
-	#elif difficulty_score < 0.4:
-		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		#output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		#output.append([tier3[0], ceil(tier3[1] * tier3_scale * 0.5)])
-	#elif difficulty_score < 0.6:
-		#output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		#output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		#output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		#output.append([tier4[0], ceil(tier4[1] * tier4_scale * 0.5)])
-	#elif difficulty_score < 0.8:
-		#output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.8)])
-		#output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		#output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		#output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
-		#output.append([tier5[0], ceil(tier5[1] * tier5_scale * 0.7)])
-	#else:
-		#output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.7)])
-		#output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.8)])
-		#output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		#output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
-		#output.append([tier5[0], ceil(tier5[1] * tier5_scale)])
-		#output.append([tier6[0], ceil(tier6[1] * tier6_scale * 0.8)])
-	
 	var filtered_output = []
 	for entry in output:
 		if entry[1] > 0:
@@ -283,4 +251,6 @@ func generate_enemies() -> Array:
 	if difficulty_score >= SpawnRate.get_max_diff():
 		filtered_output = [[ARCH_ANGEL,10]]
 	return filtered_output
-	
+
+func calc_price(n : int) -> int:
+	return 2**(n*0.2)

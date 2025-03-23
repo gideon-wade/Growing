@@ -23,9 +23,8 @@ func _ready():
 	sidebar.visible = false
 	units_button.visible = true
 	
-	imp_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.IMP]) + "$"
-	snake_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.SNAKE]) + "$"
-	ghost_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.GHOST]) + "$"
+	update_price()
+	
 	
 	unit_bought.connect(GameManager.ui_unit_bought)
 
@@ -50,17 +49,20 @@ func buy(unit_type):
 	if GameManager.money >= GameManager.UnitCosts[unit_type]:
 		GameManager.money -= GameManager.UnitCosts[unit_type]
 		GameManager.units[unit_type] += 1
+		GameManager.UnitCosts[unit_type] = GameManager.UnitBasePrice[unit_type]+ GameManager.calc_price(GameManager.units[unit_type])
 		unit_bought.emit()
 
 func _on_buy_imp() -> void:
 	buy(GameManager.UnitType.IMP)
-
+	update_price()
+	
 func _on_but_snake() -> void:
 	buy(GameManager.UnitType.SNAKE)
-
+	update_price()
 func _on_button_pressed() -> void:
 	buy(GameManager.UnitType.GHOST)
-
+	update_price()
+	
 func _on_hide_info_button_pressed():
 	info.visible = false
 	world.info_shown = false
@@ -68,3 +70,7 @@ func _on_hide_info_button_pressed():
 func _on_info_button_pressed():
 	info.visible = true
 	world.info_shown = true
+func update_price():
+	imp_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.IMP]) + "$"
+	snake_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.SNAKE]) + "$"
+	ghost_cost.text = str(GameManager.UnitCosts[GameManager.UnitType.GHOST]) + "$"
