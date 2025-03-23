@@ -119,7 +119,7 @@ func step_back() -> void:
 	await unit_tween.finished
 	idle()
 
-func hit(attackingUnit : Unit, unitHit : Unit) -> void:
+func hit(attackingUnit : Node2D, unitHit : Node2D) -> void:
 	reset()
 	unit_tween = create_tween()
 	var normalized_difference := Vector2(attackingUnit.global_position - \

@@ -17,7 +17,7 @@ class_name Sidebar extends HBoxContainer
 @onready var prisoner_cost : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Label
 @onready var saw_demon_cost : Label = $Panel/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Label
 
-@onready var audio_controller: AudioController = $Panel/VBoxContainer2/ScrollContainer/AudioController
+#@onready var audio_controller: AudioController = $Panel/VBoxContainer2/ScrollContainer/AudioController
 
 var world
 

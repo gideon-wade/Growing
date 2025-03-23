@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 				$AttackTimer.start()
 				audio_controller.play_random_sound_of_type("attack", unit_name)
 				collider.get_collider().damage(attack)
+				tween_controller.hit(self, collider.get_collider())
 
 func damage(dmg):
 	life -= dmg

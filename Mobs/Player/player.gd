@@ -15,6 +15,7 @@ func _ready() -> void:
 	mouse_area.input_event.connect(_on_input_event)
 	tween_controller.original_sprite_scale = Vector2(0.25, 0.25)
 	$AttackTimer.wait_time = attack_speed
+	audio_controller.volume_db = -15
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:

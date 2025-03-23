@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 		for unit in get_children():
 			if unit is Player:
 				players += 1
-				if unit.global_position.y < 0:
+				if unit.global_position.y < -100:
 					var corners = Utils.get_sprite_corners(border)
 					
 					var min_x = corners[0].x
