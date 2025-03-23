@@ -66,10 +66,10 @@ const UnitSounds = {
 		"interact" : 3
 	},
 	"Prisoner" = {
-		"attack" : -1,
-		"celebrate" : -1,
-		"death" : -1,
-		"interact" : -1
+		"attack" : 3,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 2
 	},
 	"Gorilla" = {
 		"attack" : 0,
@@ -226,7 +226,7 @@ var difficulty_score = 0.0
 const DIFFICULTY_GAIN_WIN = 0.2
 const DIFFICULTY_GAIN_LOSE = 0.04
 #player vars
-var money: int = 100
+var money: int = 1000
 var units: Dictionary = {UnitType.IMP: 1, \
 						 UnitType.SNAKE: 0, \
 						 UnitType.GHOST: 0, \
