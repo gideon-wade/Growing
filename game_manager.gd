@@ -123,7 +123,7 @@ var has_generated = false
 var map_packed: PackedScene
 
 var difficulty_score = 0.0
-
+const DIFFICULTY_GAIN = 0.3
 #player vars
 var money: int = 100
 var units: Dictionary = {UnitType.IMP: 2, \
