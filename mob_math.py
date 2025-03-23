@@ -20,12 +20,23 @@ def quadratic_from_points(p1, p2, p3):
 
 # Example usage:
 # t1
-p1 = (-0.2, 0)
-p2 = (1, 10)
-p3 = (2, 0)
+# p1 = (-0.2, 0)
+# p2 = (1, 10)
+# p3 = (2, 0)
 # t2
-# p1 = (0.5, 0)
-# p2 = (1.5, 10)
-# p3 = (5, 0)
-a, b, c = quadratic_from_points(p1, p2, p3)
-print(f"Quadratic function: y = floor({a:.2f}*x**2 + {b:.2f}*x + {c:.2f})")
+p1 = (0.5, 0)
+p2 = (1.5, 10)
+p3 = (2.5, 0)
+
+inp = [
+    [(-0.2, 0), (1, 10), (2, 0)],
+    [(0.5, 0),(1.5, 10),(2.5, 0)],
+    [(1, 0),(2, 10),(3, 0)],
+    [(1.5, 0),(2.5, 10),(3.5, 0)],
+    [(2, 0),(3, 10),(4, 0)],
+    [(2.5, 0),(3.5, 10),(4.5, 0)],
+]
+
+for i in range(len(inp)):
+    a, b, c = quadratic_from_points(inp[i][0], inp[i][1], inp[i][2])
+    print(f"Quadratic function: y = floor({a:.2f}*x**2 + {b:.2f}*x + {c:.2f})")

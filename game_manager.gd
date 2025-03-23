@@ -280,6 +280,7 @@ func generate_enemies() -> Array:
 	for entry in output:
 		if entry[1] > 0:
 			filtered_output.append(entry)
-	
+	if difficulty_score >= SpawnRate.get_max_diff():
+		filtered_output = [[ARCH_ANGEL,10]]
 	return filtered_output
 	

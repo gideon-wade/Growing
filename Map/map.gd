@@ -153,7 +153,7 @@ func win():
 	audio.play()
 	state = State.POSTGAME
 	await get_tree().create_timer(4).timeout
-	GameManager.difficulty_score += 0.5
+	GameManager.difficulty_score += 0.3
 	GameManager.end_battle()
 
 func _on_battle_ui_give_up():
