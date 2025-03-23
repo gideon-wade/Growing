@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://ctr3aa26mstlh"]
 
 [ext_resource type="Texture2D" uid="uid://tl7xwlbsxc6o" path="res://art/units/imp.png" id="1_2fwl4"]
-[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://ui/theme.tres" id="1_3sbvi"]
-[ext_resource type="Script" uid="uid://dy5yhk5alcgx2" path="res://ui/ui.gd" id="1_4fiuh"]
-[ext_resource type="Script" uid="uid://qi11kix783v0" path="res://ui/sidebar.gd" id="1_dajm1"]
+[ext_resource type="Theme" uid="uid://ce87vvxt2a536" path="res://UI/theme.tres" id="1_3sbvi"]
+[ext_resource type="Script" uid="uid://dy5yhk5alcgx2" path="res://UI/ui.gd" id="1_4fiuh"]
+[ext_resource type="Script" uid="uid://qi11kix783v0" path="res://UI/sidebar.gd" id="1_dajm1"]
 [ext_resource type="Texture2D" uid="uid://47dkvb7hy0o0" path="res://art/units/snake.png" id="3_hat8c"]
 [ext_resource type="Texture2D" uid="uid://bwg1lvkvy78p7" path="res://art/units/ghost.png" id="4_3sbvi"]
 

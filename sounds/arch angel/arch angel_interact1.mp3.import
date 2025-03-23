@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5x0ibmmkj4db"
+path="res://.godot/imported/arch angel_interact1.mp3-07ae2fb083162c766f98576efe8bb5e4.mp3str"
+
+[deps]
+
+source_file="res://sounds/arch angel/arch angel_interact1.mp3"
+dest_files=["res://.godot/imported/arch angel_interact1.mp3-07ae2fb083162c766f98576efe8bb5e4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

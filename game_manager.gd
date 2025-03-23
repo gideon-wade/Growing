@@ -63,6 +63,12 @@ const UnitSounds = {
 		"celebrate" : 2,
 		"death" : 3,
 		"interact" : 3
+	},
+	"Arch Angel" = {
+		"attack" : 3,
+		"celebrate" : 2,
+		"death" : 3,
+		"interact" : 2
 	}
 }
 

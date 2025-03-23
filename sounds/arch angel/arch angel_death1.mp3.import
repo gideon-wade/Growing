@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3psf3sygayup"
+path="res://.godot/imported/arch angel_death1.mp3-649dcba1dc54595b0c516a44114ce9c0.mp3str"
+
+[deps]
+
+source_file="res://sounds/arch angel/arch angel_death1.mp3"
+dest_files=["res://.godot/imported/arch angel_death1.mp3-649dcba1dc54595b0c516a44114ce9c0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

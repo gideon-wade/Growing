@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dui514s6uk48t"
+path="res://.godot/imported/arch angel_celebrate2.mp3-4f434512e3c9311c05c8776c1b23994e.mp3str"
+
+[deps]
+
+source_file="res://sounds/arch angel/arch angel_celebrate2.mp3"
+dest_files=["res://.godot/imported/arch angel_celebrate2.mp3-4f434512e3c9311c05c8776c1b23994e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
