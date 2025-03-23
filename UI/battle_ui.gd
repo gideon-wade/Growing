@@ -34,7 +34,7 @@ func _on_battle_won(reward : String):
 
 func _on_battle_lost():
 	var money = GameManager.RarityReward["Lost"]
-	label.text = "You lose\nReward: " + str(money) + " $"
+	label.text = "You lose\nPenalty: " + str(money) + " $"
 	panel.visible = true
 	give_up_button.visible = false
 
