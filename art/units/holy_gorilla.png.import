@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg8mpkacey75g"
-path="res://.godot/imported/heart.png-6435ac13e460cd412ad43fdd87bd82f5.ctex"
+uid="uid://b3xb7p88aakd3"
+path="res://.godot/imported/holy_gorilla.png-a3e4c476c85e7c51b372ef45839d3ca2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/heart.png"
-dest_files=["res://.godot/imported/heart.png-6435ac13e460cd412ad43fdd87bd82f5.ctex"]
+source_file="res://art/units/holy_gorilla.png"
+dest_files=["res://.godot/imported/holy_gorilla.png-a3e4c476c85e7c51b372ef45839d3ca2.ctex"]
 
 [params]
 

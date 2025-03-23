@@ -34,7 +34,7 @@ var active_tile_map : TileMapLayer
 func _on_ready() -> void:
 	GameManager.map = self
 	spawn_tile_map()
-	spawnPlayerUnits()
+	spawnPlayerUnits(generate_player_units())
 	var enemies = GameManager.generate_enemies()
 	print("enemies: ",enemies)
 	spawnEnemyUnits(enemies)
@@ -58,15 +58,43 @@ func _process(delta: float) -> void:
 		elif players == 0:
 			lose()
 			
-
-func spawnPlayerUnits():
+func generate_player_units() -> Array:
+	var player_arr = []
+	
 	for unit in GameManager.units:
-		for amount in range(GameManager.units[unit]):
-			var unit_scene = GameManager.UNIT[GameManager.Faction.PLAYER][unit].instantiate()
-			var spawn_point: Marker2D = spawn_points[unit].pick_random()
-			unit_scene.global_position = spawn_point.global_position + Vector2(randf(), randf())
-			unit_scene.unit_name = GameManager.UnitNames[unit]
-			add_child(unit_scene)
+		var count = GameManager.units[unit]
+		if count > 0:
+			var scene = GameManager.UNIT[GameManager.Faction.PLAYER][unit]
+			var unit_name = GameManager.UnitNames[unit]
+			player_arr.append([scene, count, unit_name])
+	
+	return player_arr
+func spawnPlayerUnits(player_arr: Array):
+	var corners = Utils.get_sprite_corners(border)
+	
+	var min_x = corners[0].x
+	var max_x = corners[1].x
+	var min_y = corners[0].y
+	var max_y = corners[2].y
+	
+	for unit_data in player_arr:
+		var unit_scene = unit_data[0]  
+		var count = unit_data[1]	  
+		var unit_type = unit_data[2] if unit_data.size() > 2 else "Unknown Unit" 
+		
+		for i in range(count):
+			var random_x = randf_range(min_x, max_x)
+			var random_y = randf_range(min_y, max_y)
+			var spawn_position = Vector2(random_x, random_y)
+			
+			if unit_scene:
+				var unit_instance = unit_scene.instantiate()
+				add_child(unit_instance)
+				unit_instance.global_position = spawn_position
+				unit_instance.unit_name = unit_type
+				unit_instance.add_to_group("player_units")
+			else:
+				push_error("No player unit scene provided for spawning")
 
 func spawnEnemyUnits(enemy_arr: Array):
 	var corners = Utils.get_sprite_corners(enemy_border)
@@ -76,12 +104,11 @@ func spawnEnemyUnits(enemy_arr: Array):
 	var min_y = corners[0].y
 	var max_y = corners[2].y
 	
-	# Iterate through each enemy type in the array
 	for enemy_data in enemy_arr:
-		var enemy_scene = enemy_data[0]  # The PackedScene
-		var count = enemy_data[1]		# Number of enemies to spawn of this type
+		var enemy_scene = enemy_data[0] 
+		var count = enemy_data[1]		
 		
-		# Spawn 'count' number of this enemy type
+
 		for i in range(count):
 			var random_x = randf_range(min_x, max_x)
 			var random_y = randf_range(min_y, max_y)
@@ -135,8 +162,7 @@ func lose():
 	state = State.POSTGAME
 	GameManager.money += GameManager.RarityReward["Lost"]
 	
-	await get_tree().create_timer(4).timeout
-	GameManager.difficulty_score += 20
+	await get_tree().create_timer(4).timeout 
 	GameManager.end_battle()
 
 func win():
@@ -153,7 +179,7 @@ func win():
 	audio.play()
 	state = State.POSTGAME
 	await get_tree().create_timer(4).timeout
-	GameManager.difficulty_score += 0.095
+	GameManager.difficulty_score += GameManager.DIFFICULTY_GAIN
 	GameManager.end_battle()
 
 func _on_battle_ui_give_up():

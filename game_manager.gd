@@ -114,6 +114,10 @@ var UnitCosts: Dictionary = {UnitType.IMP: 10, \
 							UnitType.SNAKE: 25, \
 							UnitType.GHOST: 40,
 							}
+var UnitBasePrice: Dictionary = {UnitType.IMP: 10, \
+							UnitType.SNAKE: 25, \
+							UnitType.GHOST: 40,
+							}
 
 var UnitNames: Dictionary = {UnitType.IMP: "Imp", \
 							UnitType.SNAKE: "Snake", \
@@ -129,7 +133,7 @@ var has_generated = false
 var map_packed: PackedScene
 
 var difficulty_score = 0.0
-
+const DIFFICULTY_GAIN = 0.3
 #player vars
 var money: int = 100
 var units: Dictionary = {UnitType.IMP: 2, \
@@ -226,56 +230,34 @@ func ui_unit_bought():
 const PEASENT := preload("res://mobs/enemy/peasent.tscn")
 const KNIGHT = preload("res://mobs/enemy/knight.tscn")
 const LESSER_ANGEL = preload("res://mobs/enemy/lesser_angel.tscn")
+const GORRILA = preload("res://mobs/enemy/gorrila.tscn")
 const ARCH_ANGEL = preload("res://mobs/enemy/arch_angel.tscn")
 func generate_enemies() -> Array:
 	var output = []
 
-	var tier1 = [PEASENT, 5]  # Weakest 
-	var tier2 = [KNIGHT, 3]
-	var tier3 = [LESSER_ANGEL, 2]
-	var tier4 = [LESSER_ANGEL, 1]
-	var tier5 = [LESSER_ANGEL, 1]
-	var tier6 = [ARCH_ANGEL, 1]  # Strongest 
+	var tier1 = [PEASENT, SpawnRate.t1(difficulty_score)]  # Weakest 
+	var tier2 = [KNIGHT, SpawnRate.t2(difficulty_score)]
+	var tier3 = [LESSER_ANGEL, SpawnRate.t3(difficulty_score)]
+	var tier4 = [GORRILA, SpawnRate.t4(difficulty_score)]
+	var tier5 = [LESSER_ANGEL, SpawnRate.t5(difficulty_score)]
+	var tier6 = [ARCH_ANGEL, SpawnRate.t6(difficulty_score)]  # Strongest 
 	
-	var tier1_scale = max(1.0, 1.0 - difficulty_score * 0.5) 
-	var tier2_scale = 1.0
-	var tier3_scale = 1.0 + difficulty_score * 0.5 
-	var tier4_scale = 1.0 + difficulty_score * 1.0  
-	var tier5_scale = 1.0 + difficulty_score * 1.5  
-	var tier6_scale = 1.0 + difficulty_score * 2.0  
-	
-	if difficulty_score < 0.1:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-	elif difficulty_score < 0.2:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.5)])
-	elif difficulty_score < 0.4:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale * 0.5)])
-	elif difficulty_score < 0.6:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		output.append([tier4[0], ceil(tier4[1] * tier4_scale * 0.5)])
-	elif difficulty_score < 0.8:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.8)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
-		output.append([tier5[0], ceil(tier5[1] * tier5_scale * 0.7)])
-	else:
-		output.append([tier1[0], ceil(tier1[1] * tier1_scale * 0.7)])
-		output.append([tier2[0], ceil(tier2[1] * tier2_scale * 0.8)])
-		output.append([tier3[0], ceil(tier3[1] * tier3_scale)])
-		output.append([tier4[0], ceil(tier4[1] * tier4_scale)])
-		output.append([tier5[0], ceil(tier5[1] * tier5_scale)])
-		output.append([tier6[0], ceil(tier6[1] * tier6_scale * 0.8)])
+	output = [
+		tier1,
+		tier2,
+		tier3,
+		tier4,
+		tier5,
+		tier6,
+	]
 	
 	var filtered_output = []
 	for entry in output:
 		if entry[1] > 0:
 			filtered_output.append(entry)
-	
+	if difficulty_score >= SpawnRate.get_max_diff():
+		filtered_output = [[ARCH_ANGEL,10]]
 	return filtered_output
-	
+
+func calc_price(n : int) -> int:
+	return 2**(n*0.2)
